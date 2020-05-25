@@ -1,0 +1,29 @@
+\documentclass{beamer}
+
+\usetheme{metropolis}
+
+\usepackage{xparse}
+\usepackage{xfrac}
+\usepackage[siunitx, american]{circuitikz}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{spalign}
+\usetikzlibrary{automata, arrows}
+
+% https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
+% https://tex.stackexchange.com/questions/102069/make-a-heading-in-beamer
+\newcommand\makeheader[1]{%
+  \par\bigskip
+  {\large\bfseries#1}\par\smallskip}
+
