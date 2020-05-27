@@ -26,3 +26,6 @@ Slide content has been written by generations of the Mu Chapter of HKN.
 
 File structure and compiling code originally written by Parth Nobel with design input from George Hutchinson and Naomi Sagan.
 
+# LicensingThis repository is under the Creative Commons Attribution-ShareAlike 4.0 International license.
+This means you are free to use these slides and materials, but you must retain our attribution.
+Uploading these slides to CourseHero is an unambigious violation of the CourseHero Terms of Service.If you wish to convert the small volume of code in this project into your own project the CC BY-SA 4.0 license is compatible with the [GPLv3](https://wiki.creativecommons.org/wiki/ShareAlike_compatibility:_GPLv3) and you are permitted and encouraged to use the code from this project in a GPLv3 project.
