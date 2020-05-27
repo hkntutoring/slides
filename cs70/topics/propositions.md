@@ -17,14 +17,13 @@ Not a proposition:
 * CS70 is cool (subjective)
 
 
+
 # Implication
 * Statements in the form "If P, then Q" are notated $P \implies Q$
-  * P is called the "hypothesis", Q the "conslusion"
+* P is called the "hypothesis", Q the "conslusion"
 * True if the hypothesis is false, or hypothesis and conclusion are true
-  * $(P \implies Q) \equiv \neg(P \and \neg Q)$
+  * $(P \implies Q) \equiv \neg(P \land \neg Q)$
 * Contrapositive
   * $(P \implies Q) \equiv (\neg Q \implies \neg P)$
 * Converse and Inverse
   * $(Q \implies P) \equiv (\neg P \implies \neg Q) \not\equiv (P \implies Q)$
-
-
