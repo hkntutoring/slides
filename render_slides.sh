@@ -10,10 +10,15 @@ fi
 
 cd $1
 
+if [[ $? -ne 0 ]]; then
+     echo "Unknown class. Please specify a class with the name of the folder."
+     exit 2
+fi
+
 if [[ "$2" == "" ]]; then
     echo "Specify mt1/mt2/final/clean"
 
-    exit 2
+    exit 3
 elif [[ "$2" == "clean" ]]; then
 	latexmk -c
     rm -r ./md-topics/
@@ -28,5 +33,5 @@ else
         pandoc -t beamer "$i" -o "./md-topics/$(basename $i .md).tex"
     done
 
-	latexmk -pdf "$2"
+    latexmk -pdf "$2"
 fi
