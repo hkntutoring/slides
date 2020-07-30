@@ -1,21 +1,120 @@
 \section{Matrix Inverses}
 
 \begin{frame}{Inverses}
+    A matrix, $A$, is \textbf{invertible} if there exists a matrix $B$, such that
+    \begin{align*}
+        AB = BA = I_n \implies B = A^{-1}
+    \end{align*}
+    
+    Conditions for inverse to exist:
+    \begin{itemize}
+        \item The matrix must be \textbf{square} (n x n)
+        \item The columns must be \textbf{linearly independent} (injective) and they must \textbf{span} $\mathbb{R}^n$ (surjective).
+    \end{itemize}
+\end{frame}
 
+\begin{frame}{Inverse Properties}
+    Here are some useful properties of matrix inverses:
+    \begin{itemize}
+        \item $AA^{-1} = A^{-1}A = I$
+        \item $(A^{-1})^{-1} = A$
+        \item $kA^{-1} = k^{-1}A^{-1}$ for scalar $k$
+        \item $(AB)^{-1} = B^{-1}A^{-1}$ (similar to transpose)
+        \item $(A^{-1})^T = (A^T)^{-1}$
+        \item $(AB) (B^{-1}A^{-1}) = A (BB^{-1}) A^{-1} = I$
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Invertibility}
-
+    If $A$ is a $n \times n$ \textbf{invertible} matrix, then the following are also true:
+    \begin{itemize}
+        \item $A$ has $n$ pivot positions.
+        \item $A$ has a trivial nullspace ($A\vec{x} = \vec{0}$ only if $\vec{x} = \vec{0}$).
+        \item The columns and rows of $A$ are \textbf{linearly independent}, and \textbf{span} $\mathbb{R}^n$. As a result, they form a \textbf{basis} for $\mathbb{R}^n$.
+        \item The columnspace of $A$ is $\mathbb{R}^n$, and is $n-$dimensional. So, $A$ has a \textbf{rank} of $n$.
+        \item For every $\vec{b} \in \mathbb{R}^n$, $A\vec{x} = \vec{b}$ has a \textit{unique solution}.
+        \item The determinant of $A$ is not 0.
+        \item $A$ does not have an eigenvalue of 0.
+    \end{itemize}
+    For a full description of the \textbf{invertible matrix theorem} (warning: parts are out of scope), look \textbf{\textcolor{red}{\href{https://math.dartmouth.edu/archive/m22f06/public_html/imt.pdf}{here}}}.
 \end{frame}
 
 \begin{frame}{Computing Inverses}
-
+    Use Gaussian elimination! (Who would’ve guessed$\dots$) \\[1ex]
+    \begin{itemize}
+        \item Construct an \textbf{augmented matrix} consisting of A and the identity matrix:
+        \begin{align*}
+            \begin{bmatrix}[c | c]
+                A & I
+            \end{bmatrix}
+        \end{align*}
+        \item Row reduce this augmented matrix until the \textit{left side becomes the identity}, and the \textit{right side becomes} $A^{-1}$:
+        \begin{align*}
+            \begin{bmatrix}[c | c]
+                A & I
+            \end{bmatrix} \longrightarrow
+            \begin{bmatrix}[c | c]
+                I & A^{-1}
+            \end{bmatrix}
+        \end{align*}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Computing Inverses: $2 \times 2$ Matrices}
+    For a $2 \times 2$ matrix, you can \textbf{find the inverse quickly} using the following formula:
+    \begin{align*}
+        A^{-1} = \begin{bmatrix}
+            a & b \\
+            c & d
+        \end{bmatrix}^{-1} = \frac{1}{ad - bc}
+        \begin{bmatrix}
+            d & -b \\
+            -c & a
+        \end{bmatrix}
+    \end{align*}
+    We can derive this from the general method of finding inverses, but this can be convenient. \\[3ex]
+    \textit{Side Note: In real numerical computation, we generally use gaussian elimination to find the inverse of a large matrix even through there is a theoretical formula deduced from Cramer’s rule which has a terrible runtime.}
 
 \end{frame}
 
 \begin{frame}{Practice: Computing Inverses}
+    Find the \textbf{inverse} of
+    \begin{align*}
+        A = \begin{bmatrix}
+            1 & 3 & 3 \\
+            1 & 4 & 3 \\
+            1 & 3 & 4
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
 
+\begin{frame}{Practice: Computing Inverses [Solution]}
+    Make an \textbf{augmented matrix} with $A$ and the identity, and then perform \textbf{Gaussian Elimination}:
+    \begin{align*}
+        \begin{bmatrix}[c c c | c c c]
+            1 & 3 & 3 & 1 & 0 & 0 \\
+            1 & 4 & 3 & 0 & 1 & 0 \\
+            1 & 3 & 4 & 0 & 0 & 1
+        \end{bmatrix} \xrightarrow[-R_1 + R_2 \to R_2]{-R_1 + R_3 \to R_3}
+        \begin{bmatrix}[c c c | c c c]
+            1 & 3 & 3 & 1 & 0 & 0 \\
+            0 & 1 & 0 & -1 & 1 & 0 \\
+            0 & 0 & 1 & -1 & 0 & 1
+        \end{bmatrix} \\
+        \begin{bmatrix}[c c c | c c c]
+            1 & 3 & 3 & 1 & 0 & 0 \\
+            0 & 1 & 0 & -1 & 1 & 0 \\
+            0 & 0 & 1 & -1 & 0 & 1
+        \end{bmatrix} \xrightarrow[R_1 - 3R_2 \to R_1]{R_1 - 3R_3 \to R_1} 
+        \begin{bmatrix}[c c c | c c c]
+            1 & 0 & 0 & 7 & -3 & -3 \\
+            0 & 1 & 0 & -1 & 1 & 0 \\
+            0 & 0 & 1 & -1 & 0 & 1
+        \end{bmatrix} \\[0.8ex]
+        A^{-1} = \begin{bmatrix}
+            7 & -3 & -3 \\
+            -1 & 1 & 0 \\
+            -1 & 0 & 1
+        \end{bmatrix}
+    \end{align*}
 \end{frame}
