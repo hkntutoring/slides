@@ -1,14 +1,104 @@
 \section{Eigenvalues and Eigenvectors}
 
 \begin{frame}{Definition: Eigenvalues and Eigenvectors}
-
+    \textbf{**The most important concept in linear algebra} \\[1ex]
+    An scalar-vector pair $\lambda, \vec{v}$ are an \textbf{eigenvalue-eigenvector pair} of matrix $A$ if applying $A$ to $\vec{v}$ produces a version of $\vec{v}$ scaled by $\lambda$. \\
+    {\fontsize{20}{10}\selectfont
+        \begin{align*}
+            A\vec{v} = \lambda \vec{v}
+        \end{align*}
+    }
+    Properties:
+    \begin{itemize}
+        \item Eigenvectors w/ distinct eigenvalues are \textbf{linearly independent}
+        \item A matrix is \textbf{non invertible} iff 0 is an eigenvalue
+        \item A scalar times an eigenvector is still an eigenvector
+        \item Eigenvalues remain the \textbf{same across transposes} - not necessarily true for eigenvectors! 
+        \begin{align*}
+            A^{-1} \vec{v} = \lambda^{-1} \vec{v} \,\,\,
+            \text{and} \,\,\,
+            A^n \vec{v} = \lambda^n \vec{v}
+        \end{align*}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Finding Eigenvalues and Eigenvectors}
-
+    To find eigenvalues and eigenvectors of $A$:
+    \begin{itemize}
+        \item Find solutions to the \textbf{characteristic polynomial}, which is:
+        \begin{align*}
+            \det(A - \lambda I) = 0
+        \end{align*}
+        \begin{quotation}
+            \textit{Aside: the determinant of a $2 \times 2$ matrix is}
+            \begin{align*}
+                \det \begin{bmatrix}
+                    a & b \\ c & d
+                \end{bmatrix} = 
+                ad - bc
+            \end{align*}
+        \end{quotation}
+        \item The solutions for $\lambda$ give the \textbf{eigenvalues} of $A$.
+        \item For each eigenvalue $\lambda$, calculate the null space of
+        \begin{align*}
+            A - \lambda I
+        \end{align*}
+        \item The basis for the null space will be your \textbf{eigenvectors}.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Practice: Eigenvalues and Eigenvectors}
+    Find the \textbf{eigenvalues and eigenvectors} of
+    \begin{align*}
+        A = \begin{bmatrix}
+            3 & 1 \\ 2 & 4
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
 
+\begin{frame}{Practice: Eigenvalues and Eigenvectors [Solution]}
+    First, find the solutions to the \textbf{characteristic polynomial}.
+    \begin{align*}
+        \det(A - \lambda I) = 0 \\
+        (3 - \lambda)(4 - \lambda) - 2 \cdot 1 = 0 \\
+        \lambda^2 - 7\lambda + 10 = 0 \\
+        \lambda_1 = 2, \, \lambda_2 = 5
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Eigenvalues and Eigenvectors [Solution]}
+    Then, find the \textbf{null space} of $A - \lambda I$ for each lambda:
+    \begin{align*}
+        \begin{bmatrix}[c c | c]
+            3 - \lambda_1 & 1 & 0 \\
+            2 & 4 - \lambda_1 & 0
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}[c c | c]
+            1 & 1 & 0 \\
+            2 & 2 & 0
+        \end{bmatrix} \xrightarrow[]{R_2 - 2R_1 \to R_2}
+        \begin{bmatrix}[c c | c]
+            1 & 1 & 0 \\
+            0 & 0 & 0
+        \end{bmatrix} \\
+        \vec{v}_1 = \begin{bmatrix}
+            1 \\ -1
+        \end{bmatrix} \\[2ex]
+        \begin{bmatrix}[c c | c]
+            3 - \lambda_2 & 1 & 0 \\
+            2 & 4 - \lambda_2 & 0
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}[c c | c]
+            -2 & 1 & 0 \\
+            2 & -1 & 0
+        \end{bmatrix} \xrightarrow[]{R_2 + R_1 \to R_2}
+        \begin{bmatrix}[c c | c]
+            -2 & 1 & 0 \\
+            0 & 0 & 0
+        \end{bmatrix} \\
+        \vec{v}_2 = \begin{bmatrix}
+            1 \\ -2
+        \end{bmatrix}
+    \end{align*}
 \end{frame}
 

@@ -1,18 +1,151 @@
 \section{PageRank}
-
 \begin{frame}{Graphs, Flow, and Transition Matrices}
+    A \textbf{transition matrix} represents a directed graph of states and transitions.
+    \begin{itemize}
+        \item Edges of the graph represent \textit{what fraction of one state moves to the next}.
+        \item Entry \textbf{ij} in matrix means \textit{fraction of water from node j entering node i}. 
+        \item Columns sum to $\leq 1$ (\textit{What would it mean of the sum of a column was greater than 1?}).
+        \item Examples: Social networks, PageRank
+    \end{itemize}
+\end{frame}
 
+\begin{frame}{Transition Matrix Examples}
+    Here are some examples of \textbf{graphs} and their corresponding \textbf{transition matrices}. Notice that element $ij$ represents the \textit{fractional transition} from state $j$ to state $i$.\\
+    \begin{center}
+        \begin{tabular}{c c c}
+            \begin{tikzpicture}
+                \node[state, double distance=2pt] (s1) {$S_1$};
+                \node[state, right=of s1] (s2) {$S_2$};
+                \draw[every loop]
+                    (s1) edge[bend left, auto=left] node {0.7} (s2)
+                    (s2) edge[bend left, auto=left] node {0.4} (s1)
+                    (s1) edge[loop above] node {0.1} (s1)
+                    (s2) edge[loop above] node{0.6} (s2);
+            \end{tikzpicture} && 
+            \begin{tikzpicture}
+                \node[state, double distance=2pt] (s1) {$S_1$};
+                \node[state, right=of s1] (s2) {$S_2$};
+                \draw[every loop]
+                    (s1) edge[bend left, auto=left] node {0} (s2)
+                    (s2) edge[bend left, auto=left] node {0} (s1)
+                    (s1) edge[loop above] node {1} (s1)
+                    (s2) edge[loop above] node{1} (s2);
+            \end{tikzpicture} \\ && \\
+            $T = \begin{bmatrix}
+                    0.1 & 0.4 \\
+                    0.7 & 0.6
+                \end{bmatrix}$ && 
+            $T = \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                \end{bmatrix}$
+        \end{tabular}
+    \end{center}
 \end{frame}
 
 \begin{frame}{Practice: Transition Matrices}
+    \begin{itemize}
+        \item What do we know about the system if all \textit{columns} each \textbf{sum to 1}?
+        \item Less than 1? (Think about what physically happens if the system was water flows)
+        \item Greater than 1?
+    \end{itemize}
+\end{frame}
 
+\begin{frame}{Practice: Transition Matrices [Solution]}
+    \begin{itemize}
+        \item What do we know about the system if all \textit{columns} each \textbf{sum to 1}? \textcolor{red}{\textbf{Flow is conserved: no “water” is added or lost.
+        }}
+        \item Less than 1? (Think about what physically happens if the system was water flows) \textcolor{red}{\textbf{Flow is lost.}}
+        \item Greater than 1? \textcolor{red}{\textbf{Flow increases.}}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{PageRank}
-
+    \begin{itemize}
+        \item Given a flow graph, we wish to \textbf{rank the nodes by their “importance”}, i.e. which state will hold the most "water" when the system reaches a steady state.
+        \item Procedure:
+        \begin{enumerate}
+            \item Write $A$, the \textbf{transition matrix} of the flow diagram.
+            \item Find the eigenvector(s) of $A$, whose \textbf{eigenvalue is 1}.
+            If $A\vec{v} = \vec{v}$, $\vec{v}$ is a \textbf{steady state vector}.
+            \item $\vec{v}$ contains the \textit{values the nodes will stabilize at}, and ranks the importance of each node            
+        \end{enumerate}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Practice: PageRank}
-
+    Find the \textbf{transition matrix} for this flow diagram.
+    \begin{center}
+        \begin{tikzpicture}
+            \node[state, draw=none] (hidden) {};
+            \node[state, left=of hidden] (a) {A};
+            \node[state, right=of hidden] (b) {B};
+            \node[state, below=of hidden] (c) {C};
+            \draw[every loop]
+                (a) edge[loop left] node{1} (a)
+                (b) edge[loop right] node{0.4} (b)
+                (c) edge[loop below] node{0.2} (c)
+                (b) edge[auto=right] node{0.6} (a)
+                (c) edge[auto=left] node{0.6} (a)
+                (c) edge[auto=right] node{0.2} (b);
+        \end{tikzpicture}
+    \end{center}
 \end{frame}
 
+\begin{frame}{Practice: PageRank [Solution]}
+    \begin{center}
+        \begin{tikzpicture}[shorten >=1pt,node distance=0.3cm]
+            \node[state, draw=none] (hidden) {};
+            \node[state, left=of hidden] (a) {A};
+            \node[state, right=of hidden] (b) {B};
+            \node[state, below=of hidden] (c) {C};
+            \draw[every loop]
+                (a) edge[loop left] node{1} (a)
+                (b) edge[loop right] node{0.4} (b)
+                (c) edge[loop below] node{0.2} (c)
+                (b) edge[auto=right] node{0.6} (a)
+                (c) edge[auto=left] node{0.6} (a)
+                (c) edge[auto=right] node{0.2} (b);
+        \end{tikzpicture}
+    \end{center}
+    Assuming the first column represents \textit{flow from state A}, the second represents \textit{flow from state B}, etc. the \textbf{transition matrix} is:
+    \begin{align*}
+        T =  \begin{bmatrix}
+            1 & 0.6 & 0.6 \\
+            0 & 0.4 & 0.2 \\
+            0 & 0 & 0.2    
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: PageRank}
+    Find the \textbf{steady state values} of the system. 
+    \begin{align*}    
+        T =  \begin{bmatrix}
+            1 & 0.6 & 0.6 \\
+            0 & 0.4 & 0.2 \\
+            0 & 0 & 0.2    
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: PageRank [Solution]}
+    To find the \textbf{steady state values}, find the \textit{eigenvectors corresponding to an eigenvalue of 1}.
+    \begin{align*}
+        A \vec{v} = \vec{v} \\
+        (A - I) \vec{v} = \vec{0} \\[1ex]
+        \begin{bmatrix}[c c c | c]
+            0 & 0.6 & 0.6 & 0 \\
+            0 & -0.6 & 0.2 & 0\\
+            0 & 0 & -0.8 & 0
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}[c c c | c]
+            0 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0\\
+            0 & 0 & 1 & 0
+        \end{bmatrix} \\[1ex]
+        \vec{v} = \begin{bmatrix}
+            1 \\ 0 \\ 0
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
