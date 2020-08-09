@@ -1,3 +1,5 @@
+\section{Proofs and Proof Techniques}
+
 # Proof techniques for $P \implies Q$
 * Direct Proof
   - Assume P is true, use it to show Q
