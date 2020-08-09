@@ -160,7 +160,7 @@ We will prove this by induction on total area of bar.
 
 Let $f(a)$ be the number of steps needed to break up a bar of area $mn = a$.
 
-*Base Case:* let $a = 1$. Trivially, no breaks are needed. f(1) = 0. Confirming, f(1) \geq mn - 1 = 0
+*Base Case:* let $a = 1$. Trivially, no breaks are needed. $f(1) = 0$. Confirming, $f(1) \geq mn - 1 = 0$
 
 *Strong Inductive Hypothesis:* Assume $f(l) \geq l - 1$ for $l \leq k$.
 We wish to show $f(k+1) \geq k$.
