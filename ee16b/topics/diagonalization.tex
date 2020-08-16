@@ -1,0 +1,30 @@
+\section{Diagonalization}
+
+\begin{frame}{Diagonalization}
+	    \begin{itemize}
+	        \item The idea is that we want to change into a basis in which the system $A\vec{x} = \vec{y}$ is represented by a diagonal matrix. So how do we find such basis?
+	        
+	        \item Remember that for all eigenvalue-eigenvector pairs we have: $A\vec{v} = \lambda\vec{v}$
+	        
+	        \item Let’s use our eigenvectors as our basis. Doing so we obtain:
+	        
+	        $$\vec{x} = V\tilde{\vec{x}}, \vec{y} = V\tilde{\vec{y}}, \text{and} \Lambda\tilde{\vec{x}} = \tilde{\vec{y}}$$
+	        
+	        Where the upper-case lambda represents the diagonal matrix with eigenvalues on the diagonals.
+	        
+	        \item Transforming back to the standard basis, we get:
+            
+            $$A = V\Lambda{V^{-1}}$$
+	    \end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Diagonalization Cont.}
+	    \begin{itemize}
+	        \item Let’s analyze this a bit further, why is it important to be able to do this?
+            
+            \item We see that diagonalizing the matrix makes the system much easier to solve, why? 
+            
+            \item Also, we see that there is a “home state” for every system of linearly independent equations, i.e. the space in which the system’s components are uncoupled.
+	    \end{itemize}
+	\end{frame}
+	
