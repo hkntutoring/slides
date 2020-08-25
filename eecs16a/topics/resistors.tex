@@ -97,7 +97,7 @@
 
 \begin{frame}{Resistors in Series}
     \begin{center}
-        \begin{circuitikz}
+        \begin{circuitikz}[scale=0.8, transform shape]
             \draw (0, 3) to[V=$V$] (0, 0)
             (0, 3) to[R=$R_1$] (3, 3)
             (3, 3) to[R=$R_2$] (3, 0)
@@ -139,7 +139,7 @@
 
 \begin{frame}{Resistors in Parallel}
     \begin{center}
-        \begin{circuitikz}
+        \begin{circuitikz}[scale=0.8, transform shape]
             \draw (0, 3) to[V=$V$] (0, 0)
             (0, 3) to[short] (6, 3)
             (3, 3) to[R=$R_1$] (3, 0)
@@ -325,6 +325,7 @@
     \color{blue}
     First, look at the end:\\[0.5ex]
     \begin{tabular}{m{0.29\textwidth} m{0.025\textwidth} m{0.29\textwidth} m{0.025\textwidth} m{0.2\textwidth}}
+        \color{black}
         \begin{circuitikz}[scale=0.6, transform shape]
             \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
             (0, 2) to[R=$2\,k\Omega$] (0,0)
@@ -333,6 +334,7 @@
             (4, 2) to[R=$1\,k\Omega$] (4, 0)
             (4, 0) to[short, -*] (-0.5, 0);
         \end{circuitikz} & $\Longrightarrow$ &
+        \color{black}
         \begin{circuitikz}[scale=0.6, transform shape]
             \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
             (0, 2) to[R=$2\,k\Omega$] (0,0)
@@ -341,6 +343,7 @@
             (4, 2) to[R=$2\,k\Omega$] (4, 0)
             (4, 0) to[short, -*] (0-0.5, 0);
         \end{circuitikz} & $\Longrightarrow$ &
+        \color{black}
         \begin{circuitikz}[scale=0.6, transform shape]
             \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
             (0, 2) to[R=$2\,k\Omega$] (0,0)
@@ -350,6 +353,7 @@
     \end{tabular}
     Notice that the equivalent circuit is \textit{the same as the three end resistors in the original circuit}. This pattern continues, until the whole circuit is reduced to:\\[-10ex]
     \begin{center}
+        \color{black}
         \begin{circuitikz}[scale=0.6, transform shape]
             \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
             (2, 2) to[R=$1\,k\Omega$] (2, 0)
