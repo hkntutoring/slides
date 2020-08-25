@@ -1,0 +1,82 @@
+\section{Voltage and Current Dividers}
+
+\begin{frame}{Voltage Divider}
+    \begin{tabular}{m{0.8\textwidth} m{0.12\textwidth}}
+        Super useful, a way to \textit{lower the voltage by a desired amount by using resistors}: & \multirow{3}{*}{
+            \begin{circuitikz}[scale=0.65, transform shape]
+                \draw (0, 4) node[label={ above:$V_{in}$}] {} to[short, *-] (1, 4)
+                (1, 4) to[R=$R_1$] (1, 2)
+                (1, 2) to[short, -*] (2, 2) node[label={above:$V_{out}$}] {}
+                (1, 2) to[R=${R_2}$] (1, 0) node[ground] {};
+            \end{circuitikz}
+        } \\[5pt]
+        $\boxed{V_{out} = V_{in} \frac{R_2}{R_1 + R_2}}$ & \\[20pt]
+        \textit{Intuition}: If $R_1$ is  much greater, then most of the voltage is lost across $R_1$ , so $V_{out}$ is small. & \\[20pt]
+    \end{tabular}
+    Voltage across resistor is \textbf{proportional to its resistance} \\[5pt]
+        Can also be used to find \textit{voltage across top resistor}. \\
+\end{frame}
+
+\begin{frame}{Example: Voltage Dividers}
+    If we want to have our output voltage be \textbf{half of our input voltage}, how can we use a \textbf{voltage divider} to do so? \\[10pt]
+    Remember, $V_{out}$ of a voltage divider is $V_{in} \frac{R_2}{R_1 + R_2}$.
+\end{frame}
+
+\begin{frame}{Example: Voltage Divider [Solution]}
+    If we want to \textbf{halve our input voltage} how can we use a \textbf{voltage divider} to do so? \\[15pt]
+    \color{blue}
+    \begin{tabular}{m{0.8\textwidth} m{0.12\textwidth}}
+        \underline{Solution}: If we look at the equation &
+        \color{black}
+        \multirow{3}{*}{
+            \begin{circuitikz}[scale=0.65, transform shape]
+                \draw (0, 4) node[label={ above:$V_{in}$}] {} to[short, *-] (1, 4)
+                (1, 4) to[R=$R_1$] (1, 2)
+                (1, 2) to[short, -*] (2, 2) node[label={above:$V_{out}$}] {}
+                (1, 2) to[R=${R_2}$] (1, 0) node[ground] {};
+            \end{circuitikz}
+        } \\[5pt]
+        $V_{out} = V_{in} \frac{R_2}{R_1 + R_2}$ & \\[5pt]
+        We take $R_1 = R_2$ and then the fraction & \\[5pt]
+        $\frac{R_2}{R_1 + R_2} = 1/2$ & \\[10pt]
+        So, we halve our voltage!
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Current Divider}
+    Similar to the voltage divider, a way to get a \textbf{fraction of the input current} based on the resistors of our circuit. \\[15pt]
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        $I_1 = I_{source} \frac{R_2}{R_1 + R_2}$ &
+        \multirow{3}{*}{
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) to[I] (0, 3)
+                (0, 3) to[short, i_=$I_{source}$] (3, 3)
+                (3, 3) to[R=$R_1$, i>^=$I_1$] (3, 0)
+                (3, 3) to[short] (5, 3)
+                (5, 3) to[R=$R_2$, i>^=$I_2$] (5, 0)
+                (0, 0) to[short] (5, 0);
+            \end{circuitikz}
+        } \\[10pt]
+        \underline{Intuitively}: The more resistance in our $R_2$ value means that there will be \textbf{more current going through the first branch} ($I_1$). & \\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Current Divider}
+    \begin{tabular}{m{0.4\textwidth} m{0.5\textwidth}}
+        &
+        \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 0) node[ground] {} to[I, l=$I_T$] (0, 3)
+                (0, 3) to[short] (8, 3)
+                (2, 3) to[R=$R_X$, i^>=$I_X$] (2, 0)
+                (4, 3) to[R=$R_1$] (4, 0)
+                (6, 3) to[R=$R_2$] (6, 0)
+                (8, 3) to[R=$R_3$] (8, 0)
+                (0, 0) to[short] (8, 0);
+            \end{circuitikz}
+        }  \\[-5pt]
+        Note in our formula & \\[5pt]
+        $I_X = I_T \frac{R_T}{R_X + R_T}$ & \\[20pt]
+    \end{tabular}
+    The $R_T$ corresponds to the \textbf{equivalent resistance} of the rest of the circuit. (Not including $R_X$)
+\end{frame}

@@ -1,0 +1,141 @@
+\section{Thévenin and Norton Equivalent Circuits}
+
+\begin{frame}{Equivalent Circuits}
+    Any \textcolor{red}{\textbf{\href{https://en.wikipedia.org/wiki/Linear_circuit}{linear} \href{https://en.wikipedia.org/wiki/Electrical_network}{electrical network}}} with only voltage sources, current sources, and resistances can be replaced by either of the following:
+    \begin{itemize}
+        \item \textbf{Thévenin Equivalent}: An equivalent voltage source $V_{Th}$ in series with an equivalent resistance $R_{Th}$.
+        \item \textbf{Norton Equivalent}: An equivalent current source $I_{N}$ in parallel with an equivalent resistance $R_N$
+    \end{itemize}
+    \begin{center}
+        \begin{tabular}{m{0.35\textwidth} m{0.35\textwidth}}
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 3) to[V_=$V_{Th}$] (0, 0)
+                (0, 3) to[R, l_=$R_{Th}$, -o] (3, 3) node[label={right:A}] {}
+                (0, 0) to[short, -o] (3, 0) node[label={right:B}] {};
+            \end{circuitikz} &
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 0) to[I, l=$I_{N}$] (0, 3)
+                (0, 3) to[short, -o] (3, 3) node[label={right:A}] {}
+                (1.5, 3) to[R=$R_{N}$] (1.5, 0) 
+                (0, 0) to[short, -o] (3, 0) node[label={right:B}] {};
+            \end{circuitikz}
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Equivalent Circuits: Steps to Solve}
+    \begin{itemize}
+        \item Find \textbf{Thévenin voltage}, $V_{Th}$, by treating the output terminals as an \textbf{open circuit} and \textit{finding the voltage across them.} \\[5pt]
+        \item Or, find the \textbf{Norton current}, $I_N$, by treating the output terminals as a \textbf{short circuit} and \textit{finding the current through that short}.
+        \begin{itemize}
+            \item Note: resistors in parallel with a short can be disregarded.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Equivalent Circuits: Steps to Solve}
+    Find $R_{Th}$ or $R_N$ by either:
+    \begin{itemize}
+        \item Connecting a \textbf{test voltage source} $V_{test}$ across the terminals and calculating $I_{test}$, the \textbf{current out} of the source, or \\[5pt]
+        \item Connecting a \textbf{test current source} $I_{test}$ and measuring $V_{test}$, the \textbf{voltage across} the source. \\[5pt]
+    \end{itemize}
+    Also, note that $R_{Th} = R_{N} = V_{Th} / I_{N}$.
+\end{frame}
+
+\begin{frame}{Practice: Equivalent Circuits}
+    Draw the \textbf{Thévenin and Norton equivalent circuits} for the following circuits across terminals A and B, with A as the $+$ terminal and B as the $-$ terminal.
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 3) to[V=$V_1$] (0, 0)
+            (0, 3) to[R=$R_1$] (3, 3)
+            (3, 3) to[R=$R_2$] (3, 0)
+            (3, 3) to[R=$R_3$, -o] (6, 3) node[label={right:A}] {}
+            (0, 0) to[short, -o] (6, 0) node[label={right:B}] {};
+        \end{circuitikz}
+    \end{center}
+    Where $V_1 = 10\,V$ and $R_1 = R_2 = R_3 = 200\,\Omega$.
+\end{frame}
+
+\begin{frame}{Practice: Equivalent Circuits [Solution]}
+    \color{blue}
+    Find $V_{Th}$: \\[5pt]
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        & \multirow{3}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 3) to[V=$V_1$] (0, 0)
+                (0, 3) to[R=$R_1$] (3, 3)
+                (3, 3) to[R=$R_2$] (3, 0)
+                (3, 3) to[R=$R_3$, -o] (6, 3) node[label={right:A}] {}
+                (0, 0) to[short, -o] (6, 0) node[label={right:B}] {};
+            \end{circuitikz}
+        } \\[-10pt]
+        Note that $R_3$ does not affect $V_{Th}$ because we're looking at the voltage across an open circuit. & \\[20pt]
+        So, $V_{Th}$ is the voltage across $R_2$ & \\[5pt]
+    \end{tabular}
+    \begin{align*}
+        V_{Th} = V_1 \frac{R_2}{R_1 + R_2} = 10\,V \cdot \frac{200\,\Omega}{400\,\Omega} = 5\,V
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Equivalent Circuits [Solution]}
+    \color{blue}
+    Find $I_{N}$: \\[5pt]
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        & \multirow{2}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 3) to[V=$V_1$] (0, 0)
+                (0, 3) to[R=$R_1$] (3, 3)
+                (3, 3) to[R=$R_2$] (3, 0)
+                (3, 3) to[R=$R_3$, -o] (6, 3) node[label={right:A}] {}
+                (0, 0) to[short, -o] (6, 0) node[label={right:B}] {}
+                (5.75, 3) to[short, i=$I_N$] (5.75, 0);
+            \end{circuitikz}
+        } \\[-10pt]
+        We can use our \textbf{current divider} formula by finding $I_{total}$ then using the relationship between $R_2$ and $R_3$ to find $I_N$. & \\[20pt]
+    \end{tabular}
+    \begin{align*}
+        I_{total} = \frac{V_1}{R_1 + (R_2 || R_3)} = \frac{10\,V}{200 (200 || 200)\,\Omega} = 1/30\,A \\[10pt]
+        I_N = I_{total} \frac{R_2}{R_2 + R_3} = (1/30\,A) \cdot \frac{200\,\Omega}{400\,\Omega} = 1/60\,A
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Equivalent Circuits [Solution]}
+    \color{blue}
+    \begin{tabular}{m{0.5\textwidth} m{0.4\textwidth}}
+        & \multirow{4}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 3) to[V=$V_1$] (0, 0)
+                (0, 3) to[R=$R_1$] (3, 3)
+                (3, 3) to[R=$R_2$] (3, 0)
+                (3, 3) to[R=$R_3$, -o] (6, 3) node[label={right:A}] {}
+                (0, 0) to[short, -o] (6, 0) node[label={right:B}] {};
+            \end{circuitikz}
+        } \\
+        Find $R_{Th} = R_N = R_{eq}$: & \\[5pt]
+        $R_{eq} = V_{Th} / I_N$ & \\[5pt]
+        $R_{eq} = 5\,V / (1/60)\, A = 300\,\Omega$ & \\[20pt]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Equivalent Circuits [Solution]}
+    Finally, redraw the equivalent circuits:
+    \begin{center}
+        \begin{tabular}{c c}
+            \underline{Thévenin} & \underline{Norton} \\[5pt]
+            \begin{circuitikz}[scale=0.75, transform shape]
+                \draw (0, 3) to[V_=$5\,V$] (0, 0)
+                (0, 3) to[R, l_=$300\,\Omega$, -o] (3, 3) node[label={right:A}] {}
+                (0, 0) to[short, -o] (3, 0) node[label={right:B}] {};
+            \end{circuitikz} &
+            \begin{circuitikz}[scale=0.75, transform shape]
+                \draw (0, 0) to[I, l=$1/60\,A$] (0, 3)
+                (0, 3) to[short, -o] (3, 3) node[label={right:A}] {}
+                (1.5, 3) to[R=$300\,\Omega$] (1.5, 0) 
+                (0, 0) to[short, -o] (3, 0) node[label={right:B}] {};
+            \end{circuitikz}
+        \end{tabular}
+    \end{center}
+\end{frame}

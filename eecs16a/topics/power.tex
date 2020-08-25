@@ -1,0 +1,100 @@
+\section{Power}
+
+\begin{frame}{Power (Definition)}
+    \textbf{Power} is the amount of energy supplied/dissipated per unit time:
+    \begin{itemize}
+        \item Units: Watts (Joules / second)
+        \item General equation: $P = IV$
+        \begin{itemize}
+            \item For resistors, $P = IV = V^2/R = I^2R$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Power Conventions}
+    We use \textbf{"passive sign convention"}
+    \begin{itemize}
+        \item Elements \textbf{consuming power} have current \textit{entering the higher voltage node}:
+        \begin{center}
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 2) to[R, v>=$\,$] (0, 0)
+                (0, 0) to[short] (1, 0)
+                (0, 2) to[short, i<=$i$] (1, 2);
+            \end{circuitikz} \\[10pt]
+        \end{center}
+        \item Elements \textbf{supplying power} have current \textit{exiting the higher voltage node}:
+        \begin{center}
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 2) to[V] (0, 0)
+                (0, 0) to[short] (1, 0)
+                (0, 2) to[short, i>=$i$] (1, 2);
+            \end{circuitikz} 
+        \end{center}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Power}
+    A circuit element either \textbf{supplies} or \textbf{consumes} power. 
+    \begin{itemize}
+        \item Voltage and current sources \textbf{supply power} \\[10pt]
+        \item Resistors always \textbf{consume power}
+        \begin{itemize}
+            \item \textit{Convert electrical energy to heat} \\[10pt]
+        \end{itemize}
+        \item Capacitors can \textit{either supply or consume} power.
+        \begin{itemize}
+            \item Consumes energy when charging the capacitor
+            \item Supplies energy when discharging the capacitor
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: Power}
+    A. Find the \textbf{total power consumed} by the resistors. \\[10pt]
+    B. Find the \textbf{power supplied} by the battery.
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 3) to[V=$12\,V$] (0, 0)
+            (0, 3) to[R=$100\,\Omega$] (5, 3)
+            (5, 3) to[short] (5, 2.5)
+            (3, 2.5) to[short] (7, 2.5)
+            (3, 2.5) to[R=$300\,\Omega$] (3, 0.5)
+            (5, 2.5) to[R=$300\,\Omega$] (5, 0.5)
+            (7, 2.5) to[R=$300\,\Omega$] (7, 0.5)
+            (3, 0.5) to[short] (7, 0.5)
+            (5, 0.5) to[short] (5, 0)
+            (0, 0) to[short] (5, 0);
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Practice: Power [Solution]}
+    \color{blue}
+    \begin{tabular}{m{0.6\textwidth} m{0.3\textwidth}}
+        \underline{A: Power dissipated by resistor:} &
+        \multirow{4}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 3) to[V=$12\,V$] (0, 0)
+                (0, 3) to[R=$100$] (4, 3)
+                (4, 3) to[short] (4, 2.5)
+                (2.5, 2.5) to[short] (5.5, 2.5)
+                (2.5, 2.5) to[R=$300$] (2.5, 0.5)
+                (4, 2.5) to[R=$300$] (4, 0.5)
+                (5.5, 2.5) to[R=$300$] (5.5, 0.5)
+                (2.5, 0.5) to[short] (5.5, 0.5)
+                (4, 0.5) to[short] (4, 0)
+                (0, 0) to[short] (4, 0);
+            \end{circuitikz}
+        } \\[5pt]
+        Equivalent Resistance: & \\
+        $\bullet$ Parallel network: $1/R_p = 1/300 + 1/300 + 1/300 = 1/100$ & \\
+        $\bullet$ $R_p = 100$, so $R_{eq} = 100 + 100 = 200$ & \\[5pt]
+    \end{tabular}
+    The voltage across the resistors is $12\,V$, so \\
+    $P = V^2/R = 12^2 / 200 = 0.72\,W$ \\[10pt]
+    \underline{B: Power supplied by battery:} \\[5pt]
+    By \textit{conservation of energy}, \textbf{total power = 0}, so power consumed is the equal to power supplied. \\[5pt]
+    $P = 0.72\,W$
+
+\end{frame}
