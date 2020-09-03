@@ -1,0 +1,58 @@
+
+	\section{Discretization}
+	
+	\begin{frame}{Discretization: Q1}
+	Note: this section follows hw8 q1 almost exactly. Suppose we have a scalar system
+	\[ \frac{d}{dt} x(t) = \alpha x + \vec{\beta}^T \vec u(t) \]
+	and we apply a constant input $\vec{u}_n$ for times $t \in [nT, (n + 1)T)$ for some $T > 0$. Given $x(nT)$ solve the differential equation
+	\end{frame}
+
+    \begin{frame}{Discretization: Q1 Sol}
+	From $t = nT$ to $t = (n + 1)T$, $\vec{\beta}^T \vec{u}$ is a constant scalar. Thus, we can solve this like a normal differential equation. Let $x = x' - \frac{\vec \beta^T \vec u}{\alpha}$. 
+	\begin{align*}
+	\frac{d}{dt} x(t) &= \alpha (x' - \frac{\vec \beta^T \vec u}{\alpha}) + \vec{\beta}^T \vec u(t) \\
+	&= \alpha x' \\
+	x' &= A e^{\alpha (x - nT)} \\
+	x + \frac{\vec \beta^T \vec u}{\alpha} &= A e^{\alpha (x - nT)} \\
+	x &= A e^{\alpha (x - nT)} - \frac{\vec \beta^T \vec u}{\alpha}
+	\end{align*}
+	\end{frame}
+	\begin{frame}{Discretization: Q1 Sol Continued}
+	At which point we can use our initial condition to get
+	\begin{align*}
+	x(nT) &= A - \frac{\vec \beta^T \vec u}{\alpha} \\
+	A &= x(nT) + \frac{\vec \beta^T \vec u}{\alpha} \\
+	x &= \left( x(nT) + \frac{\vec \beta^T \vec u}{\alpha} \right) e^{\alpha (t - nT)} - \frac{\vec \beta^T \vec u}{\alpha}
+	\end{align*}
+	\end{frame}
+
+    \begin{frame}{Discretization: Q2}
+	Using the differential equation derived from question 1, create a discrete-time system to model the continuous time. In other words, if $x[n] = x(nT), \vec{u}[n] = \vec{u}(nT)$, find a relation such that
+	\[ x[n + 1] = A_d x[n] + B_d \vec{u}[n] \]
+	\end{frame}\begin{frame}{Discretization: Q2 Sol}
+	We can solve the previous solution for $x((n + 1)T)$
+	\begin{align*}
+	x((n + 1)T) &= \left( x(nT) + \frac{\vec \beta^T \vec u(nT)}{\alpha} \right) e^{\alpha ((n + 1)T - nT)} - \frac{\vec \beta^T \vec u(nT)}{\alpha} \\
+	x[n + 1] &= e^{\alpha T} x[n] + \frac{e^{\alpha T} - 1}{\alpha} \vec{\beta}^T \vec{u}[n] \\
+	\end{align*}
+	We see that $A_d = e^{\alpha T}, B_d = ((e^{\alpha T} - 1) / \alpha) \vec{\beta}^T$
+	\end{frame}\begin{frame}{Discretization: Q3}
+	Instead of a scalar, we instead have a diagonal matrix $A$ such that
+	\[ \frac{d}{dt} \vec{x} = A \vec{x} + B \vec{u} \]
+	Discretize this system in the same was as Q2.
+	\end{frame}
+
+    \begin{frame}{Discretiziation: Q3 Sol}
+	Expanding the original system out line-by-line gives
+	\[ \frac{d}{dt} x_i = a_i x_i + b_i \vec{u}_i \]
+	where $x_i$ is the $i$th variable of $\vec{x}$, $a_i$ is the diagonal entry of $A$, and $b_i$ is the row of $B$.
+	\end{frame}
+
+
+	\begin{frame}{Discretization: Generic Matrix}
+	
+	Math not shown, but we can perform a change of basis from our original space to our diagonal space, and then apply the results of the previous part.
+	
+	\end{frame}
+	
+

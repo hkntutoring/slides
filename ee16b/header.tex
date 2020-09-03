@@ -1,3 +1,32 @@
 \input{../master-header.tex}
 
 \usepackage[siunitx, american]{circuitikz}
+
+
+\NewDocumentCommand{\differential}{}{\mathrm d}
+
+\NewDocumentCommand{\vocab}{m}{\textbf{#1}}
+
+
+% Use this macro as follows:
+%   d/dt => \ddt{}
+%   dx/dt => \ddt{x}
+%   df/dx => \ddt{f}[x]
+%   d^2 f/d x^2 => \ddt[2]{f}[x]
+%   \partial f/\partial x => \ddt[][\partial]{f}[x]
+\NewDocumentCommand{\ddt}{s o  O{\differential} m O{t}}{
+  \IfBooleanTF {#1}{%
+    \IfNoValueTF{#2}{%
+      \sfrac{#5 #4}{#5 #3}
+    }{%
+      \sfrac{#3^{#2} #4}{#3 #5^{#2}}
+    }
+  }{%
+    \IfNoValueTF{#2}{%
+      \frac{#3 #4}{#3 #5}
+    }{%
+      \frac{#3^{#2} #4}{#3 #5^{#2}}
+    }
+  }
+}
+

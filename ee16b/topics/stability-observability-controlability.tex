@@ -1,0 +1,123 @@
+\section{Stability, Observability, and Controllability}
+
+\begin{frame}
+\frametitle{Stability, Observability, Controllability:}
+
+given: \\ 
+$\vec{x}(i+1) = A\vec{x}(i) + Bu(i)$ \\
+$\vec{y}(i) = C\vec{x}(i)$ \\
+in which: \\
+$\vec{x}$ is our state, \\
+$\vec{u}$ is our input, \\
+$\vec{y}$ is what we can observe: \\
+\end{frame}
+
+\begin{frame}
+\frametitle{Stability (Discrete time):}
+
+Discrete time model: \\
+if $|\lambda_{i}| < 1$ for all $\lambda_{i}$ of A, system is stable\\
+intuition: if any $|\lambda_{i}| >= 1$, state vector is increasing each time step will be infinitely magnified over time \\
+\end{frame}
+
+\begin{frame}
+\frametitle{Stability (Continuous time):}
+
+Continuous time model: \\
+if the real parts of all eigenvalues of A are strictly negative, system is stable\\
+intuition: if real part of eigenvalue is positive, state vector is increasing over time and will be infinitely magnified over time \\
+\end{frame}
+
+\begin{frame}
+\frametitle{Controllability:}
+
+if
+$\begin{bmatrix}
+B && AB && ... && A^{n-1}B
+\end{bmatrix}$
+spans $R^{n}$, then system is controllable 
+\end{frame}
+
+\begin{frame}
+\frametitle{Feedback:}
+
+if system is controllable, we can set: 
+$u(t) = K\vec{x}(t)$ \\
+plugging in, we get: 
+$\vec{x}(t+1) = (A + BK)\vec{x}(t)$ \\
+we can find the eigenvalues of (A + BK) to check for stability
+\end{frame}
+
+\begin{frame}
+\frametitle{Observability:} 
+
+if 
+$\begin{bmatrix}
+C \\
+CA \\
+\vdots \\
+CA^{n-1} \\
+\end{bmatrix}$
+spans $R^{n}$, system is observable \\
+intuition: if observability matrix is full rank, it is invertible, and we can retrieve all the past states without loss of information \\
+\end{frame}
+
+\begin{frame}
+\frametitle{Stability, Controllability, Observability Example:}
+
+given the following system: \\
+$\vec{x}[t+1] = 
+\begin{bmatrix}
+-5 & 0 \\
+7 & 6
+\end{bmatrix}
+\vec{x}[t] + 
+\begin{bmatrix}
+2 \\
+-1
+\end{bmatrix}
+u[t]$\\
+$
+\vec{y}[t] =
+\begin{bmatrix}
+1 & 1
+\end{bmatrix}
+\vec{x}[t]$
+\end{frame}
+
+\begin{frame}
+\frametitle{Stability Check:}
+
+$\lambda = 6, -5$\\ \pause
+System is unstable
+\end{frame}
+
+\begin{frame}
+\frametitle{Controllability Check:}
+
+$\begin{bmatrix}
+AB & B
+\end{bmatrix}$ = 
+$\begin{bmatrix}
+-10 & 2 \\
+8 & -1
+\end{bmatrix}$
+which spans $R^{n}$ \\ \pause
+System is controllable
+\end{frame}
+
+\begin{frame}
+\frametitle{Observability Check:}
+
+$\begin{bmatrix}
+C \\
+CA
+\end{bmatrix}$ = 
+$\begin{bmatrix}
+1 & 1 \\
+2 & 6
+\end{bmatrix}$ 
+which spans $R^{n}$ \\ \pause
+System is observable
+\end{frame}
+

@@ -1,0 +1,29 @@
+
+	\section{Principle Component Analysis}
+
+	\begin{frame}{PCA}
+	PCA is a linear dimensionality reduction tool. Given data $\vec{x}_i \in \mathbb{R}^d$, we can create a mapping $T : \mathbb{R}^d \rightarrow \mathbb{R}^{d'}, d' < d$ such that the variance in the dataset is still captured
+	\end{frame}
+
+	\begin{frame}{PCA --- Computation}
+		\begin{enumerate}[<+->]
+			\item Store data row-major in $A \in \mathbb{R}^{n \times d}$
+			\item De-mean $A$
+			\item Take SVD: $A = U \Sigma V^T$
+			\item Create $V_{d'} \in \mathbb{R}^{n \times d'}$ from vectors of $V$ corresponding to $d'$ greatest signular values
+			\item To project data into the representative subspace: $T(x) := V_{d'}^T x$
+		\end{enumerate}
+	\end{frame}
+
+	\begin{frame}{PCA: Computation}
+	The mapping $T$ can then be expressed as
+	\[ T(\vec{x}) = V_k^T \vec{x} \]
+	If we apply this transformation onto the entire dataset (which has row vectors), we can say
+	\[ T(A) = B = A V_k \]
+	where $B \in \mathbb{R}^{n \times k}$
+	\end{frame}
+	\begin{frame}{PCA: computation}
+	If we were to show the projected vectors in the original space, we can multiply back with the projection vectors
+	\[ A' = B V_k^T \]
+	\end{frame}
+

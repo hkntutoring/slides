@@ -1,0 +1,85 @@
+
+	\section{Singular Value Decomposition}
+
+    \begin{frame}{SVD Theorem}
+Any matrix $A \in \mathbb{R}^{m \times n}$ can be decomposed into the product of three matrices
+		\begin{align*}
+			A &= U \Sigma V^T \\
+			U &: m \times m \\
+			\Sigma &: m \times n \\
+			V^T &: n \times n
+		\end{align*}
+		Such that $U, V$ are unitary matrices and $\Sigma$ only has nonnegative values along its main diagonal.
+
+    \end{frame}
+
+    \begin{frame}{SVD: Compact Form}
+        We can also express the SVD as
+		\begin{align*}
+			A &= \mathcal{U} S \mathcal{V}^T \\
+			\mathcal{U} &: m \times r \\
+			S &: r \times r \\
+			\mathcal{V}^T &: r \times n
+		\end{align*}
+		where $r$ is the rank of $A$. The compact form matrices maintain properties of the original matrices, but have entries removed whenever they correspond to zero singular values.
+
+    \end{frame}
+
+
+    \begin{frame}{SVD: Outer Product Form}
+		Lastly, we can express
+		\[ A = \sum_{i = 1}^r \sigma_i \vec{u}_i \vec{v}_i^T \]
+		where $\vec{u}_i, \vec{v}_i$ are the columns of $U, V$, respectively, and $\sigma_i$ are corresponding diagonal entry of the matrix $\Sigma$
+    \end{frame}
+
+    \begin{frame}{Computing SVD with $A^T A$}
+		\begin{align*}
+			A^T A &= U \Sigma V^T V \Sigma^T U^T \\
+			&= U \Sigma^2 U^T
+		\end{align*}
+		This is an eigen decomposition since $\Sigma^2$ is diagonal and $U^{-1} = U^T$. Thus solving for the eigenvalues and eigenvectors of $A^T A$ give $\lambda_i = \sigma_i^2$ with eigenvectors which correspond to the right singular vectors. We need to sort by decreasing $\sigma_i$. \\
+
+        \alert{Side note:} $\Sigma^T \Sigma$ is not actually equal to $\Sigma^2$, but the former product yields a matrix with singular values squared on the diagonal entries, hence we call it $\Sigma^2$
+    \end{frame}
+
+    \begin{frame}{Computing SVD with $A^T A$}
+Given a right singular vector $\vec{v}_i$ which we found from the previous part, we can apply it
+		\begin{align*}
+			A \vec{v}_i &= \left( \sum_{k = 1}^r \sigma_k \vec{u}_k \vec{v}_k^T \right) \vec{v}_i \\
+			&= \sum_{k = 1}^r \sigma_k \vec{u}_k \vec{v}_k^T \vec{i} \\
+			&= \sigma_i \vec{u}_i \\
+			\vec{u}_i &= \frac{1}{\sigma_i} A \vec{v}_i
+		\end{align*}
+    \end{frame}
+
+    \begin{frame}{Computing SVD with $A A^T$}
+        Similar calculations yield $\sigma_i = \sqrt{\lambda_i}$ of $A A^T$ with eigenvectors as left singular vectors, and $\vec{v}_i = \frac{1}{\sigma_i} A^T \vec{u}_i$
+    \end{frame}
+
+    \begin{frame}{Intepretation of SVD}
+    \begin{itemize}
+    	\item Unitary matrices act as rotation in a given space. A diagonal matrix stretches in a given coordinate space.
+    	
+    	\item \href{https://en.wikipedia.org/wiki/File:Singular_value_decomposition.gif}{SVD visualization (open in browser)}
+    \end{itemize}
+		
+
+		
+
+    \end{frame}
+
+    \begin{frame}{Intepretation of SVD}
+		For a product $A \vec{x}$, we can decompose every vector $\vec{x}$ into a linear combination of right singular vectors
+		\[ \vec x = \sum_{i = 1}^n \alpha_i \vec{v}_i \]
+		Thus, we can see exactly which parts of $\vec{x}$ affect the output.
+    \end{frame}
+
+
+	\begin{frame}{Compression of Low-Rank Matrices}
+	\begin{itemize}[<+->]
+	\item Suppose I had a matrix $A \in \mathbb{R}^{m \times n}$ with $m, n >> rank(A)$. How could I more efficiently store $A$ and compute products like $A \vec{x}$?
+	\vspace{2em}
+	\item With the SVD, we only have to save $r$ set of two vectors and a scalar, which saves us a lot of space if the rank is small with respect to the matrix. Also, less computation is carried out if we represent the matrix as the outer product form.
+	\end{itemize}
+	\end{frame}
+
