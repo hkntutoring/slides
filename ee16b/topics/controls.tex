@@ -1,0 +1,71 @@
+\section{Controls}
+
+\begin{frame}{Reviewing State Space}
+    Discrete Time State Space Model:
+    \[
+        \vec x[k+1] = A \vec x[k] + B \vec u[k]
+    \]
+    Where \(\vec x[\cdot]\) as the state vector, \(u[\cdot]\) as the input vector.
+\end{frame}
+
+
+\begin{frame}{Controllability}
+    Goal: Modify \(x(t)\) to be in any state we desire.
+    \[
+        \vec x[t+1] = A \vec x[t] + B \vec u[t]
+    \]
+
+    Expand out \(x[t]\) in terms of the initial state and all inputs,
+    \[
+        \vec x(t) = A^t \vec x(0)
+                + A^{t - 1} B u(0)
+                + A^{t - 2} B u(1)  + \cdots
+                + A B u(t - 2)
+                + B u(t - 1)
+    \]
+    \[
+        \vec x(t) - A^t \vec x(0) =
+        \underbrace{\begin{bmatrix}
+            A^{t - 1} B & A^{t -2} B & \cdots & AB & B
+        \end{bmatrix}}_{\color{blue}\triangleq R_t}
+        \begin{bmatrix}
+            u(0) \\
+            u(1) \\
+            \vdots \\
+            u(t -2) \\
+            u(t -1) \\
+        \end{bmatrix}
+    \]
+
+    \pause
+    Given the initial condition, \(x(0)\) the output of the system can be  expressed in terms of the solely our inputs!
+\end{frame}
+
+\begin{frame}{What states can we change \(x(t)\) to?}
+    \[
+        \vec x(t) - A^t \vec x(0) =
+        \underbrace{\begin{bmatrix}
+            A^{t - 1} B & A^{t -2} B & \cdots & AB & B
+        \end{bmatrix}}_{\color{blue}\triangleq R_t}
+        \begin{bmatrix}
+            u(0) \\
+            u(1) \\
+            \vdots \\
+            u(t -2) \\
+            u(t -1) \\
+        \end{bmatrix}
+    \]
+    \providecommand{\Col}{\operatorname{Col}}
+    \providecommand{\rank}{\operatorname{rank}}
+    The \(\Col(R_t)\) determines the subspace \(\vec u(t)\) can map to.
+
+    In order to control the state to any vector in \(\mathbb R^n\), \(\Col(R_t) = R^n\), or it must be full rank.
+
+    i.e. The system is Controllable if and only if
+    \[
+        \rank{R_n} = \rank\begin{bmatrix}
+            A^{n - 1} B & A^{n -2} B & \cdots & AB & B
+        \end{bmatrix} = n
+    \]
+
+\end{frame}
