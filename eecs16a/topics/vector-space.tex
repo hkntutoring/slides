@@ -1,0 +1,112 @@
+\section{Vector Spaces}
+
+\begin{frame}{Vector Spaces}
+    \textbf{A set of elements closed under vector addition and scalar multiplication.}
+    \begin{itemize}
+        \item \textit{"No escape properties"} for addition and scalar multiplication
+        \item Must also contain the \textbf{0 vector} (special case of closed scalar multiplication).
+    \end{itemize}
+    Let $\mathbb{V}$ be a vector space:
+    \begin{itemize}
+        \item If $\vec{u}, \vec{v}$ are vectors in $\mathbb{V}$, then $\vec{u} + \vec{v}$ must also be in $\mathbb{V}$
+        \item If $\vec{u} \in \mathbb{V}$ and $k$ is a real number, then $k\vec{u}$ must be in $\mathbb{V}$
+    \end{itemize}
+    Thus, any \textbf{linear combination} of vectors in $\mathbb{V}$ is also in $\mathbb{V}$.
+\end{frame}
+
+\begin{frame}{Practice: Is it a Vector Space?}
+    Are the following collections of vectors \textbf{vector spaces}?
+    \begin{itemize}
+        \item 2D plane (spanning $\mathbb{R}^2$)
+        \item 5D space (spanning $\mathbb{R}^5$)
+        \item n-D space (spanning $\mathbb{R}^n$)
+        \item Line in $\mathbb{R}^2$ intersecting origin
+        \item Line in $\mathbb{R}^2$ \textit{not} intersecting origin
+        \item First and third quadrant of $\mathbb{R}^2$
+        \item Plane in $\mathbb{R}^3$ intersecting origin
+        \item $\{\vec{0}\}$ (just the zero vector)
+        \item $\{\vec{v}, \vec{v} \neq 0\}$ 
+        \item span($\vec{v}$)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: Is it a Vector Space? [Solution]}
+    Are the following collections of vectors \textbf{vector spaces}?
+    \begin{itemize}
+        \item 2D plane (spanning $\mathbb{R}^2$) \textcolor{blue}{[yes]}
+        \item 5D space (spanning $\mathbb{R}^5$) \textcolor{blue}{[yes]}
+        \item n-D space (spanning $\mathbb{R}^n$) \textcolor{blue}{[yes]}
+        \item Line in $\mathbb{R}^2$ intersecting origin \textcolor{blue}{[yes]}
+        \item Line in $\mathbb{R}^2$ \textit{not} intersecting origin \textcolor{blue}{[no]}
+        \item First and third quadrant of $\mathbb{R}^2$ \textcolor{blue}{[no]}
+        \item Plane in $\mathbb{R}^3$ intersecting origin \textcolor{blue}{[yes]}
+        \item $\{\vec{0}\}$ (just the zero vector) \textcolor{blue}{[yes]}
+        \item $\{\vec{v}, \vec{v} \neq 0\}$ \textcolor{blue}{[no]}
+        \item span($\vec{v}$) \textcolor{blue}{[yes]}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Subspaces}
+    \begin{itemize}
+        \item Definition: \textbf{A subspace is a subset of a vector space that is itself a vector space}. \\[1.5ex]
+        \item Suppose we have a vector space $\mathbb{V}$. A subset $\mathbb{S}$ of $\mathbb{V}$ is \textit{only a subspace if the following three properties are met}: \\[1.5ex]
+        \begin{enumerate}
+            \item The \textbf{zero vector} of $\mathbb{V}$ is in $\mathbb{S}$
+            \item $\mathbb{S}$ is closed under \textbf{vector addition}
+            \item $\mathbb{S}$ is closed under \textbf{scalar multiplication}
+        \end{enumerate}
+    \end{itemize}
+    (Same rules as before!)
+\end{frame}
+
+\begin{frame}{Basis}
+    Definition: A \textbf{basis} of a vector space is a \textbf{linearly independent} set of vectors that \textbf{spans} the vector space.
+    \begin{itemize}
+        \item \textbf{Linearly independent} (\textit{not too big}): No vectors in a basis can be written as a linear combination of the other vectors.
+        \item \textbf{Spanning} (\textit{not too small}): All vectors in the vector space can be represented as a linear combination of the basis vectors.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Basis}
+    A basis does not necessarily have to span $\mathbb{R}^n$ - it can span any vector space.
+    \begin{itemize}
+        \item A basis is a \textbf{minimum set of vectors} required to completely span a vector space.
+        \item eg. Any basis of $\mathbb{R}^n$ contains \textbf{exactly n vectors}. In fact, an m-dimensional vector space must have m vectors in its basis.
+    \end{itemize}
+    Bases are \textbf{not unique}! Why? How many are there?
+\end{frame}
+
+\begin{frame}{Practice: Basis}
+    Are the following bases for $\mathbb{R}^n$?
+    \begin{align*}
+        \mathbb{V}_1 = \bigg\{ \begin{bmatrix}
+            1 \\ 0
+        \end{bmatrix}, 
+        \begin{bmatrix}
+            1 \\ 1
+        \end{bmatrix} \bigg\} \\[1ex]
+        \mathbb{V}_2 = \bigg\{ \begin{bmatrix}
+            1 \\ -1
+        \end{bmatrix}, 
+        \begin{bmatrix}
+            -1 \\ 1
+        \end{bmatrix} \bigg\}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Basis [Solution]}
+    Are the following bases for $\mathbb{R}^n$? \\[3ex]
+
+    $\bigg\{ \begin{bmatrix}
+        1 \\ 0
+    \end{bmatrix}, 
+    \begin{bmatrix}
+        1 \\ 1
+    \end{bmatrix} \bigg\}$ \textcolor{blue}{Yes! The set is linearly independent and spanning}. \\[2ex]
+    $\bigg\{ \begin{bmatrix}
+        1 \\ -1
+    \end{bmatrix}, 
+    \begin{bmatrix}
+        -1 \\ 1
+    \end{bmatrix} \bigg\}$ \textcolor{blue}{No! The vectors are negatives of each other!}
+\end{frame}

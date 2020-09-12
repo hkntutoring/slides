@@ -1,0 +1,119 @@
+\section{Gaussian Elimination}
+
+\begin{frame}{Gaussian Elimination}
+    \begin{itemize}
+        \item \textbf{Gaussian elimination} is a methof for solving systems of linear equations.
+        \item Use row operations to reduce matrix to \textbf{row echelon form} (a matrix that is all zero below the diagonal)
+        \begin{align*}
+            \begin{bmatrix}[c c c | c]
+                1 & 1 & 1 & -1 \\
+                1 & 2 & 4 & 3 \\
+                1 & 3 & 9 & 3
+            \end{bmatrix} \Longrightarrow 
+            \begin{bmatrix}[c c c | c]
+                1 & 0 & 0 & -9 \\
+                0 & 1 & 0 & 10 \\
+                0 & 0 & 1 & -2
+            \end{bmatrix}
+        \end{align*}
+    \end{itemize}
+    The row operations are:
+    \begin{enumerate}
+        \item \textbf{Row exchange}: reordering rows
+        \item \textbf{Row scaling}: scaling a row by a real number 
+        \item \textbf{Superposition}: replace a row with the sum of itself and a scalar multiple of another row
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Practice: Gaussian Elimination}
+    Let's use Gaussian elimination to solve this system of equations!
+    \begin{align*}
+        \begin{cases}
+            x_1 + x_2 + x_3 = 8 \\
+            2x_1 - 4x_2 + 3x_3 = 9 \\
+            -x_1 + 5x_2 - 2x_3 = 0
+        \end{cases}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Gaussian Elimination [Solution]}
+    First, write out the system of equations into matrix-vector form:
+    \begin{align*}
+        \begin{cases}
+            x_1 + x_2 + x_3 = 8 \\
+            2x_1 - 4x_2 + 3x_3 = 9 \\
+            -x_1 + 5x_2 - 2x_3 = 0
+        \end{cases} \Longrightarrow
+        \begin{bmatrix}[c c c | c]
+            1 & 1 & 1 & 8 \\
+            2 & -4 & 3 & 9 \\
+            -1 & 5 & -2 & 0
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Gaussian Elimination [Solution]}
+    Now, use row operations to get the system into row echelon form:
+    \begin{align*}
+        \begin{bmatrix}[c c c | c]
+            1 & 1 & 1 & 8 \\
+            2 & -4 & 3 & 9 \\
+            -1 & 5 & -2 & 0
+        \end{bmatrix}
+        \xrightarrow[]{2R_1 - R_2 \to R_2}
+        \begin{bmatrix}[c c c | c]
+            1 & 1 & 1 & 8 \\
+            0 & 6 & -1 & 7 \\
+            -1 & 5 & -2 & 0
+        \end{bmatrix} \\[0.8ex]
+        \begin{bmatrix}[c c c | c]
+            1 & 1 & 1 & 8 \\
+            0 & 6 & -1 & 7 \\
+            -1 & 5 & -2 & 0
+        \end{bmatrix}
+        \xrightarrow[]{R_1 + R_3 \to R_3}
+        \begin{bmatrix}[c c c | c]
+            \boxed{1} & 1 & 1 & 8 \\
+            0 & \boxed{6} & -1 & 7 \\
+            0 & 6 & -1 & 8
+        \end{bmatrix}
+    \end{align*}
+    The values on the diagonals (boxed in the matrix above) are known as \textbf{pivots} or \textbf{leading coefficients}.
+\end{frame}
+
+\begin{frame}{Practice: Gaussian Elimination [Solution]}
+    \begin{align*}
+        \begin{bmatrix}[c c c | c]
+            1 & 1 & 1 & 8 \\
+            2 & -4 & 3 & 9 \\
+            0 & 6 & -1 & 8
+        \end{bmatrix}
+        \xrightarrow[]{R_2 - R_3 \to R_3}
+        \begin{bmatrix}[c c c | c]
+            1 & 1 & 1 & 8 \\
+            0 & 6 & -1 & 7 \\
+            0 & 0 & 0 & -1
+        \end{bmatrix} \\[0.8ex]
+    \end{align*}
+    The last row says $0 = -1$, so there is \textbf{no solution} to this system of equations!
+\end{frame}
+
+
+\begin{frame}{Possible results of Gaussian Elimination on $A\vec{x} = \vec{b}$}
+    \begin{table}
+        \fontsize{8.5}{10}\selectfont
+        \begin{tabular}{| m{0.10\textwidth} | m{0.22\textwidth} | m{0.29\textwidth} | m{0.29\textwidth} |}
+            \hline &&& \\
+            \textbf{Result} & \textbf{Row picture} & \textbf{Column picture} & \textbf{Properties of $A$} \\
+            \hline &&& \\
+            \textbf{Unique solution} & Equations intersect at exactly one point & $\vec{b}$ is \textbf{uniquely represented} by a linear combination of the columns of $A$ & $A$ is \textbf{invertible} \\
+            \hline &&& \\
+            \textbf{Infinite solutions} & Equations intersect along an \textbf{infinite space} (eg. line, plane, volume) & There are \textbf{multiple ways} of representing $\vec{b}$ in terms of the linear combinations of the columns of $A$ & $A$ has \textbf{linearly dependent columns} \\
+            \hline &&& \\
+            \textbf{No solution} & Equations \textbf{do not intersect} & $\vec{b}$ is not in the span of the columns (columnspace) of $A$ & Columnspace of $A$ does not include $\vec{b}$. Columns of $A$ are \textbf{linearly dependent} \\
+            \hline
+        \end{tabular}
+    \end{table}
+    
+\end{frame}

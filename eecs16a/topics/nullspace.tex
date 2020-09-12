@@ -1,0 +1,73 @@
+\section{Null Space}
+
+\begin{frame}{Null Space}
+    \begin{itemize}
+        \item \textbf{Definition}: The \textbf{null space} of a matrix (transformation) is the set of all solutions to the homogeneous equation $A\vec{x} = \vec{0}$.
+        \item It is a \textit{subspace of $\mathbb{R}^n$}.
+        \item Solving a null space:
+        \begin{enumerate}
+            \item Reduce to \textbf{reduced row echelon form}.
+            \item Find solution to the system of equations.
+            \item Represent the solutions in \textit{matrix form}.
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: Null Space}
+    Find the \textbf{null space} of $A$:
+    \begin{align*}
+        A = \begin{bmatrix}
+            -3 & 6 & -1 & 1 & -7 \\
+            1 & -2 & 2 & 3 & -1 \\
+            2 & -4 & 5 & 8 & 2
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Null Space [Solution]}
+    First, \textbf{row reduce}.
+    \begin{align*}
+        A = \begin{bmatrix}
+            -3 & 6 & -1 & 1 & -7 \\
+            1 & -2 & 2 & 3 & -1 \\
+            2 & -4 & 5 & 8 & 2
+        \end{bmatrix} \longrightarrow
+        \begin{bmatrix}
+            1 & -2 & 0 & -1 & 0 \\
+            0 & 0 & 1 & 2 & 0 \\
+            0 & 0 & 0 & 0 & 1
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Null Space [Solution]}
+    \begin{itemize}
+        \item We saw that in the row-reduced matrix, there were \textbf{3 pivot columns}.  
+        \item Additionally, we know that there are 5 total “variables” 
+        \item Thus, we can say that there are \textbf{2 free variables}, and \textit{obtain a basis for our null space in terms of these free variables}!
+        \item The \textbf{pivot columns} occur at $x_1, x_3$, and $x_5$, so we can set $x_2 = r$ and $x_4 = s$
+        \item Let's find our basis in terms of $r, s$!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: Null Space [Solution]}
+    Let's find our basis in terms of $r, s$!
+    \begin{align*}
+        \begin{bmatrix}
+            1 & -2 & 0 & -1 & 0 \\
+            0 & 0 & 1 & 2 & 0 \\
+            0 & 0 & 0 & 0 & 1
+        \end{bmatrix} \\
+        x_1 = 2r + s, \,\,\, x_2 = r \\
+        x_3 = -2s, \,\,\, x_4 = s, \,\,\, x_5 = 0
+    \end{align*}
+    In matrix form:
+    \begin{align*}
+        \vec{x} = r \begin{bmatrix}
+            2 \\ 1 \\ 0 \\ 0 \\ 0
+        \end{bmatrix} + s \begin{bmatrix}
+            1 \\ 0 \\ -2 \\ 1 \\ 0
+        \end{bmatrix}
+    \end{align*}
+
+\end{frame}

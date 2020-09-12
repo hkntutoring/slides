@@ -1,0 +1,94 @@
+\section{Circuit Cheat Sheet}
+
+\begin{frame}{Cheat Sheet: Equations}
+    Here are some \textit{useful equations for solving circuits}:\\[1ex]
+    \small{
+        \begin{tabular}{l l}
+            Ohm's Law: & $V = IR$ \\
+            Current: & $I = \frac{dQ}{dt}$ \\
+            Resistance: & $R = \rho L/A$ \\
+            Capacitance: & $C = \epsilon A/d$ \\
+            Energy: & $E = \frac{1}{2} CV^2$ \\
+            Power: & $P = IV = V^2/R = I^2R$ \\
+            Charge-Capacitance: & $Q = CV$ \\
+            Resistors in Series: & $R_{eq} = \sum_n R_n$ \\
+            Resistors in Parallel: & $1/R_{eq} = \sum_n 1/R_n$ \\
+            Capacitors in Series: & $1/C_{eq} = \sum_n 1/C_n$ \\
+            Capacitors in Parallel: & $C_{eq} = \sum_n C_n$
+        \end{tabular}
+    }
+\end{frame}
+
+\begin{frame}{Cheat Sheet: Common Circuits}
+    \begin{tabular}{m{0.35\textwidth} |m{0.45\textwidth}}
+        \textbf{Voltage Divider} & \textbf{Current Divider} \\[0.5ex]
+        \hline & \\
+        $V_{out} = V_{in} \frac{R_2}{R_1 + R_2}$ & $I_1 = I_{total} \frac{R_2}{R_1 + R_2}$ \\[2ex]
+        \begin{circuitikz}[scale=0.85, transform shape]
+            \draw (0, 4) node[label={[font=\footnotesize]above:$V_{in}$}] {} to[short, *-] (0.5, 4)
+            (0.5, 4) to[R=$R_1$] (0.5, 2)
+            (0.5, 2) to[short, -*] (1, 2) node[label={[font=\footnotesize]+30:$V_{out}$}] {}
+            (0.5, 2) to[R=$R_2$] (0.5, 0) node[ground] {};
+        \end{circuitikz} &
+        \begin{circuitikz}[scale=0.85, transform shape]
+            \draw (0, 0.5) to[short] (0, 1)
+            (0,3) to[V=$V$] (0, 1)
+            (0,3) to[short, i=$I_{total}$] (0, 3.5)
+            (0, 3.5) to[short] (3.5, 3.5)
+            (2, 3.5) to[R=$R_1$, i=$I_1$] (2, 0.5)
+            (3.5, 3.5) to[R=$R_2$, i=$I_2$] (3.5, 0.5)
+            (0, 0.5) to[short] (3.5, 0.5);
+        \end{circuitikz}
+    \end{tabular}
+\end{frame}
+\begin{frame}{Cheat Sheet: Circuit Concepts}
+    \begin{itemize}
+        \item \textbf{Charge on a capacitor} after $t$ seconds at constant current:
+        \begin{align*}
+            Q_{total} = It
+        \end{align*}
+        \item \textbf{Conservation of Charge}:
+        \begin{align*}
+            Q_{total} = Q_{initial}
+        \end{align*}
+        \item \textbf{Thevenin/Norton} equivalent circuits:
+        \begin{align*}
+            V_{Th} = V_{OC} \\
+            I_{N} = I_{SC} \\
+            R_{eq} = V_{Th} / I_N = V_{OC} / I_{SC}
+        \end{align*}
+        \item \textbf{Golden Rules} (apply to ideal op amps):
+        \begin{align*}
+            I_{-} = I_{+} = 0 \, (\text{always}) \\
+            V_{-} = V_{+} \, (\text{in negative feedback})
+        \end{align*} 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cheat Sheet: Op Amp Configurations}
+    \begin{tabular}{c | c}
+        \textbf{Non-Inverting Amplifier} & \textbf{Inverting Amplifier} \\[0.5ex]
+        \hline & \\
+        $V_{out} / V_{in} = \frac{R_1 + R_2}{R_1}$ & $V_{out} / V_{in} = -R_2/R_1$ \\[2ex]
+        \begin{circuitikz}[scale=0.85, transform shape]
+            \draw (2.5, 1.5) node[op amp, yscale=-1] (opamp) {}
+            (1, 2) node[label={[font=\footnotesize]above:$V_{in}$}] {} to[short, o-] (opamp.+)
+            (-0.5, -0.1) node[ground] {} to[short] (-0.5, 0)
+            (-0.5, 0) to[R=$R_1$] (1, 0)
+            (1, 0) to[R=$R_2$] (3.7, 0)
+            (opamp.-) to[short] (1.3, 0)
+            (opamp.out) to[short] (3.7, 0)
+            (opamp.out) to[short, -o] (4, 1.5) node[label={[font=\footnotesize]above:$V_{out}$}] {};
+        \end{circuitikz} &
+        \begin{circuitikz}[scale=0.85, transform shape]
+            \draw (2.5, 1.5) node[op amp] (opamp) {}
+            (-0.4, 2) node[label={[font=\footnotesize]above:$V_{in}$}] {} to[R=$R_1$, o-] (opamp.-)
+            (opamp.-) to[short] (1.3, 3)
+            (1.3, 3) to[R=$R_2$] (3.7, 3)
+            (3.7, 3) to[short] (opamp.out)
+            (1, 0.9) node[ground] {} to[short] (1, 1)
+            (1, 1) to[short] (opamp.+)
+            (opamp.out) to[short, -o] (4, 1.5) node[label={[font=\footnotesize]above:$V_{out}$}] {};
+        \end{circuitikz}
+    \end{tabular}
+\end{frame}

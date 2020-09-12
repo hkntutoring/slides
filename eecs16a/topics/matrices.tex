@@ -1,0 +1,47 @@
+\section{Matrices and Linear Transformations}
+
+\begin{frame}{Matrices}
+    \begin{itemize}
+        \item Matrices are \textbf{collections of vectors}.
+        \item Typically represent \textbf{systems of equations}, where each row is an equation and each column is a variable.
+        \item Notable matrices:
+        \begin{itemize}
+            \item Identity matrix
+            \begin{align*}
+                \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    a & b \\
+                    c & d
+                \end{bmatrix} =
+                \begin{bmatrix}
+                    a & b \\
+                    c & d
+                \end{bmatrix} 
+            \end{align*}
+            \item Rotation matrix
+            \begin{align*}
+                \begin{bmatrix}
+                    \cos(\theta) & -\sin(theta) \\
+                    \sin(\theta) & \cos(\theta)
+                \end{bmatrix}
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Augmented Matrices}
+    \textbf{Augmented matrices} are a way of represening both sides of a system of equations using one matrix:
+    \begin{align*}
+        x - 2y + 3z = 7 \\
+        2x + y + z = 4 \\
+        -2x + 2y -2z = -10 \\
+        \begin{bmatrix}[c c c | c]
+            1 & -2 & 3 & 7 \\
+            2 & 1 & 1 & 4 \\
+            -2 & 2 & -2 & -10
+        \end{bmatrix}
+    \end{align*}
+\end{frame}

@@ -4,13 +4,15 @@
 
 \usepackage{xparse}
 \usepackage{xfrac}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{cancel}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{spalign}
-\usetikzlibrary{automata, arrows}
+\usepackage{multirow}
+\usetikzlibrary{automata, arrows, positioning}
 
 % https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
 \makeatletter
@@ -53,3 +55,4 @@
  }
 \ExplSyntaxOff
 
+\newenvironment{blueenv}{\only{\setbeamercolor{local structure}{fg=blue}}}{}

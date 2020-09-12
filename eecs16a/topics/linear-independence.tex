@@ -1,0 +1,68 @@
+\section{Linear Independence}
+
+\begin{frame}{Linear Combinations}
+    A \textbf{linear combination} of vectors $\{\vec{v}_1, \dots, \vec{v}_n\}$ is a sum of the vectors, scaled by scalars $\{a_1, \dots, a_n\}$:
+    \begin{align*}
+        a_1 \vec{v}_1 + a_2 \vec{v}_2 + \cdots + a_n \vec{v}_n
+    \end{align*}
+    \begin{itemize}
+        \item If $\{\vec{v}_1, \dots, \vec{v}_n\}$ are the \textit{columns of a matrix $B$}, the set of all linear combinations is called the \textbf{columnspace} or \textbf{range} of $B$.
+        \item Note: the \textbf{columnspace} of $B$ is a \textbf{vector space}.
+        \begin{itemize}
+            \item To check a subset is a vector space, it must be \textbf{closed under addition and scalar multiplication}.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linear Independence}
+    \begin{itemize}
+        \item Informally speaking, a set of vectors is linearly independent if \textit{no vector in the set can be represented as a linear combination of other vectors}.
+        \item Formal definition:
+        \begin{itemize}
+            \item Given a set of vectors $\{\vec{v}_1, \vec{v}_2, \dots ,\vec{v}_m\}$, if some scalars $\{c_1, c_2, \dots, c_m\}\ neq \{0, \dots, 0\}$ exist such that 
+            $c_1\vec{v}_1 + c_2\vec{v}_2 + \cdots + c_m\vec{v}_m = 0$, then the vectors are \textbf{linearly dependent}. 
+            \item If no such scalars exist, then the vectors are \textbf{linearly independent}.
+        \end{itemize}
+        \item In other words, for a set of linearly independent vectors, $c_1\vec{v}_1 + c_2\vec{v}_2 + \cdots + c_m\vec{v}_m = 0$ implies that all $c_1 = 0, c_2 = 0, \dots , c_m = 0$ (\textit{useful when doing proofs}). 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: Linear Independence}
+    Are the columns of the following matrix linearly independent?
+    \begin{align*}
+        A = \begin{bmatrix}
+            2 & 3 & 5 \\
+            -1 & -4 & -10 \\
+            1 & -2 & -8
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Linear Independence [Solution]}
+    Row reduce the matrix. If any of the \textbf{pivots} (numbers on the diagonal) are 0, then the columns are \textbf{linerly dependent}.
+    \begin{align*}
+        A = \begin{bmatrix}
+            2 & 3 & 5 \\
+            -1 & -4 & -10 \\
+            1 & -2 & -8
+        \end{bmatrix} \xrightarrow[]{\text{row reduce}} 
+        \begin{bmatrix}
+            2 & 3 & 5 \\
+            0 & 1 & 3 \\
+            0 & 0 & 0
+        \end{bmatrix}
+    \end{align*}
+\end{frame}
+\begin{frame}{Practice: Linear Independence [Solution]}
+    Let's look at the row-reduced matrix as the system of equations:
+    \begin{align*}
+        c_1 \vec{a}_1 + c_2 \vec{a}_2 + c_3 \vec{a}_3 = 0
+    \end{align*}
+    Remember, that if there exist nonzero $c_1, c_2, c_3$ that satisfy that equation, the columns are \textbf{linearly dependent}. \\
+    \begin{align*}
+        c_2 = -3c_3 \\
+        2c_1 = -3c_2 - 5c_3 = 9c_3 - 5c_3 = 4c_3 \\
+        c_1 = 2c_3
+    \end{align*}
+    There are infinitely many solutions, so the columns of $A$ are \textbf{linearly dependent}.
+\end{frame}
