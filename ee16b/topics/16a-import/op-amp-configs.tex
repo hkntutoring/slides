@@ -1,0 +1,295 @@
+\section{Op-Amp Configurations}
+
+\begin{frame}{Basic Op-Amp Configurations}
+    With \textbf{ideal op-amps}, you should use op-amp configurations as \textbf{building blocks} without regarding the effect of one block’s $R_eq$ on another block: \\[10pt]
+    \begin{center}
+        \begin{tabular}{c c}
+            \underline{Voltage Comparator} & \underline{Non-Inverting Amplifier} \\
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.3, 0.5) node[label={left:$V_1$}] {}
+                (opamp.-) to[short, -o] (-1.3, -0.5) node[label={left:$V_2$}] {}
+                (opamp.out) to[short, -o] (1.3, 0) node[label={right:$V_{out}$}] {}
+                (opamp.down) to[short] (-0.1, 1.3) node[vdd, label={right:$V_{S+}$}] {}
+                (opamp.up) to[short] (-0.1, -1.3) node[vss, label={right:$V_{S-}$}] {};
+            \end{circuitikz} & 
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.3, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.-) to[short] (-1.2, -1.5) node[] (bottom) {}
+                (-3.3, -1.5) node[ground] {} to[R=$R_1$] (bottom)
+                (bottom) to[R=$R_2$] (1.3, -1.5)
+                (1.3, -1.5) to[short] (1.3, 0)
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {};
+            \end{circuitikz} \\
+            $V_{out} = \begin{cases}
+                V_{S+} & V_1 > V_2 \\
+                V_{S-} & V_1 < V_2
+            \end{cases}$ & 
+            $V_{out} = V_{in} \cdot (1 + R_2 / R_1)$
+        \end{tabular} 
+    \end{center}
+\end{frame}
+
+\begin{frame}{Basic Op-Amp Configurations}
+    \begin{center}
+        \begin{tabular}{c c}
+            \underline{Unity Gain Buffer} & \underline{Inverting Amplifier} \\
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.3, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.-) to[short] (-1.2, -1.5) node[] (bottom) {}
+                (bottom) to[short] (1.3, -1.5)
+                (1.3, -1.5) to[short] (1.3, 0)
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {};
+            \end{circuitikz} &
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp] (opamp) {}
+                (opamp.-) to[short] (-1.2, 1.5) node[] (top) {}
+                (top) to[R=$R_2$] (1.3, 1.5)
+                (1.3, 1.5) to[short] (1.3, 0)
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {}
+                (opamp.-) to[R, l_=$R_1$, -o] (-2.7, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.+) to[short] (-1.3, -0.5) node[ground] {};
+            \end{circuitikz} \\
+            $V_{out} = V_{in}$ &
+            $V_{out} = -V_{in} \frac{R_2}{R_1}$ \\[10pt]
+        \end{tabular} 
+    \end{center}
+    Also, look \textcolor{red}{\textbf{\href{https://en.wikipedia.org/wiki/Operational\_amplifier\_applications}{here}}} for more useful op-amps configurations! \\[5pt] 
+    \textit{These might also show up on the final.}
+\end{frame}
+
+\begin{frame}{Practice: Op-Amp Analysis}
+    \textbf{Compute $V_{out}$}: \\
+    \begin{center}
+        \begin{circuitikz}[scale=0.8, transform shape]
+            \draw (0, 0) node[op amp] (opamp) {}
+            (opamp.+) to[short] (-1.3, -0.5) node[ground] {}
+            (opamp.-) to[R=$R_n$, -o] (-3, 0.5) node[label={left:$V_n$}] {}
+            (opamp.-) to[short] (-1.2, 2) 
+            (-1.2, 2) to[R, l_=$R_1$, -o] (-3, 2) node[label={left:$V_1$}] {}
+            (-1.2, 1.5) to[R=$R_f$] (1.3, 1.5)
+            (1.3, 1.5) to[short] (1.3, 0)
+            (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {}
+            (-3, 1.4) node[label={[font=\Huge] left:$\vdots$}] {}
+            (-1.7, 1.4) node[label={[font=\Huge] left:$\vdots$}] {};
+        \end{circuitikz}
+    \end{center}
+    \textit{(Hint: What basic op-amp configuration does this look like?)}
+\end{frame}
+
+\begin{frame}{Practice: Op-Amp Analysis [Solution]}
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 0) node[op amp] (opamp) {}
+            (opamp.+) to[short] (-1.3, -0.5) node[ground] {}
+            (opamp.-) to[R=$R_n$, -o] (-3, 0.5) node[label={left:$V_n$}] {}
+            (opamp.-) to[short] (-1.2, 2) 
+            (-1.2, 2) to[R, l_=$R_1$, -o] (-3, 2) node[label={left:$V_1$}] {}
+            (-1.2, 1.5) to[R=$R_f$] (1.3, 1.5)
+            (1.3, 1.5) to[short] (1.3, 0)
+            (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {}
+            (-3, 1.4) node[label={[font=\Huge] left:$\vdots$}] {}
+            (-1.7, 1.4) node[label={[font=\Huge] left:$\vdots$}] {};
+        \end{circuitikz}
+    \end{center}
+    \color{blue}
+    This is similar to the \textbf{inverting amplifier}. \\
+    \textbf{KCL} at the negative terminal gives:
+    \begin{align*}
+        V_1/R_1 + \cdots + V_n/R_n = -V_{out}/R_f \\
+        V_{out} = -R_f(V_1/R_1 + \cdots + V_n/R_n)
+    \end{align*}
+    \textit{Note that you can’t use the formula for the inverting amplifier here because there are multiple voltage sources.}
+\end{frame}
+
+\begin{frame}{Practice: Calculus in Op-Amps!}
+    Find $V_{out}$ as a function of $V_{in}$:
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 0) node[op amp] (opamp) {}
+            (opamp.+) to[short] (-1.3, -0.5) node[ground] {}
+            (opamp.-) to[C, l_=$C$, i<_=$I_C$, -o] (-3.3, 0.5) node[label={left:$V_{in}$}] {}
+            (opamp.-) to[short] (-1.2, 1.5) 
+            (-1.2, 1.5) to[R=$R$] (1.3, 1.5)
+            (1.3, 1.5) to[short] (1.3, 0)
+            (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {};
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Practice: Calculus in Op-Amps! [Solution]}
+    \color{blue}
+    Notice that the circuit is in \textbf{negative feedback}: \\[5pt]
+    \begin{tabular}{m{0.45\textwidth} m{0,45\textwidth}}
+        By the first golden rule, &
+        \multirow{4}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp] (opamp) {}
+                (opamp.+) to[short] (-1.3, -0.5) node[ground] {}
+                (opamp.-) to[C, l_=$C$, i<_=$I_C$, -o] (-3.3, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.-) to[short] (-1.2, 1.5) 
+                (-1.2, 1.5) to[R=$R$] (1.3, 1.5)
+                (1.3, 1.5) to[short] (1.3, 0)
+                (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {};
+            \end{circuitikz}
+        } \\[5pt]
+        $I_c = C\frac{dV_{in}}{dt} - \frac{V_{out}}{R}$ & \\[10pt]
+        By the second golden rule, & \\[5pt]
+        $V_{out} = -RC\frac{dV_{in}}{dt}$ & \\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Deriving Op-Amp Configurations: Comparator}
+    What is $V_{out}$ when: \\
+    \begin{tabular}{m{0.45\textwidth} m{0,45\textwidth}}
+        & 
+        \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.5, 0.5) node[label={left:$V_1$}] {}
+                (opamp.-) to[short, -o] (-1.5, -0.5) node[label={left:$V_2$}] {}
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {}
+                (opamp.down) to[short] (-0.1, 1.5) node[vdd, label={left: $V_{S+}$}] {}
+                (opamp.up) to[short] (-0.1, -1.5) node[vss, label={left: $V_{S-}$}] {};
+            \end{circuitikz}
+        } \\
+        $V_1 > V_2$? & \\[20pt]
+        $V_2 > V_1$? & \\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Deriving Op-Amp Configurations: Comparator [Solution]}
+    What is $V_{out}$ when: \\
+    \begin{tabular}{m{0.45\textwidth} m{0,45\textwidth}}
+        & 
+        \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.5, 0.5) node[label={left:$V_1$}] {}
+                (opamp.-) to[short, -o] (-1.5, -0.5) node[label={left:$V_2$}] {}
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {}
+                (opamp.down) to[short] (-0.1, 1.5) node[vdd, label={left: $V_{S+}$}] {}
+                (opamp.up) to[short] (-0.1, -1.5) node[vss, label={left: $V_{S-}$}] {};
+            \end{circuitikz}
+        } \\
+        $V_1 > V_2$? \textcolor{blue}{$V_{S+}$} & \\[20pt]
+        $V_2 > V_1$? \textcolor{blue}{$V_{S-}$}& \\[25pt]
+    \end{tabular}
+    \color{blue}
+    \underline{Reason:} For \textit{ideal op-amps}, the \textbf{gain is really large} (infinite). If there is a difference between $V_1$ and $V_2$, $V_{out}$ will clip to the power rails.
+\end{frame}
+
+\begin{frame}{Deriving Op-Amp Configurations: Buffer}
+    Use the golden rules to find $V_{out}$.
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+            (opamp.+) to[short, -o] (-1.5, 0.5) node[label={left:$V_{in}$}] {}
+            (opamp.-) to[short] (-1.2, -1.5)
+            (-1.2, -1.5) to[short] (1.2, -1.5)
+            (1.2, -1.5) to[short] (1.2, 0)
+            (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {};
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Deriving Op-Amp Configurations: Buffer [Solution]}
+    Use the golden rules to find $V_{out}$. \\[10pt]
+    \color{blue}
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        The op-amp is in \textbf{negative feedback}, &
+        \multirow{4}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.5, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.-) to[short] (-1.2, -1.5)
+                (-1.2, -1.5) to[short] (1.2, -1.5)
+                (1.2, -1.5) to[short] (1.2, 0)
+                (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {};
+            \end{circuitikz}
+        } \\
+        so $V_+ = V_-$ & \\[5pt]
+        $V_{in} = V_+$ and $V_{out} = V_-$ & \\[5pt]
+        So $V_{out} = V_{in}$.
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Deriving Op-Amp Configurations: Non-Inverting Amplifier}
+    Compute $V_{out}$.
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+            (opamp.+) to[short, -o] (-1.3, 0.5) node[label={left:$V_{in}$}] {}
+            (opamp.-) to[short] (-1.2, -1.5) node[] (bottom) {}
+            (-3.3, -1.5) node[ground] {} to[R=$R_1$] (bottom)
+            (bottom) to[R=$R_2$] (1.3, -1.5)
+            (1.3, -1.5) to[short] (1.3, 0)
+            (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {};
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Non-Inverting Amplifier [Solution]}
+    Compute $V_{out}$. \\[10pt]
+    \color{blue}
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        Apply \textbf{golden rules}: $V_{in} = V_+ = V_-$ &
+        \multirow{5}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp, yscale=-1] (opamp) {}
+                (opamp.+) to[short, -o] (-1.3, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.-) to[short] (-1.2, -1.5) node[] (bottom) {}
+                (-3.3, -1.5) node[ground] {} to[R=$R_1$] (bottom)
+                (bottom) to[R=$R_2$] (1.3, -1.5)
+                (1.3, -1.5) to[short] (1.3, 0)
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {};
+            \end{circuitikz}
+        } \\[5pt]
+        Use \textbf{voltage divider}: & \\
+        $V_- = V_{out} \frac{R_1}{R_1 + R_2}$ & \\[5pt]
+        Combine and simplify: & \\
+        $V_{out} = V_{in} (1 + R_2/R_1)$ & \\[5pt]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Deriving Op-Amp Configurations: Inverting Amplifier}
+    Compute $V_{out}$.
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 0) node[op amp] (opamp) {}
+            (opamp.-) to[short] (-1.2, 1.5) node[] (top) {}
+            (top) to[R=$R_2$] (1.3, 1.5)
+            (1.3, 1.5) to[short] (1.3, 0)
+            (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {}
+            (opamp.-) to[R, l_=$R_1$, -o] (-2.7, 0.5) node[label={left:$V_{in}$}] {}
+            (opamp.+) to[short] (-1.3, -0.5) node[ground] {};
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Inverting Amplifier [Solution]}
+    Compute $V_{out}$. \\[10pt]
+    \color{blue}
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        Apply \textbf{KCL} at the negative terminal: &
+        \multirow{3}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.7, transform shape]
+                \draw (0, 0) node[op amp] (opamp) {}
+                (opamp.-) to[short] (-1.2, 1.5) node[] (top) {}
+                (top) to[R=$R_2$] (1.3, 1.5)
+                (1.3, 1.5) to[short] (1.3, 0)
+                (opamp.out) to[short, -o] (1.5, 0) node[label={right:$V_{out}$}] {}
+                (opamp.-) to[R, l_=$R_1$, -o] (-2.7, 0.5) node[label={left:$V_{in}$}] {}
+                (opamp.+) to[short] (-1.3, -0.5) node[ground] {};
+            \end{circuitikz}
+        } \\[5pt]
+        $V_{in}/R_1 + V_{out}/R_2 = 0$ & \\[5pt]
+        So $V_{out} = V_{in} (-R_2/R_1)$ & \\[5pt]
+    \end{tabular}
+\end{frame}

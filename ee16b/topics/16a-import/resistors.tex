@@ -1,0 +1,364 @@
+\section{Resistors}
+
+\begin{frame}{Resistance}
+    \begin{circuitikz}
+        \draw (0, 0) to[R] (3, 0);
+    \end{circuitikz}
+    \begin{itemize}
+        \item A \textbf{resistor} is a circuit element used to:
+        \begin{itemize}
+            \item \textit{Dissipate/consume} energy
+            \item Lowers voltage / forces a \textit{voltage drop} across its terminals
+            \item Restricts (resists) the \textit{flow of current}
+        \end{itemize}
+        \item \textbf{Ohm's Law}: $\Delta V = IR$ $\leftarrow$ voltage-current relationship
+        \item Unit of resistance: \textbf{Ohm} ($\Omega$)
+        \begin{itemize}
+            \item Also (from Ohm’s law), we see that $1\Omega = (1 V) / (1 A)$. Why does that make sense?
+        \end{itemize}
+        \item Good way to think about them is a \textit{“bumpy road”} that prevents the electrical current from travelling smoothly
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resistivity ($\rho$)}
+    \begin{itemize}
+        \item \textit{How much resistance} a material naturally has.
+        \item For example, metal has a much lower resistivity than plastic.
+        \item \textbf{Physical equation} for resistance: 
+        \begin{align*}
+            R = \rho \frac{L}{A}\\[-8ex]
+        \end{align*}
+        \begin{itemize}
+            \item \textbf{R} is the \textit{resistance}
+            \item \textbf{L} is the material’s \textit{length}
+            \item \textbf{A} is the material’s \textit{cross-sectional area}
+            \item \textbf{$\rho$} is the \textit{constant of resistivity} for that material
+        \end{itemize}
+        \item Units of resistivity are in $\Omega$-m
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Quick Resistivity Question}
+    We have a rectangular wire made out of copper (Cu) whose \textit{cross-sectional area} is $1\times10^{-9} \, \text{m}^2$ and whose \textit{length} is $0.2 \, \text{m}$. \textbf{What is its resistance?}\\[2ex]
+
+    ($\rho_{_{Cu}} = 1.68 \times 10^{-8} \, \Omega \text{m}$)
+\end{frame}
+
+\begin{frame}{Quick Resistivity Question [Solution]}
+    We have a rectangular wire made out of copper (Cu) whose \textit{cross-sectional area} is $1\times10^{-9} \, \text{m}^2$ and whose \textit{length} is $0.2 \, \text{m}$. \textbf{What is its resistance?}\\[2ex]
+
+    ($\rho_{_{Cu}} = 1.68 \times 10^{-8} \, \Omega \text{m}$)
+
+    \color{blue}{
+        \begin{align*}
+            R = \rho \frac{L}{A} = 1.68\times 10^{-8} \, \Omega \text{m} \cdot \frac{(0.2 \, \text{m})}{1^{-9} \, \text{m}^2} = 3.36 \, \Omega
+        \end{align*}
+    }
+\end{frame}
+
+\begin{frame}{Resistivity: Sanity Check}
+    What is the resistance of a material when $L \to 0$? $\infty$? \\[2ex]
+    What is the resistance of a material when $A \to 0$? $\infty$? \\[4ex]
+    \textit{Does this make sense intuitively?}
+\end{frame}
+
+\begin{frame}{Resistivity: Sanity Check [Solution]}
+    What is the resistance of a material when $L \to 0$? $\infty$? \\
+    \textcolor{blue}{
+        When $L \to 0$, $R \to 0$. When $L \to \infty$, $R \to \infty$. \\[2ex]
+    }
+    What is the resistance of a material when $A \to 0$? $\infty$? \\
+    \textcolor{blue}{
+        When $A \to 0$, $R \to \infty$. When $A \to \infty$, $R \to 0$. \\[3ex]
+    }
+    \textit{Does this make sense intuitively?}\\
+    \textcolor{blue}{
+        Yes! As the \textit{length of the resistor increases}, it’s \textbf{more difficult for electrons to move} across the resistor and vice versa. \\[0.5ex]
+        For the area, as the \textit{cross sectional area increases}m there is a \textbf{wider gap for electrons to flow}, so resistance decreases and vice versa. \\[0.5ex]
+        It’s useful to think of the analogy of \textit{water flowing through a pipe.}
+    }
+\end{frame}
+
+\begin{frame}{Resistivity: Sanity Check}
+    What happens when we \textbf{double the length} of a resistor? \\[2ex]
+    What happens when we \textbf{double the area} of a resistor?
+\end{frame}
+
+\begin{frame}{Resistivity: Sanity Check [Solution]}
+    What happens when we double the length of a resistor? \\
+    \textcolor{blue}{
+        Doubling the length \textbf{doubles the resistance}. \\[2ex]
+    }
+    What happens when we double the area of a resistor?\\
+    \textcolor{blue}{
+        Doubling the area \textbf{halves the resistance}.
+    }
+\end{frame}
+
+\begin{frame}{Resistors in Series}
+    \begin{center}
+        \begin{circuitikz}[scale=0.8, transform shape]
+            \draw (0, 3) to[V=$V$] (0, 0)
+            (0, 3) to[R=$R_1$] (3, 3)
+            (3, 3) to[R=$R_2$] (3, 0)
+            (3, 0) to[short] (0, 0);
+        \end{circuitikz}
+    \end{center}
+    \begin{itemize}
+        \item \textbf{Series}: Every element is on the same path
+        \item \textbf{Current} through $R_1$ is \textbf{the same as} the \textbf{current} through $R_2$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resistors in Series}
+    \begin{center}
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[V=$V$] (0, 0)
+            (0, 3) to[R=$R_1$] (3, 3)
+            (3, 3) to[R=$R_2$] (3, 0)
+            (3, 0) to[short] (0, 0);
+        \end{circuitikz}
+    \end{center}
+    Want to model $V_{total} = IR_{total}$ (the \textbf{equivalent total resistance} in the circuit):
+    \begin{enumerate}
+        \item $V_1 = IR_1$
+        \item $V_2 = IR_2$
+        \item $V_{total} = V_1 + V_2$
+        \item $V_{total} = IR_1 + IR_2$
+        \item $V_{total} = I(R_1 + R_2)$
+        \item $R_{total} = R_1 + R_2$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Resistors in Series}
+    \LARGE{
+        TLDR: Just add them!\\[1ex]
+        \color{blue}{$R_{total} = \sum_n R_n$}
+    }
+\end{frame}
+
+\begin{frame}{Resistors in Parallel}
+    \begin{center}
+        \begin{circuitikz}[scale=0.8, transform shape]
+            \draw (0, 3) to[V=$V$] (0, 0)
+            (0, 3) to[short] (6, 3)
+            (3, 3) to[R=$R_1$] (3, 0)
+            (6, 3) to[R=$R_2$] (6, 0)
+            (6, 0) to[short] (0, 0);
+        \end{circuitikz}
+    \end{center}
+    \begin{itemize}
+        \item \textbf{Parallel}: When you have \textit{multiple paths between two nodes}.
+        \item \textbf{Voltage} across $R_1$ is \textbf{the same as} the \textbf{voltage} across $R_2$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resistors in Parallel}
+    \begin{center}
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[V=$V$] (0, 0)
+            (0, 3) to[short] (6, 3)
+            (3, 3) to[R=$R_1$] (3, 0)
+            (6, 3) to[R=$R_2$] (6, 0)
+            (6, 0) to[short] (0, 0);
+        \end{circuitikz}
+    \end{center}
+    As with series resistors, we want to model $V_{total} = IR_{total}$:
+    \begin{enumerate}
+        \item $V_1 = V_2 = V_{total}$
+        \item $V_{total} = I_1 R_1$
+        \item $V_{total} = I_2 R_2$
+        \item $I_{total} = I_1 + I_2$
+        \item $V_{total}/R_{total} = V_1/R_1 + V_2/R_2$
+        \item $1/R_{total} = 1/R_1 + 1/R_2$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Resistors in Series}
+    \LARGE{
+        TLDR: \\[1ex]
+        \color{blue}{$1/R_{total} = \sum_n 1/R_n$}
+    }
+\end{frame}
+
+\begin{frame}{Equivalent Resistance: Steps to Solve}
+    \begin{itemize}
+        \item \textbf{Decide} \textit{what two nodes} you’re finding your resistance over$-$normally, it will be the resistance between the \textit{terminals of a voltage or current source, or between two open terminals}. \\[1ex]
+        \item \textbf{Break the problem down}: which resistors are in \textbf{parallel}? Which resistors are in \textbf{series}? \\[1ex]
+        \item \textbf{Use equivalent resistance equations} to \textit{simplify resistors one “group” at a time} until you are left with a single resistor. \\[1ex]
+        \item \textbf{Redraw, redraw, redraw!} Sometimes, a circuit will be drawn to confuse you; in these cases, \textit{carefully redraw the circuit in a more manageable way.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Equivalent Resistance}
+    \begin{center}
+        \begin{tabular}{m{0.3\textwidth} m{0.1\textwidth} m{0.3\textwidth}}
+            \begin{circuitikz}[scale=0.85, transform shape]
+                \draw (0, 0) node[label={[font=\footnotesize]below:$C$}] {} to[short, *-] (0, 0.5)
+                (0, 0.5) to[R=$R_3$, -*] (-1.5, 2) node[label={[font=\footnotesize] left:$B$}] {}
+                (1.5, 2) to[R=$R_4$] (0, 0.5)
+                (-1.5, 2) to[short] (1.5, 2)
+                (-1.5, 2) to[R=$R_1$] (0, 3.5)
+                (0, 3.5) to[R=$R_2$] (1.5, 2)
+                (0, 3.5) to[short, -*] (0, 4) node[label={[font=\footnotesize] above:$A$}] {};
+            \end{circuitikz} &
+            \huge{$\Longrightarrow$} &
+            \begin{circuitikz}[scale=0.85, transform shape]
+                \draw (0, 0) node[label={[font=\footnotesize] below:$C$}] {} to[short, *-] (0, 0.5)
+                (-1, 0.5) to[short] (1, 0.5)
+                (-1, 0.5) to[R=$R_3$] (-1, 2)
+                (1, 0.5) to[R=$R_4$] (1, 2)
+                (-1, 2) to[short] (1, 2)
+                (0, 2) to[short, -*] (0, 2.25) node[label={[font=\footnotesize] left:$B$}] {}
+                (0, 2.25) to[short] (0, 2.5)
+                (-1, 2.5) to[short] (1, 2.5)
+                (-1, 2.5) to[R=$R_1$] (-1, 4)
+                (1, 2.5) to[R=$R_2$] (1, 4)
+                (-1, 4) to[short] (1, 4)
+                (0, 4) to[short, -*] (0, 4.5) node[label={[font=\footnotesize] above:$A$}] {};
+            \end{circuitikz}
+        \end{tabular}
+    \end{center}
+    \textbf{Careful!}
+    Make sure to \textit{preserve all the nodes}.
+    Remember that a single node consists of \textit{all wires connected to a junction} (for example, node $B$ in this circuit).
+\end{frame}
+
+\begin{frame}{Problem: Resistor Equivalence}
+    Find the equivalent resistance for this circuit:
+    \begin{center}
+        \begin{circuitikz}[scale=0.85, transform shape]
+            \draw (0, 3) to[R=$2\Omega$, *-] (3, 3)
+            (3, 3) to[R=$6\Omega$] (3, 0)
+            (3, 3) to[R=$4\Omega$] (6, 3)
+            (6, 3) to[R=$8\Omega$] (6, 0)
+            (6, 3) to[R=$6\Omega$] (9, 3)
+            (9, 3) to[R=$8\Omega$] (9, 0)
+            (6, 0) to[R=$10\Omega$] (9, 0)
+            (6, 0) to[short, -*] (0, 0);
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Problem: Resistor Equivalence [Solution]}
+    \begin{center}
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[R=$2\Omega$, *-] (3, 3)
+            (3, 3) to[R=$6\Omega$] (3, 0)
+            (3, 3) to[R=$4\Omega$] (6, 3)
+            (6, 3) to[R=$8\Omega$] (6, 0)
+            (6, 3) to[R=$6\Omega$] (9, 3)
+            (9, 3) to[R=$8\Omega$] (9, 0)
+            (6, 0) to[R=$10\Omega$] (9, 0)
+            (6, 0) to[short, -*] (0, 0);
+        \end{circuitikz}
+    \end{center}
+    \color{blue}{
+        First, add up the three resistors on the right: $R_{right} = (8 + 8 + 10) \Omega = 24 \Omega$ \\[1.5ex]
+        That resistor group is in parallel with the $8\Omega$ resistor to the left: $1/R_{pt2} = 1/8 + 1/24 = 4/24 \Rightarrow R_{pt2} = 6\Omega$ \\[1.5ex]
+        Now, $R_{pt2}$ is in series with the $4\Omega$ resistor: \\
+        $R_{pt3} = 6\Omega + 4\Omega = 10\Omega$
+    }
+\end{frame}
+
+\begin{frame}{Problem: Resistor Equivalence [Solution]}
+    \begin{center}
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[R=$2\Omega$, *-] (3, 3)
+            (3, 3) to[R=$6\Omega$] (3, 0)
+            (3, 3) to[R=$4\Omega$] (6, 3)
+            (6, 3) to[R=$8\Omega$] (6, 0)
+            (6, 3) to[R=$6\Omega$] (9, 3)
+            (9, 3) to[R=$8\Omega$] (9, 0)
+            (6, 0) to[R=$10\Omega$] (9, 0)
+            (6, 0) to[short, -*] (0, 0);
+        \end{circuitikz}
+    \end{center}
+    \color{blue}{
+        The resistor from the previous part is in parallel with the $6\Omega$ resistor to its left: \\
+        $1/R_{pt4} = 1/10 + 1/6 = 4/15 \Rightarrow R_{pt4} = 3.75 \Omega$ \\[1.5ex]
+        
+        Finally, the $2\Omega$ resistor is in series with the rest of the circuit:
+        $R_{total} = 2\Omega + 3.75\Omega = 5.75\Omega$
+    }
+\end{frame}
+
+\begin{frame}{Problem: Infinite Series}
+    Find the effective resistance between the two nodes (\textit{Hint: start at the end and see if you can find a pattern})
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 3) to[R=$1\, k\Omega$, *-] (3, 3)
+            (3, 3) to[R=$1\, k\Omega$, *-] (6, 3)
+            (6, 3) to[short] (7, 3) node[label={[font=\large]right:$\cdots$}] {}
+            (8, 3) to[R=$1\, k\Omega$] (11, 3)
+            (11, 3) to[R=$1\, k\Omega$] (14, 3)
+            (14, 3) to[R=$1\, k\Omega$] (14, 0)
+            (14, 0) to[short] (8, 0) node[label={[font=\large]left:$\cdots$}] {}
+            (7, 0) to[short, -*] (0, 0)
+            (3, 3) to[R=$2\, k\Omega$] (3, 0)
+            (6, 3) to[R=$2\, k\Omega$] (6, 0)
+            (11, 3) to[R=$2\, k\Omega$] (11, 0);
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Problem: Infinite Series [Solution]}
+    Find the effective resistance between the two nodes: \textcolor{blue}{$2 \, k\Omega$}
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 3) to[R=$1\, k\Omega$, *-] (3, 3)
+            (3, 3) to[R=$1\, k\Omega$, *-] (6, 3)
+            (6, 3) to[short] (7, 3) node[label={[font=\large]right:$\cdots$}] {}
+            (8, 3) to[R=$1\, k\Omega$] (11, 3)
+            (11, 3) to[R=$1\, k\Omega$] (14, 3)
+            (14, 3) to[R=$1\, k\Omega$] (14, 0)
+            (14, 0) to[short] (8, 0) node[label={[font=\large]left:$\cdots$}] {}
+            (7, 0) to[short, -*] (0, 0)
+            (3, 3) to[R=$2\, k\Omega$] (3, 0)
+            (6, 3) to[R=$2\, k\Omega$] (6, 0)
+            (11, 3) to[R=$2\, k\Omega$] (11, 0);
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Problem: Infinite Series [Work]}
+    \color{blue}
+    First, look at the end:\\[0.5ex]
+    \begin{tabular}{m{0.29\textwidth} m{0.025\textwidth} m{0.29\textwidth} m{0.025\textwidth} m{0.2\textwidth}}
+        \color{black}
+        \begin{circuitikz}[scale=0.6, transform shape]
+            \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
+            (0, 2) to[R=$2\,k\Omega$] (0,0)
+            (2, 2) to[R=$2\,k\Omega$] (2, 0)
+            (2, 2) to[R=$1\,k\Omega$] (4, 2)
+            (4, 2) to[R=$1\,k\Omega$] (4, 0)
+            (4, 0) to[short, -*] (-0.5, 0);
+        \end{circuitikz} & $\Longrightarrow$ &
+        \color{black}
+        \begin{circuitikz}[scale=0.6, transform shape]
+            \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
+            (0, 2) to[R=$2\,k\Omega$] (0,0)
+            (2, 2) to[R=$2\,k\Omega$] (2, 0)
+            (2, 2) to[short] (4, 2)
+            (4, 2) to[R=$2\,k\Omega$] (4, 0)
+            (4, 0) to[short, -*] (0-0.5, 0);
+        \end{circuitikz} & $\Longrightarrow$ &
+        \color{black}
+        \begin{circuitikz}[scale=0.6, transform shape]
+            \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
+            (0, 2) to[R=$2\,k\Omega$] (0,0)
+            (2, 2) to[R=$1\,k\Omega$] (2, 0)
+            (2, 0) to[short, -*] (-0.5, 0);
+        \end{circuitikz} \\[5ex]
+    \end{tabular}
+    Notice that the equivalent circuit is \textit{the same as the three end resistors in the original circuit}. This pattern continues, until the whole circuit is reduced to:\\[-10ex]
+    \begin{center}
+        \color{black}
+        \begin{circuitikz}[scale=0.6, transform shape]
+            \draw (-0.5, 2) to[R=$1\,k\Omega$, *-] (2, 2)
+            (2, 2) to[R=$1\,k\Omega$] (2, 0)
+            (2, 0) to[short, -*] (-0.5, 0);
+        \end{circuitikz}
+    \end{center}
+    So, the \textbf{equivalent resistance} of the whole circuit is $2\,k\Omega$.
+\end{frame}

@@ -1,0 +1,290 @@
+\section{Superposition}
+
+\begin{frame}{Superposition}
+    If a circuit has linear elements (like resistors), we can analyze voltages and currents through it by \textbf{considering only one voltage/current source at a time}. \\[5pt]
+    To do this, we \textbf{“zero” out} the other independent sources. \\[10pt]
+    \underline{Zeroing out}:
+    \begin{itemize}
+        \item \textbf{Voltage sources} become \textbf{ideal wires} ($V = 0$)
+        \item \textbf{Current sources} become \textbf{open circuits} ($I = 0$)
+    \end{itemize}
+    \textit{Note}: Superposition is a *long* process, but mostly mechanical.
+\end{frame}
+
+\begin{frame}{Superposition: Steps to Solve}
+    \begin{itemize}
+        \item \underline{\textbf{Note}} what \textit{goal} you want to achieve: are you finding a \textit{voltage across two nodes}? A \textit{current through a resistor}? Keep this in mind.
+        \item \underline{\textbf{Identify}} each \textbf{independent} voltage and current source you have in your circuit. You will have \textit{one subproblem to solve per source}.
+        \item \underline{\textbf{For each subproblem}}:
+        \begin{itemize}
+            \item For each source, \textbf{zero out the other independent sources} and redraw the circuit.
+            \item \textbf{Solve for your subgoal} once per subproblem.
+        \end{itemize}
+        \item Once you have each subgoal, \textbf{add them all together}. That’s your answer!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: Superposition}
+    \begin{tabular}{m{0.45\textwidth} m{0.45\textwidth}}
+        \textit{Goal}: Find $i_1$. & \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 3) to[V=$3\,V$] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 3) to[I, l=$100\,mA$] (5, 1.5)
+                (5, 1.5) to[R=$5\,\Omega$, -*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[V=$7\,V$] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } \\[5pt]
+        $\bullet$ How many subproblems will you have to solve? & \\[10pt]
+        $\bullet$ Draw out your equivalent circuits for each subproblem.
+    \end{tabular}
+\end{frame}
+\begin{frame}{Practice: Superposition [Solution]}
+    \begin{tabular}{m{0.45\textwidth} m{0.45\textwidth}}
+        \textit{Goal}: Find $i_1$. & \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.6, transform shape]
+                \draw (0, 3) to[V=$3\,V$] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 3) to[I, l=$100\,mA$] (5, 1.5)
+                (5, 1.5) to[R=$5\,\Omega$, -*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[V=$7\,V$] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } \\[5pt]
+        $\bullet$ How many subproblems will you have to solve? \textcolor{blue}{3: one for each independent source!} & \\[10pt]
+        $\bullet$ Draw out your equivalent circuits for each subproblem. \textcolor{blue}{(See next slide)}
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Superposition [Solution]}
+    \begin{tabular}{m{0.45\textwidth} m{0.45\textwidth}}
+        \textit{Goal}: Find $i_1$. & \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.5, transform shape]
+                \draw (0, 3) to[V=$3\,V$] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (5, 3) to[short, -o] (5, 2.75)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 1.5) to[R=$5\,\Omega$, o-*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[short] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } \\[5pt]
+        $\bullet$ Draw out your equivalent circuits for each subproblem $\rightarrow$ & \\[25pt]
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[short] (0, 0) node[ground] {}
+            (0, 3) to[short, -*] (2, 3)
+            (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+            (0, 0) to[short] (2, 0)
+            (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+            (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+            (5, 3) to[short, -o] (5, 2.75)
+            (5, 1.5) to[R=$5\,\Omega$, o-*] (5, 0)
+            (5, 3) to[R=$6\,\Omega$] (8, 3)
+            (8, 3) to[V=$7\,V$] (8, 0)
+            (5, 0) to[short] (8, 0);
+        \end{circuitikz} & 
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[short] (0, 0) node[ground] {}
+            (0, 3) to[short, -*] (2, 3)
+            (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+            (0, 0) to[short] (2, 0)
+            (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+            (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+            (5, 3) to[I, l=$100\,mA$] (5, 1.5)
+            (5, 1.5) to[R=$5\,\Omega$, -*] (5, 0)
+            (5, 3) to[R=$6\,\Omega$] (8, 3)
+            (8, 3) to[short] (8, 0)
+            (5, 0) to[short] (8, 0);
+        \end{circuitikz}
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Superposition}
+    \begin{tabular}{m{0.45\textwidth} m{0.45\textwidth}}
+        & \multirow{2}{*}{
+            \begin{circuitikz}[scale=0.5, transform shape]
+                \draw (0, 3) to[V=$3\,V$] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (5, 3) to[short, -o] (5, 2.75)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 1.5) to[R=$5\,\Omega$, o-*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[short] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } \\[5pt]
+        \textit{Subgoals}: Find $i_1$ for each subcircuit. & \\[25pt]
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[short] (0, 0) node[ground] {}
+            (0, 3) to[short, -*] (2, 3)
+            (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+            (0, 0) to[short] (2, 0)
+            (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+            (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+            (5, 3) to[short, -o] (5, 2.75)
+            (5, 1.5) to[R=$5\,\Omega$, o-*] (5, 0)
+            (5, 3) to[R=$6\,\Omega$] (8, 3)
+            (8, 3) to[V=$7\,V$] (8, 0)
+            (5, 0) to[short] (8, 0);
+        \end{circuitikz} & 
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 3) to[short] (0, 0) node[ground] {}
+            (0, 3) to[short, -*] (2, 3)
+            (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+            (0, 0) to[short] (2, 0)
+            (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+            (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+            (5, 3) to[I, l=$100\,mA$] (5, 1.5)
+            (5, 1.5) to[R=$5\,\Omega$, -*] (5, 0)
+            (5, 3) to[R=$6\,\Omega$] (8, 3)
+            (8, 3) to[short] (8, 0)
+            (5, 0) to[short] (8, 0);
+        \end{circuitikz}
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Superposition [Solution]}
+    \color{blue}
+    \textit{Subgoal}: Find $i_{1, part1}$ for the $3\,V$ circuit. \\[10pt]
+    \begin{tabular}{m{0.45\textwidth} m{0.45\textwidth}}
+        \multirow{3}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.5, transform shape]
+                \draw (0, 3) to[V=$3\,V$] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (5, 3) to[short, -o] (5, 2.75)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 1.5) to[R=$5\,\Omega$, o-*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[short] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } & \\[-20pt]
+        & Let $V_{eq}$ be the voltage drop across the branch that includes the $4\,\Omega$ resistor. \textit{Remember to follow passive sign convention!} \\[5pt]
+        & $V_{eq} = 0 - 3\,V = -3\,V$ \\[25pt]
+    \end{tabular}
+    Let $R_{eq}$ be the series combination of resistors on that branch. \\[5pt]
+    $R_{eq} = 4\,\Omega + 6\,\Omega + 8\,\Omega = 18\,\Omega$
+    \begin{align*}
+        i_{1, part1} = \frac{V_{eq}}{R_{eq}} = \frac{-3\,V}{18\,\Omega} = -167\,mA
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Superposition [Solution]}
+    \color{blue}
+    \textit{Subgoal}: Find $i_{1, part2}$ for the $7\,V$ circuit. \\[10pt]
+    \begin{tabular}{m{0.45\textwidth} m{0.45\textwidth}}
+        \multirow{3}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.5, transform shape]
+                \draw (0, 3) to[short] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 3) to[short, -o] (5, 2.75)
+                (5, 1.5) to[R=$5\,\Omega$, o-*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[V=$7\,V$] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz} 
+        } & \\[-10pt]
+        & Let $V_{eq}$ be the voltage drop across the branch that includes the $4\,\Omega$ resistor. \\[10pt]
+        & $V_{eq} = 7\,V - 0 = 7\,V$ \\[25pt]
+    \end{tabular}
+    Let $R_{eq}$ be the series combination of resistors on that branch. Note that the $2\,\Omega$ resistor is in parallel with a \textit{short}, so we disregard it. \\[5pt]
+    $R_{eq} = 6\,\Omega + 8\,\Omega + 4\,\Omega = 18\,\Omega$
+    \begin{align*}
+        i_{1, part2} = = \frac{V_{eq}}{R_{eq}} = \frac{7\,V}{18\,\Omega} = 389\,mA
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Superposition [Solution]}
+    \color{blue}
+    \textit{Subgoal}: Find $i_{1, part3}$ for the $100\,mA$ circuit.\\[5pt]
+    \begin{tabular}{m{0.4\textwidth} m{0.5\textwidth}}
+        \multirow{2}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.5, transform shape]
+                \draw (0, 3) to[short] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 3) to[I, l=$100\,mA$] (5, 1.5)
+                (5, 1.5) to[R=$5\,\Omega$, -*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[short] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } & \\[-5pt]
+        & Use a \textbf{current divider} and \textbf{equivalent resistances} to redraw the circuit! \\[30pt]
+    \end{tabular}
+    Note: disregard the $2\,\Omega$ resistor because (in parallel with a short). \\[8pt]
+    \begin{tabular}{m{0.4\textwidth} m{0.5\textwidth}}
+        \color{black}
+        \begin{circuitikz}[scale=0.5, transform shape]
+            \draw (0, 0) to[I, l=$100\,mA$] (0, 3)
+            (0, 3) to[R=$5\,\Omega$] (3, 3)
+            (3, 3) to[R=$6\,\Omega$] (3, 0)
+            (3, 3) to[short] (5, 3)
+            (5, 3) to[R=$4+8\,\Omega$, i<=$i_1$] (5, 0)
+            (0, 0) to[short] (5, 0);
+        \end{circuitikz} &
+        Use our \textit{curent divider formula} (with a negation because $i_1$ is going in the opposite direction of the current source).
+    \end{tabular}
+    \begin{align*}
+        i_{1, part3} = -100\,mA \frac{6\,\Omega}{6\,\Omega + 12\,\Omega} = -33\,mA
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Practice: Superposition [Solution]}
+    \color{blue}
+    \textit{Goal}: Find $i_1$ \\[10pt]
+    \begin{tabular}{m{0.5\textwidth} m{0.4\textwidth}}
+        Add the result of each subpart: &
+        \multirow{4}{*}{
+            \color{black}
+            \begin{circuitikz}[scale=0.5, transform shape]
+                \draw (0, 3) to[V=$3\,V$] (0, 0) node[ground] {}
+                (0, 3) to[short, -*] (2, 3)
+                (2, 3) to[R=$2\,\Omega$, -*] (2, 0)
+                (0, 0) to[short] (2, 0)
+                (2, 3) to[R=$8\,\Omega$, -*] (5, 3)
+                (2, 0) to[R=$4\,\Omega$, i>_=$i_1$] (5, 0)
+                (5, 3) to[I, l=$100\,mA$] (5, 1.5)
+                (5, 1.5) to[R=$5\,\Omega$, -*] (5, 0)
+                (5, 3) to[R=$6\,\Omega$] (8, 3)
+                (8, 3) to[V=$7\,V$] (8, 0)
+                (5, 0) to[short] (8, 0);
+            \end{circuitikz}
+        } \\
+        $i_1 = i_{1,part1} + i_{1,part2} + i_{1,part3}$ & \\[5pt]
+        $i_1 = -167\,mA - 33\,mA + 389\,mA$ & \\
+        $i_1 = 189\,mA$ & \\[10pt]
+    \end{tabular}
+    \textit{Note:} you can also add up voltages this way using superposition.
+\end{frame}

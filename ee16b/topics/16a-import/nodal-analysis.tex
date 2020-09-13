@@ -1,0 +1,284 @@
+\section{Nodal Analysis}
+
+\begin{frame}{Nodal Analysis Procedure}
+    \begin{enumerate}
+        \item Pick a \textbf{ground} (reference) node.
+        \item \textbf{Label nodes} with voltage set by voltage sources.
+        \item Label remaining nodes.
+        \item Label \textbf{element voltages and currents} (\textit{passive sign convention!})
+        \item Set up \textit{KCL equations}.
+        \item Find expressions for \textit{element currents} (in EE16A, just use \textbf{Ohm’s Law}).
+        \item Substitute element currents in KCL Equations.
+        \item Solve the system.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    Let's solve this circuit!
+    \begin{center}
+        \begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) to[V=$V_1$] (0, 3)
+            (0, 3) to[R=$R_3$] (0, 0)
+            (0, 6) to[R=$R_1$] (3, 6)
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$] (3, 3)
+            (3, 3) to[V=$V_2$] (3, 0)
+            (0, 0) to[short] (3, 0);
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    \begin{tabular}{p{0.55\textwidth} p{0.35\textwidth}}
+        1. Label a ground & 
+        \multirow{1}{*}{\begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) to[V=$V_1$] (0, 3)
+            (0, 3) to[R=$R_3$] (0, 0)
+            (0, 6) to[R=$R_1$] (3, 6)
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$] (3, 3)
+            (3, 3) to[V=$V_2$] (3, 0)
+            (0, 0) to[short] (1.5, 0) node[ground] {}
+            (1.5, 0) to[short] (3, 0);
+        \end{circuitikz}}\\[25ex]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    \begin{tabular}{p{0.55\textwidth} p{0.35\textwidth}}
+        1. Label a ground & 
+        \multirow{2}{*}{\begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) node[label={above:$u_1$}] {} to[V=$V_1$, *-*] (0, 3) node[label={left:$u_3$}] {}
+            (0, 3) to[R=$R_3$] (0, 0)
+            (0, 6) to[R=$R_1$, -*] (3, 6) node[label={above:$u_2$}] {}
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$] (3, 3)
+            (3, 3) to[V=$V_2$] (3, 0)
+            (0, 0) to[short] (1.5, 0) node[ground] {}
+            (1.5, 0) to[short] (3, 0);
+        \end{circuitikz}} \\
+        2. Label all the nodes & \\[25ex]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    \begin{tabular}{p{0.55\textwidth} p{0.35\textwidth}}
+        1. Label a ground & 
+        \multirow{3}{*}{\begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) node[label={above:$u_1$}] {} to[V=$V_1$, i>_=$i_{V1}$, *-*] (0, 3) node[label={left:$u_3$}] {}
+            (0, 3) to[R=$R_3$, i=$i_{R3}$] (0, 0)
+            (0, 6) to[R=$R_1$, i>_=$i_{R1}$, -*] (3, 6) node[label={right:$u_2$}] {}
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$, i<_=$i_{R2}$] (3, 3)
+            (3, 3) to[V=$V_2$, i^=$i_{V2}$] (3, 0)
+            (0, 0) to[short] (1.5, 0) node[ground] {}
+            (1.5, 0) to[short] (3, 0);
+        \end{circuitikz}} \\
+        2. Label all the nodes & \\
+        3. Label all the currents \\[20ex]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    \begin{tabular}{p{0.55\textwidth} p{0.35\textwidth}}
+        1. Label a ground & 
+        \multirow{4}{*}{\begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) node[label={above:$u_1$}] {} to[V=$V_1$, i>_=$i_{V1}$, *-*] (0, 3) node[label={left:$u_3$}] {}
+            (0, 3) to[R=$R_3$, i=$i_{R3}$, v=$V_{R3}$] (0, 0)
+            (0, 6) to[R=$R_1$, i>^=$i_{R1}$, v=$V_{R1}$, -*] (3, 6) node[label={above:$u_2$}] {}
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$, i<=$i_{R2}$, v=$V_{R2}$] (3, 3)
+            (3, 3) to[V=$V_2$, i^=$i_{V2}$] (3, 0)
+            (0, 0) to[short] (1.5, 0) node[ground] {}
+            (1.5, 0) to[short] (3, 0);
+        \end{circuitikz}} \\
+        2. Label all the nodes & \\
+        3. Label all the currents \\
+        4. Label all the voltages (passive sign convention!)\\[15ex]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    \begin{tabular}{p{0.55\textwidth} p{0.35\textwidth}}
+        Write \textbf{KCL equations} at each node: & 
+        \multirow{4}{*}{\begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) node[label={above:$u_1$}] {} to[V=$V_1$, i>_=$i_{V1}$, *-*] (0, 3) node[label={left:$u_3$}] {}
+            (0, 3) to[R=$R_3$, i=$i_{R3}$, v=$V_{R3}$] (0, 0)
+            (0, 6) to[R=$R_1$, i>^=$i_{R1}$, v=$V_{R1}$, -*] (3, 6) node[label={above:$u_2$}] {}
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$, i<=$i_{R2}$, v=$V_{R2}$] (3, 3)
+            (3, 3) to[V=$V_2$, i^=$i_{V2}$] (3, 0)
+            (0, 0) to[short] (1.5, 0) node[ground] {}
+            (1.5, 0) to[short] (3, 0);
+        \end{circuitikz}} \\
+        At $u_1$: $i_{V1} + i_{R1} = 0$ & \\
+        At $u_2$: $i_{R1} + i_{V2} - i_{R2} = 0$ \\
+        At $u_3$: $i_{V1} + i_{R2} - i_{R3} = 0$\\[15ex]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Nodal Analysis Walkthrough}
+    \begin{tabular}{p{0.55\textwidth} p{0.35\textwidth}}
+        Write \textbf{I-V equations} (Ohm's Law): & 
+        \multirow{6}{*}{\begin{circuitikz}[scale=0.7, transform shape]
+            \draw (0, 6) node[label={above:$u_1$}] {} to[V=$V_1$, i>_=$i_{V1}$, *-*] (0, 3) node[label={left:$u_3$}] {}
+            (0, 3) to[R=$R_3$, i=$i_{R3}$, v=$V_{R3}$] (0, 0)
+            (0, 6) to[R=$R_1$, i>^=$i_{R1}$, v=$V_{R1}$, -*] (3, 6) node[label={above:$u_2$}] {}
+            (3, 6) to[short] (3, 3)
+            (0, 3) to[R=$R_2$, i<=$i_{R2}$, v=$V_{R2}$] (3, 3)
+            (3, 3) to[V=$V_2$, i^=$i_{V2}$] (3, 0)
+            (0, 0) to[short] (1.5, 0) node[ground] {}
+            (1.5, 0) to[short] (3, 0);
+        \end{circuitikz}} \\
+        $V_{R1} = i_{R1} R_1 = u_1 - u_2$ & \\
+        $V_{R2} = i_{R2} R_2 = V_2 - u_3$ \\
+        $V_{R3} = i_{R3} R_3 = u_3 - 0$ \\
+        $V_1 = u_1 - u_3$ \\
+        $V_2 = u_2 - 0$ \\[5ex]
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Nodal Analysis}
+    \textbf{Solve the circuit}! (find voltages at all nodes, currents through all circuit elements)
+    \begin{center}
+        \begin{circuitikz}[scale = 0.8, transform shape]
+            \draw (0, 3) to[V=$V_s$] (0, 0)
+            (0, 3) to[R=$R_1$] (3, 3)
+            (3, 3) to[isource, l=$I_s$] (3, 0)
+            (0, 0) to[R=$R_3$] (3, 0)
+            (3, 3) to[short] (6, 3)
+            (6, 3) to[R=$R_2$] (6, 0)
+            (3, 0) to[short] (6, 0);
+        \end{circuitikz}
+    \end{center}
+    Where $V_s = 6\,V$, $I_s = 2\,A$, $R_1 = 2\,\Omega$, $R_2 = 4\,\Omega$, and $R_3 = 8\,\Omega$.
+\end{frame}
+
+\begin{frame}{Practice: Nodal Analysis [Solution]}
+    \color{blue}
+    First, label \textbf{nodes}, \textbf{voltages}, and \textbf{currents}.
+    \color{black}
+    \begin{center}
+        \begin{circuitikz}[scale = 0.8, transform shape]
+            \draw (0, 3) node[label={[font=\footnotesize] above: $u_1$}] {} to[V=$V_s$, i<_=$i_{V_s}$, *-] (0, 0)
+            (0, 3) to[R=$R_1$, , i>^=$i_{R_1}$, v_=$V_{R_1}$, -*] (3, 3) node[label={[font=\footnotesize] above:$u_2$}] {}
+            (3, 3) to[short] (3, 2.5)
+            (3, 2.5) to[isource, l_=$I_s$, v^=$V_{I_1}$, -*] (3, 0.5) 
+            (3, 0.5) to[short] (3, 0) node[label={[font=\footnotesize] below:$u_3$}] {}
+            (0, 0) node[ground] {} to[R, l_=$R_3$, i_<=$i_{R_3}$, v^<=$V_{R_3}$] (3, 0)
+            (3, 3) to[short] (6, 3)
+            (6, 3) to[short] (6, 2.5)
+            (6, 2.5) to[R=$R_2$, i<^=$i_{R_2}$, v_<=$V_{R_2}$] (6, 0.5)
+            (6, 0.5) to[short] (6, 0)
+            (3, 0) to[short] (6, 0);
+        \end{circuitikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Practice: Nodal Analysis [Solution]}
+    \color{blue}
+    \textbf{Long way}: write out a system of equations in terms of currents and node voltages, plug into a matrix, and solve. \\[10pt]
+    \begin{tabular}{m{0.4\textwidth} m{0.2\textwidth} m{0.3\textwidth}}
+        \underline{KCL equations}: & \multicolumn{2}{c}{\multirow{4}{*}{
+            \textcolor{black}{
+                \begin{circuitikz}[scale = 0.55, transform shape]
+                    \draw (0, 3) node[label={[font=\footnotesize] above: $u_1$}] {} to[V=$V_s$, i<_=$i_{V_s}$, *-] (0, 0)
+                    (0, 3) to[R=$R_1$, , i>^=$i_{R_1}$, v_=$V_{R_1}$, -*] (3, 3) node[label={[font=\footnotesize] above:$u_2$}] {}
+                    (3, 3) to[short] (3, 2.5)
+                    (3, 2.5) to[isource, l_=$I_s$, v^=$V_{I_1}$, -*] (3, 0.5) 
+                    (3, 0.5) to[short] (3, 0) node[label={[font=\footnotesize] below:$u_3$}] {}
+                    (0, 0) node[ground] {} to[R, l_=$R_3$, i_<=$i_{R_3}$, v^<=$V_{R_3}$] (3, 0)
+                    (3, 3) to[short] (6, 3)
+                    (6, 3) to[short] (6, 2.5)
+                    (6, 2.5) to[R=$R_2$, i<^=$i_{R_2}$, v_<=$V_{R_2}$] (6, 0.5)
+                    (6, 0.5) to[short] (6, 0)
+                    (3, 0) to[short] (6, 0);
+                \end{circuitikz}
+            }
+        }} \\
+        At $u_1$: $i_{V_s} - i_{R_1} = 0$ && \\
+        At $u_2$: $i_{R_1} + i_{R_2} - I_s = 0$ && \\
+        At $u_3$: $I_s - i_{R_2} - i_{R_3} = 0$ && \\[15pt]
+        \underline{I-V Relationships}: & \multicolumn{2}{c}{\underline{Solving for known values}:} \\
+        $V_{R_1} = i_{R_1} R_1 = u_1 - u_2$ & $i_{V_s} - i_{R_1} = 0$ & $i_{R_2} R_2 - u_3 + u_2 = 0$ \\
+        $V_{R_2} = i_{R_2} R_2 = u_3 - u_2$ & $i_{R_1} + i_{R_2} = I_2$ & $i_{R_3} R_3 - u_3 = 0$ \\
+        $V_{R_3} = i_{R_3} R_3 = u_3 - 0$ & $i_{R_2} + i_{R_3} = I_s$ & $u_1 = V_s$ \\
+        $V_s = u_1 - 0$ & \multicolumn{2}{l}{$i_{R_1} R_1 - u_1 + u_2 = 0$} \\
+        $V_{I_s} = u_3 - u_2$ & \multicolumn{2}{l}{$V_{I_s} - u_3 + u_2 = 0$}\\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Nodal Analysis [Solution]}
+    \color{blue}
+    You can now \textit{put the equations into a matrix and solve} (Gaussian elimination not shown):
+    \small{
+        \begin{align*}
+            \begin{bmatrix}
+                -1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+                1 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+                R_1 & 0 & 0 & 0 & 0 & -1 & 1 & 0 \\
+                0 & R_2 & 0 & 0 & 0 & 0 & 1 & -1 \\
+                0 & 0 & R_3 & 0 & 0 & 0 & 0 & -1 \\
+                0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 0 & 1 & 0 & 1 & -1
+            \end{bmatrix}
+            \begin{bmatrix}
+                i_{R_1} \\ i_{R_2} \\ i_{R_3} \\ i_{V_s} \\ V_{I_s} \\ u_1 \\ u_2 \\ u_2
+            \end{bmatrix} =
+            \begin{bmatrix}
+                0 \\ I_s \\ I_s \\ 0 \\ 0 \\ 0 \\ V_s \\ 0
+            \end{bmatrix} \\[-10pt]
+        \end{align*}
+    }
+    Solving and \textit{plugging in given values} gives: \\[5pt]
+        \begin{tabular}{|c c c c|}
+            \hline
+            $i_{R_1} = 1\,A$ & $i_{R_2} = 1\,A$ & $i_{R_3} = 1\,A$ & $i_{V_s} = 1\,A$ \\ 
+            $V_{I_s} = 4\,V$ & $u_1 = 6\,V$ & $u_2 = 4\,V$ & $u_3 = 8\,V$\\
+            \hline
+        \end{tabular}
+\end{frame}
+
+\begin{frame}{Practice: Nodal Analysis [Solution]}
+    \color{blue}
+    \textbf{Potentially shorter solution}: \\[5pt]
+    \begin{tabular}{m{0.55\textwidth} m{0.35\textwidth}}
+        $V_s$ is between $u_1$ and ground, so & \multirow{4}{*}{
+            \textcolor{black}{
+                \begin{circuitikz}[scale = 0.55, transform shape]
+                    \draw (0, 3) node[label={[font=\footnotesize] above: $u_1$}] {} to[V=$V_s$, i<_=$i_{V_s}$, *-] (0, 0)
+                    (0, 3) to[R=$R_1$, , i>^=$i_{R_1}$, v_=$V_{R_1}$, -*] (3, 3) node[label={[font=\footnotesize] above:$u_2$}] {}
+                    (3, 3) to[short] (3, 2.5)
+                    (3, 2.5) to[isource, l_=$I_s$, v^=$V_{I_1}$, -*] (3, 0.5) 
+                    (3, 0.5) to[short] (3, 0) node[label={[font=\footnotesize] below:$u_3$}] {}
+                    (0, 0) node[ground] {} to[R, l_=$R_3$, i_<=$i_{R_3}$, v^<=$V_{R_3}$] (3, 0)
+                    (3, 3) to[short] (6, 3)
+                    (6, 3) to[short] (6, 2.5)
+                    (6, 2.5) to[R=$R_2$, i<^=$i_{R_2}$, v_<=$V_{R_2}$] (6, 0.5)
+                    (6, 0.5) to[short] (6, 0)
+                    (3, 0) to[short] (6, 0);
+                \end{circuitikz}
+            }
+        } \\
+        $\boxed{u_1 = V_s = 6V}$ & \\[5pt]
+        KCL at $u_2$ gives: $i_{R_1} + i_{R_2} = I_s \,\,\, (1)$ & \\[5pt]
+        KVL on left loop clockwise gives: & \\
+        $V_s - i_{R_1} R_1 + V_{I_s} - i_{R_3} R_3 = 0 \,\,\,\,\,\,\, (2)$ & \\[10pt]
+    \end{tabular}
+    Solving (1), (2) for $i_{R1}$, noticing that $i_{R_3} = i_{R_1}$: \\[3pt]
+    $I_s - i_{R_2} = i_{R_1} = \frac{V_s}{R_1 + R_3} + \frac{V_{I_s}}{R_1 + R_3}$ but $V_{I_s} = V_{R_2} = i_{R_2} R_2$ (parallel) \\[3pt]
+    $I_s - \frac{V_{I_s}}{R_2} = \frac{V_s}{R_1 + R_3} + \frac{V_{I_s}}{R_1 + R_3} \Rightarrow \boxed{V_{I_s} = 4\,V}$ 
+\end{frame}
+
+\begin{frame}{Practice: Nodal Analysis [Soltuion]}
+    \color{blue}
+    \textbf{Potentially shorter solution (continued)}: \\[5pt]
+    Plugging $V_{I_s}$ into (2) to solve for $i_{R_1} = i_{R_3}$: \\[3pt]
+    $i_{R_1} = \frac{V_s + V_{I_s}}{R_1 + R_2} = 1\, A$ so $\boxed{i_{R_1} = i_{R_3} = 1\,A}$ \\[5pt]
+    Ohm's Law for $R_3$ gives: $u_3 = i_{R_3} R_3 \Rightarrow \boxed{u_3 = 8\,V}$ \\[5pt]
+    Looking at the voltage across the current source: $V_{I_s} = u_3 - u_2$ \\
+    $u_2 = u_3 - V_{I_s} = 4\,V \Rightarrow \boxed{u_2 = 5\,V}$ \\[5pt]
+    Ohm's Law for $R_2$: $u_3 - u_2 = i_{R_2} R_2$ \\[3pt]
+    $i_{R_2} = \frac{u_3 - u_2}{R_2} = 1\,A \Rightarrow \boxed{i_{R_2} = 1\,A}$
+\end{frame}
