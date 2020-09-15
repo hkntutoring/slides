@@ -1,0 +1,10 @@
+These files were added for fa'20, when ee16b had a "quest"
+in the third week with a large amount of 16a review material.
+As such, they are "pinned" to those versions of the 16a
+content, rather than a symlink. This means that compiling
+`quest.tex` will never change between non-ee16b-related patches,
+but fixes will need to manually backported. I'm also doubtful
+that the quest structure will be used again in ee16b, so it
+might be valuable in the future to move this content to an
+archival branch.
+-GHH,15 Sep 2020
