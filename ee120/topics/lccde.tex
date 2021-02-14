@@ -1,0 +1,32 @@
+\section{LCCDE}
+
+\begin{frame}{Linear Constant-Coefficient Difference Equations}
+
+    \begin{itemize}
+        \item Discrete LTI systems can be described by LCCDEs in the following form
+            \[
+                \sum_{k=0}^N a_{k}y(n-k) = \sum_{L=0}^M b_{L}x(n-L)
+            \]
+        \item Taking the Fourier transform on both sides and applying linearity and time-shifting properties results in
+            \[
+                Y(e^{jw})[\sum_{k=0}^N a_{k}e^{-j\omega k}] = X(e^{jw})[\sum_{L=0}^N b_{L}e^{-j\omega L}]
+            \]
+            \[
+                H(e^{jw}) = \frac{Y(e^{jw})}{X(e^{jw})} = \frac{\sum_{L=0}^N b_{L}e^{-j\omega L}}{\sum_{k=0}^N a_{k}e^{-j\omega k}}
+            \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Linear Constant-Coefficient Difference Equations}
+    \begin{itemize}
+        \item LCCDEs for CT LTI systems have the following equations
+            \[
+                \sum_{n=0}^N a_n \frac{d^{n}}{dt^n} y(t) = \sum_{m=0}^M b_m \frac{d^{m}}{dt^m} x(t)
+            \]
+            \[
+                H(\omega) = \frac{\sum_{m=0}^M b_m (j\omega)^m} {\sum_{n=0}^N a_n (j\omega)^n}
+            \]
+    \end{itemize}
+
+\end{frame}
