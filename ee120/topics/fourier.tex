@@ -1,0 +1,236 @@
+\section{Fourier Transforms}
+
+\begin{frame}{Continuous Time Fourier Transform}
+    \begin{itemize}
+        \item Given a continuous-time signal $x(t)$, you can apply the \textbf{Continuous Time Fourier Transform} (CTFT) to find its \textbf{spectrum}, $X(\omega)$. 
+        \item $X(\omega)$ is also known as the \textbf{frequency domain representation} of $x(t)$.
+        \item The CTFT (sometimes known as the \textbf{CTFT analysis equation}) can be written as follows:
+        \begin{align*}
+            X(\omega) = \int_{-\infty}^\infty x(t) e^{-i\omega t}\, dt. 
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{CTFT (Continued)}
+    \begin{itemize}
+        \item Given the spectrum of a signal, you can find the time-domain representation using the inverse CTFT (also known as the \textbf{CTFT synthesis equation}):
+        \begin{align*}
+            x(t) = \frac{1}{2\pi} \int_{-\infty}^\infty X(\omega) e^{i\omega t}\, d\omega. 
+        \end{align*}
+        \item If $h(t)$ is the impulse response of LTI system $\mathcal{H}$, the CTFT of $h(t)$, $H(\omega)$ is known as the \textbf{frequency response} of $\mathcal{H}$. 
+        \begin{itemize}
+            \item For any input signal of the form $x(t) = e^{i\omega t}$, the output of the system will be $y(t) = H(\omega) x(t)$.
+            \item We sometimes call such an $x(t)$ an \textbf{eigenfunction} of $\mathcal{H}$.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{CTFT (Continued)}
+    \begin{itemize}
+        \item You can only use the CTFT analysis equation if $x(t)$ is absolutely integrable, i.e.
+        \begin{align*}
+            \int_{-\infty}^\infty |x(t)| \, dt < \infty.
+        \end{align*}
+        \item For signals that are not absolutely integrable but have a CTFT representation, you can find the spectrum using other methods.
+        \begin{itemize}
+            \item For periodic signals, you can calculate the CTFS and convert from the CTFS to the CTFT.
+            \item Later on, you will learn about properties of Fourier Transforms you can utilize.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: CTFT}
+    \begin{enumerate}
+        \item Find the CTFT of the signal
+        $x(t) = e^{t} (u(t + 3) - u(t - 3)).$
+        \item Given that the CTFT of $y(t)$ is $Y(\omega) = \delta(\omega - \pi)$, find $y(t)$. 
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Practice: CTFT (Solutions)}
+    \begin{enumerate}
+        \item {\color{red} $X(\omega) = \frac{2i}{1 - i\omega} sin(3 - 3i\omega).$}
+        {\color{blue}
+        \begin{alignat*}{2}
+            X(\omega) &= \int_{-\infty}^\infty x(t) e^{-i\omega t}\, dt
+            &&= \int_{-3}^3 e^{t}e^{-i\omega t}\, dt \\
+            &= \int_{-3}^3 e^{(1 - i\omega)t}\,dt 
+            &&= \frac{1}{1 - i\omega} e^{1 - i\omega t} \bigg\rvert_{-3}^3  \\
+            &= \frac{1}{1 - i\omega} \big(e^{3 - 3i\omega} - e^{-(3 - 3i\omega)}\big)
+            &&= \frac{2i}{1 - i\omega} \sin(3 - 3i\omega).
+        \end{alignat*}
+        }
+        \item {\color{red} $y(t) = e^{i\pi t}.$}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Practice: CTFT (Solutions)}
+    \begin{enumerate}
+        \item {\color{red} $X(\omega) = \frac{2i}{1 - i\omega} sin(3 - 3i\omega).$}
+        \item {\color{red} $y(t) = e^{i\pi t}.$}
+        {\color{blue}
+        \begin{alignat*}{2}
+            y(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} Y(\omega) e^{i\omega t} \, d\omega 
+            &&= \frac{1}{2\pi} \int_{-\infty}^{\infty} \delta(\omega - \pi)  e^{i\omega t} \, d\omega \\
+            &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \delta(\omega - \pi)  e^{i\pi t} \, d\omega
+            &&= \frac{1}{2\pi} e^{i\pi t}.
+        \end{alignat*}
+        }
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Continuous Time Fourier Series}
+    \begin{itemize}
+        \item For periodic continuous-time signals (where $x(t) = x(t + T),\, \forall t$), we can represent $x(t)$ as a sum of complex exponentials at multiples of the fundamental frequency $\omega_0 = \frac{2\pi}{T}$.
+        \item The CTFS synthesis equation is as follows:
+        \begin{align*}
+            x(t) = \sum_{k = -\infty}^\infty X_k e^{i \frac{2\pi}{T}kt},
+        \end{align*}
+        where $X_k$ is the $k^{\text{th}}$ \textbf{Fourier coefficient} of $x(t)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{CTFS (Continued)}
+    \begin{itemize}
+        \item $X_k$ is can be calculated as follows (CTFS analysis equation):
+        \begin{align*}
+            X_k = \frac{1}{T}\int_{<T>} x(t) e^{-i \frac{2\pi}{T}kt}\, dt.
+        \end{align*}
+        Note that $\int_{<T>}$ denotes an integral over any interval of length $T$ (for instance, $0$ to $T$ or $-T/2$ to $T/2$).
+        \item You can convert from the CTFS to the CTFT as follows:
+        \begin{align*}
+            X(\omega) = 2\pi \sum_{k = -\infty}^\infty X_k \delta(\omega - \frac{2\pi k}{T}).
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Finding CTFS Coefficients}
+    \begin{itemize}
+        \item Determine the period, $T$, and fundamental frequency $\omega_0 = \frac{2\pi}{T}$ of the signal.
+        \item If you can write the signal as a sum of complex exponentials (for example, if it's a $\cos$ or a $\sin$), pattern-match the sum with the CTFS synthesis equation.
+        \item Otherwise, use the CTFS analysis equation to find expressions for the Fourier coefficients.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Practice: CTFS}
+    \begin{enumerate}
+        \item Find the fundamental frequency and nonzero CTFS coefficients of $x(t) = \sin(\frac{\pi}{2}t) + \cos(2\pi t)$.
+        \item Find the fundamental frequency and nonzero CTFS coefficients of $y(t) = \sum_{n = -\infty}^\infty \delta(t - n)$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Practice: CTFS (Solutions)}
+    \begin{enumerate}
+        \item {\color{red} $\omega_0 = \pi / 2$, $X_{-4} = \frac{1}{2}$, $X_-1 = \frac{-1}{2i}$, $X_1 = \frac{1}{2i}$, $X_4 = \frac{1}{2}$.} \\
+        
+        {\color{blue}
+        \noindent First find the period of $x(t)$:
+        $$x(t + T) = \sin(\frac{\pi}{2}(t + T)) + \cos(2\pi (t + T)) = x(t).$$
+        The fundamental period of $x(t)$ is the smallest $T$ such that both $\frac{\pi}{2}T$ and $2\pi T$ are integer multiples of $2\pi$, so $T = 4$.
+
+        $$\omega_0 = \frac{2\pi}{T} = \frac{\pi}{2}.$$
+        }
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Practice: CTFS (Solutions)}
+    \begin{enumerate}
+        \item {\color{red} $\omega_0 = \pi / 2$, $X_{-4} = \frac{1}{2}$, $X_-1 = \frac{-1}{2i}$, $X_1 = \frac{1}{2i}$, $X_4 = \frac{1}{2}$.} \\
+        
+        {\color{blue}
+        Now, we can write out $x(t)$ using Euler's formula and pattern-match with the CTFS synthesis equation.
+        \begin{flalign*}
+            x(t) &= \frac{1}{2i}\big(e^{\frac{\pi}{2} t} - e^{-\frac{\pi}{2} t} \big) + \frac{1}{2}\big(e^{2\pi t} + e^{-2\pi t} \big) \\
+            &= \frac{1}{2i}\big(e^{\frac{\pi}{2} t} - e^{-\frac{\pi}{2} t} \big) + \frac{1}{2}\big(e^{\frac{\pi}{2}4t} + e^{-\frac{\pi}{2}4t} \big)
+        \end{flalign*}
+        Pattern-matching with
+        \begin{align*}
+            x(t) = \sum_{k = -\infty}^\infty X_k e^{i \frac{\pi}{2}kT},
+        \end{align*}
+        we can see that $X_{-4} = \frac{1}{2}$, $X_-1 = \frac{-1}{2i}$, $X_1 = \frac{1}{2i}$, $X_4 = \frac{1}{2}$, and the rest of the CTFS coefficients are $0$.
+        }
+        \item {\color{red} $\omega_0 = 2\pi$, $X_k = 1,\,\forall k$.}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Practice: CTFS (Solutions)}
+    \begin{itemize}
+        \item {\color{red} $\omega_0 = \pi / 2$, $X_{-4} = \frac{1}{2}$, $X_-1 = \frac{-1}{2i}$, $X_1 = \frac{1}{2i}$, $X_4 = \frac{1}{2}$.}
+        \item {\color{red} $\omega_0 = 2\pi$, $Y_k = 1,\,\forall k$.} \\
+        
+        {\color{blue}
+        \noindent$y(t)$ repeats itself every $1$ timestep, so it has a period $T = 1$ and fundamental frequency $\omega_0 = 2\pi$. \\
+
+        \noindent $y(t)$ cannot be easily written as a sum of sinusoids, so let's plug $y(t)$ into the CTFS analysis equation. Note that only one Dirac delta appears every period of the signal.
+        \begin{flalign*}
+            Y_k &= \frac{1}{T} \int_{-T/2}^{T/2} y(t) e^{-i\frac{2\pi}{T} t}\, dt \\
+            &= \int_{-1/2}^{1/2} \delta(t) e^{-i 2\pi t}\, dt = e^{-i 2\pi (0)} = 1.
+        \end{flalign*}
+        }
+    \end{itemize}
+\end{frame}
+
+% \begin{frame}{Discrete Time Frequency}
+%     \begin{itemize}
+%         \item Unlike in continuous time, discrete-time frequencies are periodic with a period of $2\pi$.
+%         \item To see why, look at a discrete-time complex exponential with frequency $\omega + 2\pi$ for some $\omega$: 
+%         \begin{align*}
+%             e^{i(\omega + 2\pi) n} = e^{i\omega n}e^{i 2\pi n}.
+%         \end{align*}
+%         $e^{i2\pi n} = 1$ for integer $n$, so  
+%         $$e^{i(\omega + 2\pi) n} = e^{i\omega n}.$$
+%         \item In discrete time, we say that ``higher frequencies'' are closer to odd multiples of $\pi$ and ``lower frequencies'' are closer to even multiples of $\pi$.
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Discrete Time Fourier Transform}
+%     \begin{itemize}
+%         \item The spectrum of a discrete-time signal can be found using the \textbf{Discret Time Fourier Transform} (DTFT) / DTFT analysis equation:
+%         \begin{align*}
+%             X(\omega) = \sum_{n=-\infty}^\infty x[n] e^{-i\omega n}. 
+%         \end{align*}
+%         \item Given the spectrum of a signal, you can find the time-domain representation using the inverse DTFT / DTFT synthesis equation:
+%         \begin{align*}
+%             x[n] = \frac{1}{2\pi} \int_{<2\pi>} X(\omega) e^{i\omega n}\, d\omega. 
+%         \end{align*}
+%         \item Analogously to continuous time, you can only use the analysis equation if $x(t)$ is absolutely summable:
+%         $$\sum_{n = -\infty}^{\infty} |x[n]| < \infty$$.
+%         \item As in continuous time, the frequency response, $H(\omega)$, of an LTI system with impulse response $h[n]$ is provided by the DTFT of $h[n]$.
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Practice: DTFT}
+
+% \end{frame}
+
+% \begin{frame}{Discrete Time Fourier Series}
+%     \begin{itemize}
+%         \item For periodic discrete-time signals (where $x[n] = x[n + N],\, \forall t$ and an \textbf{integer value of N}), we can represent $x[n]$ as a sum of complex exponentials at multiples of the fundamental frequency $\omega_0 = \frac{2\pi}{N}$  (DTFS synthesis equation). 
+%         \begin{align*}
+%             x[n] = \sum_{k \in <N>} X_k e^{i \frac{2\pi}{N}kn}.
+%         \end{align*}
+%         \item Note that we are only summing over an interval of length N!
+%         \item $X_k$ is can be calculated as follows (DTFS analysis equation):
+%         \begin{align*}
+%             X_k = \frac{1}{N}\sum{n \in <N>} x[n] e^{-i \frac{2\pi}{T}kn}\, dt.
+%         \end{align*}
+%         \item The DTFS coefficients are $N-$periodic, i.e. $X_{k} = X_{k + N}$.
+%         \item You can convert from the DTFS to the DTFT as follow:
+%         \begin{align*}
+%             X(\omega) = 2\pi \sum_{k = -\infty}^\infty X_k \delta(\omega - \frac{2\pi k}{N}).
+%         \end{align*}
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Practice: DTFS}
+
+% \end{frame}
+
+\begin{frame}{Frequency Domain and Convolution}
+    \begin{itemize}
+        \item \textbf{Convolution} in the time domain corresponds to \textbf{multiplication} in the frequency domain.
+        \item If $y(t) = x(t) * h(t)$ in the time domain, then $Y(\omega) = X(\omega)H(\omega)$ in the CTFT domain.
+        \item Likewise, multiplication in the time domain corresponds to convolution in the frequency domain.
+        \item If $y(t) = x(t)h(t)$, then $Y(\omega) = X(\omega) * H(\omega)$.
+    \end{itemize}
+\end{frame}
