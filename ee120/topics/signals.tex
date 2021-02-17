@@ -1,0 +1,94 @@
+\section{Basic Signals}
+
+\begin{frame}{Complex Signals}
+
+    \begin{itemize}
+        \item A complex-valued signal can be represented as
+            \[
+                x(t) = x_r(t) + j x_i(t) = a(t)e^{j \Theta(t)}
+            \]
+        \item With amplitude and phase
+            \[
+                a(t) = \sqrt{{x_r(t)}^2 + {x_i(t)}^2}
+            \]
+            \[
+               \cos(\Theta(t)) = \frac{x_r(t)}{a(t)}; \sin(\Theta(t)) = \frac{x_i(t)}{a(t)}
+            \]
+            \[
+                \Theta(t) = \arctan(\frac{\sin(\Theta(t))}{\cos(\Theta(t))})
+            \]
+          \end{itemize}
+\end{frame}
+
+\begin{frame}{Euler's Formula and Complex Exponentials}
+    \begin{itemize}
+        \item Euler's Formula is
+        \[e^{jwt} = \cos(wt) + j\sin(wt)\]
+        \item A complex exponential has magnitude 1.
+          \[ |e^{4 + 3j}| = |e^{4}e^{3j}| = e^4 \]
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{Signal Transformations}
+\begin{itemize}
+    \item Signal shifting: shifts signal to the right if $T > 0$, left if $T < 0$
+    \[
+        x(t) \rightarrow x(t - T), x[n] \rightarrow x[n - T]
+    \]
+    \item Signal reversal: reflects signal
+    \[
+        x(t) \rightarrow x(-t), x[n] \rightarrow x[-n]
+    \]
+    \item Even function
+    \[ x(t)  = x(-t),
+    x_{even}(t) = \frac{x(t) + x(-t)}{2} \]
+    \item Odd function
+    \[ x(t) = - x(-t),
+    x_{odd}(t) = \frac{x(t) - x(-t)}{2} \]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Signal Periodicity}
+\begin{itemize}
+    \item Continuous time signal is periodic if there exists a nonzero $T \in \mathbb{R}$ such that
+    \[
+        x(t + T) = x(t)
+    \]
+    \item The smallest positive choice of $T$ is the fundamental period of $x(t)$
+    \item Discrete time signal is periodic if there  exists a nonzero $N \in \mathbb{Z}$ such that
+    \[
+        x[n] =x[n + N]
+    \]
+    \item The smallest positive choice of the integer $N$ is the fundamental period of x[n]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Delta Function}
+\begin{itemize}
+    \item Dirac delta function: continuous time
+    \[
+        \delta(t) =
+        \begin{cases}
+        \infty, \tau = 0 \\
+        0, \tau \neq 0
+        \end{cases}
+    \]
+    \[
+    \delta(t - \tau) = 0, t \neq \tau \]
+    \[ \int_{-\infty}^{\infty}\delta(t - \tau)dt = 1 \]
+    \item Delta scaling and sifting properties
+    \[ \delta(at) = \frac{\delta(t)}{|a|}, 
+        \int_{-\infty}^{\infty} \delta(t - \tau)f(t)dt = f(\tau)
+    \]
+    \item Kronecker delta function: discrete time
+    \[
+      \delta[n] = \begin{cases}
+      1, n=0\\
+      0, n \neq 0
+      \end{cases}
+      \]
+\end{itemize}
+
+\end{frame}

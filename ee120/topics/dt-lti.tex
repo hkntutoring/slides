@@ -9,7 +9,7 @@
             \]
         \item A delta function is the unit impulse and any signal can be decomposed into a sum of deltas
             \[
-                \delta[n] = 
+                \delta[n] =
                 \begin{cases}
                     1 & n= 0 \\
                     0 & n\ne 0
@@ -32,7 +32,7 @@
     \end{itemize}
     \underline{Time-Invariance}
     \begin{itemize}
-        \item A time invariant system means that a shift in time in the input results in a shift in time in the output
+        \item A time invariant system means that a shift in time in the input results in the same shift in time in the output
         \[
         x_1[n-N] \overset{H}{\longrightarrow} y_1[n-N]\quad \forall N \in \mathbb{Z}
         \]
@@ -50,7 +50,7 @@
 \vspace{30px}
 
 \textcolor{red}{Verify that knowing $h[n]$ allows you to determine the output $y[n]$ for any input in an LTI system. \textit{Hint: decompose $x[n]$}}
-    
+
 \end{frame}
 
 \begin{frame}{Proof and the Convolutional Sum}
@@ -114,15 +114,15 @@
     \[
     \delta[n-k] \overset{H}{\longrightarrow} h_k[n] = \alpha^{|k|}u[n-k] \quad \forall |\alpha| < 1
     \]
-    
+
     \vspace{30px}
-    
+
     \textcolor{red}{Show that the output, $y[n]$, to a general input, $x[n]$ is}
     \[
         y[n] = \sum_{k=-\infty}^{+\infty}x[k]h_k[n]
     \]
     {\footnotesize\textcolor{red}{\textit{Credit: Midterm \#1 EE120 Sp20}}}
-    
+
 \end{frame}
 
 \begin{frame}{DT System Example Solution}
@@ -132,17 +132,17 @@
     \[\delta[n-m] \overset{H}{\longrightarrow} h_m[n]\]
     \textcolor{red}{Apply linearity}
     \[x[n] = \sum_{m=-\infty}^{+\infty}x[m]\delta[n-m] \overset{H}{\longrightarrow} \sum_{m=-\infty}^{+\infty}x[m]h_m[n] = y[n]\]
-    
+
     Notice the differences in this sum from the usual convolutional sum.
 \end{frame}
 
 \begin{frame}{DT System Example Problem Continued}
     \textcolor{red}{Derive a closed-form expression (no summations) for the output $y[n]$ when the input $x[n] = u[n]$, the unit step}
-    
+
     Recall:
     \[h_k[n] = \alpha^{|k|}u[n-k] \quad \forall |\alpha| < 1\]
     \[y[n] = \sum_{k=-\infty}^{+\infty}x[k]h_k[n]\]
-    \[\sum_{k=M}^N \alpha^k = 
+    \[\sum_{k=M}^N \alpha^k =
         \begin{cases}
             \frac{\alpha^{N+1}-\alpha^M}{\alpha-1} & \alpha\ne 1 \\
             N-M+1 & \alpha= 1
@@ -159,5 +159,5 @@
     \[y[1] = 1+\alpha\]
     \[y[2] = 1+\alpha+\alpha^2\]
     \[y[n] = \sum_{p=0}^n \alpha^p = \frac{\alpha^{n+1}-1}{\alpha -1}\]
-    
+
 \end{frame}

@@ -30,3 +30,48 @@
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}{Linear Constant-Coefficient Difference Equations}
+    \begin{itemize}
+        \item The homogenous solution is found for input $x(t) = 0$
+            \[
+                \sum_{n=0}^N a_n \frac{d^{n}}{dt^n} y(t) = 0
+            \]
+        \item The particular solution is found for the given input $x(t)$
+        \item The overall solution is the sum of the homogenous and particular solutions
+        \[ y(t) = y_p(t) + y_n(t)
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Practice: First-order RC circuit}
+    \begin{itemize}
+        \item The continuous-time LCCDE for an RC circuit with input $x(t) = u(t)$, initially at rest is
+            \[
+                \frac{dy(t)}{dt} + ay(t) = k x(t) = k u(t)
+            \]
+            \textcolor{red}{Find the homogenous, particular, and general solutions to this equation}
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Practice: First-order RC circuit}
+    \begin{itemize}
+        \item Homogenous solution
+            \[
+                \frac{dy_h(t)}{dt} + ay_h(t) = 0
+            \]
+            \[ \frac{dy_h(t)}{dt} = -a y_h(t)
+            \]
+        \item Integrate both sides:
+        \[ \int \frac{dy_h(t)}{y_h(t)} = \int -a dt \]
+            \[ \ln (y_h(t)) = -at + c
+            \]
+            \[y_h(t) = e^{-at + c} = e^c e^{-at} = A e^{-at}
+            \]
+      \item Review Lecture 03 notes for walkthrough of Particular and General solutions
+    \end{itemize}
+
+\end{frame}
