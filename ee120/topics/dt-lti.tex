@@ -9,14 +9,14 @@
             \]
         \item A delta function is the unit impulse and any signal can be decomposed into a sum of deltas
             \[
-                \delta(n) = 
+                \delta[n] = 
                 \begin{cases}
-                    1 & x= 0 \\
-                    0 & x\ne 0
+                    1 & n= 0 \\
+                    0 & n\ne 0
                 \end{cases}
             \]
             \[
-                x(n) = \sum_{k=-\infty}^{\infty} x(k)\delta(n-k) \forall x
+                x[n] = \sum_{k=-\infty}^{\infty} x[k]\delta[n-k] \forall x
             \]
         \item A discrete system, $H$, takes an input signal, $x$, and yields an output signal, $y$
     \end{itemize}
@@ -26,85 +26,85 @@
     \underline{Linearity}
     \begin{itemize}
         \item \textbf{Scaling} an input by some amount scales the output by the same amount
-        \[\alpha x_1(n) \overset{H}{\longrightarrow} \alpha y_1(n)\]
+        \[\alpha x_1[n] \overset{H}{\longrightarrow} \alpha y_1[n]\]
         \item \textbf{Superposition} of two inputs generates a superposition of two outputs
-        \[x_1(n) + x_2(n) \overset{H}{\longrightarrow} y_1(n) + y_2(n)\]
+        \[x_1[n] + x_2[n] \overset{H}{\longrightarrow} y_1[n] + y_2[n]\]
     \end{itemize}
     \underline{Time-Invariance}
     \begin{itemize}
         \item A time invariant system means that a shift in time in the input results in a shift in time in the output
         \[
-        x_1(n-N) \overset{H}{\longrightarrow} y_1(n-N)\quad \forall N \in \mathbb{Z}
+        x_1[n-N] \overset{H}{\longrightarrow} y_1[n-N]\quad \forall N \in \mathbb{Z}
         \]
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Impulse Response}
 \begin{itemize}
-    \item The impulse response is the output of a system for a $\delta(n)$ input
+    \item The impulse response is the output of a system for a $\delta[n]$ input
     \[
-        x(n) = \delta(n) \overset{H}{\longrightarrow} y(n) = h(n)
+        x[n] = \delta[n] \overset{H}{\longrightarrow} y[n] = h[n]
     \]
 \end{itemize}
 
 \vspace{30px}
 
-\textcolor{red}{Verify that knowing $h(n)$ allows you to determine the output $y(n)$ for any input in an LTI system. \textit{Hint: decompose $x(n)$}}
+\textcolor{red}{Verify that knowing $h[n]$ allows you to determine the output $y[n]$ for any input in an LTI system. \textit{Hint: decompose $x[n]$}}
     
 \end{frame}
 
 \begin{frame}{Proof and the Convolutional Sum}
     \underline{Proof}
-    Decompose $x(n)$
-    \[x(n) = \sum_k x(k)\delta(n-k)\]
+    Decompose $x[n]$
+    \[x[n] = \sum_k x[k]\delta[n-k]\]
     Recall the definition of the impulse response
-    \[\delta(n) \overset{H}{\longrightarrow} h(n)\]
+    \[\delta[n] \overset{H}{\longrightarrow} h[n]\]
     Apply linearity and time-invariance to the definition of the impulse response
-    \[\sum_k x(k)\delta(n-k) \overset{H}{\longrightarrow} \sum_k x(k)h(n-k)\]
+    \[\sum_k x[k]\delta[n-k] \overset{H}{\longrightarrow} \sum_k x[k]h[n-k]\]
     \underline{Convolution}
 \begin{itemize}
-    \item This is the convolutional sum, and denoted by $(x * h)(n)$
-    \item Note: $(x * h)(n) = (h * x)(n)$
+    \item This is the convolutional sum, and denoted by $(x * h)[n]$
+    \item Note: $(x * h)[n] = (h * x)[n]$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{LTI Example Problems}
-    \textcolor{red}{Determine if the system described by the input-output relationship is 1) linear and 2) time-invariant. {\footnotesize\textit{Credit: Discussion \#1 EE120 Sp20}}}
+    \textcolor{red}{Determine if the system described by the input-output relationship is 1) linear and 2) time-invariant. {\footnotesize\textit{Credit: Discussion \#1 EE120 Sp21}}}
     \begin{enumerate}
-        \item $y(n) = 7x(n+1)$
-        \item $y(n) = x(n)x(n-1)$
-        \item $y(n) = e^{x(n)}$
-        \item $y(n) = x(-n)$
-        \item $y(n) = v(n)x(n)$, where $v$ is some fixed signal
+        \item $y[n] = 7x[n+1]$
+        \item $y[n] = x[n]x[n-1]$
+        \item $y[n] = e^{x[n]}$
+        \item $y[n] = x[-n]$
+        \item $y[n] = v[n]x[n]$, where $v$ is some fixed signal
     \end{enumerate}
 \end{frame}
 
 \begin{frame}{LTI Example Solutions}
     \begin{enumerate}
-        \item $y(n) = 7x(n+1)$
+        \item $y[n] = 7x[n+1]$
         \begin{itemize}
             \item Linear: \textcolor{red}{\textbf{Yes}}
             \item Time-invariant: \textcolor{red}{\textbf{Yes}}
         \end{itemize}
-        \item $y(n) = x(n)x(n-1)$
+        \item $y[n] = x[n]x[n-1]$
         \begin{itemize}
             \item Linear: \textcolor{red}{\textbf{No}, any scaling factor becomes squared at the output}
             \item Time-invariant: \textcolor{red}{\textbf{Yes}}
         \end{itemize}
-        \item $y(n) = e^{x(n)}$
+        \item $y[n] = e^{x[n]}$
         \begin{itemize}
             \item Linear: \textcolor{red}{\textbf{No}, exponentials are non-linear (verify at $n=0$)}
             \item Time-invariant: \textcolor{red}{\textbf{Yes}}
         \end{itemize}
-        \item $y(n) = x(-n)$
+        \item $y[n] = x[-n]$
         \begin{itemize}
             \item Linear: \textcolor{red}{\textbf{Yes}}
-            \item Time-invariant: \textcolor{red}{\textbf{No}, $\delta(n-1)$ input results in $\delta(-n-1)$}
+            \item Time-invariant: \textcolor{red}{\textbf{No}, $\delta[n-1]$ input results in $\delta[-n-1]$}
         \end{itemize}
-        \item $y(n) = v(n)x(n)$, where $v$ is some fixed signal
+        \item $y[n] = v[n]x[n]$, where $v$ is some fixed signal
         \begin{itemize}
             \item Linear: \textcolor{red}{\textbf{Yes}}
-            \item Time-invariant: \textcolor{red}{\textbf{No}, consider when $v(n) = \delta(n)$ for $x(n)$ and $\Tilde{x}(n) = x(n-1)$; $y(0) = x(0)$ and $\Tilde{y(0)} = x(-1)$}
+            \item Time-invariant: \textcolor{red}{\textbf{No}, consider when $v[n] = \delta[n]$ for $x[n]$ and $\Tilde{x}[n] = x[n-1]$; $y[0] = x[0]$ and $\Tilde{y[0]} = x[-1]$}
         \end{itemize}
     \end{enumerate}
 \end{frame}
@@ -112,36 +112,36 @@
 \begin{frame}{DT System Example Problem}
     \textcolor{red}{Consider the \textit{linear} DT system H}
     \[
-    \delta(n-k) \overset{H}{\longrightarrow} h_k(n) = \alpha^{|k|}u(n-k) \quad \forall |\alpha| < 1
+    \delta[n-k] \overset{H}{\longrightarrow} h_k[n] = \alpha^{|k|}u[n-k] \quad \forall |\alpha| < 1
     \]
     
     \vspace{30px}
     
-    \textcolor{red}{Show that the output, $y(n)$, to a general input, $x(n)$ is}
+    \textcolor{red}{Show that the output, $y[n]$, to a general input, $x[n]$ is}
     \[
-        y(n) = \sum_{k=-\infty}^{+\infty}x(k)h_k(n)
+        y[n] = \sum_{k=-\infty}^{+\infty}x[k]h_k[n]
     \]
     {\footnotesize\textcolor{red}{\textit{Credit: Midterm \#1 EE120 Sp20}}}
     
 \end{frame}
 
 \begin{frame}{DT System Example Solution}
-    \textcolor{red}{Decompose $x(n)$}
-    \[x(n) = \sum_{m=-\infty}^{+\infty}x(m)\delta(n-m)\]
+    \textcolor{red}{Decompose $x[n]$}
+    \[x[n] = \sum_{m=-\infty}^{+\infty}x[m]\delta[n-m]\]
     \textcolor{red}{Recall the definition of the system $H$}
-    \[\delta(n-m) \overset{H}{\longrightarrow} h_m(n)\]
+    \[\delta[n-m] \overset{H}{\longrightarrow} h_m[n]\]
     \textcolor{red}{Apply linearity}
-    \[x(n) = \sum_{m=-\infty}^{+\infty}x(m)\delta(n-m) \overset{H}{\longrightarrow} \sum_{m=-\infty}^{+\infty}x(m)h_m(n) = y(n)\]
+    \[x[n] = \sum_{m=-\infty}^{+\infty}x[m]\delta[n-m] \overset{H}{\longrightarrow} \sum_{m=-\infty}^{+\infty}x[m]h_m[n] = y[n]\]
     
     Notice the differences in this sum from the usual convolutional sum.
 \end{frame}
 
-\begin{frame}{DT System Example Problem}
-    \textcolor{red}{Derive a closed-form expression (no summations) for the output $y(n)$ when the input $x(n) = u(n)$, the unit step}
+\begin{frame}{DT System Example Problem Continued}
+    \textcolor{red}{Derive a closed-form expression (no summations) for the output $y[n]$ when the input $x[n] = u[n]$, the unit step}
     
     Recall:
-    \[h_k(n) = \alpha^{|k|}u(n-k) \quad \forall |\alpha| < 1\]
-    \[y(n) = \sum_{k=-\infty}^{+\infty}x(k)h_k(n)\]
+    \[h_k[n] = \alpha^{|k|}u[n-k] \quad \forall |\alpha| < 1\]
+    \[y[n] = \sum_{k=-\infty}^{+\infty}x[k]h_k[n]\]
     \[\sum_{k=M}^N \alpha^k = 
         \begin{cases}
             \frac{\alpha^{N+1}-\alpha^M}{\alpha-1} & \alpha\ne 1 \\
@@ -151,13 +151,13 @@
 \end{frame}
 
 \begin{frame}{DT System Example Solution}
-    \[y(n) = \sum_{k=-\infty}^{+\infty}x(k)h_k(n)\]
-    \textcolor{red}{Change the bounds and plug in for $x(k)$ and $h_k(n)$}
-    \[y(n) = \sum_{k=0}^{+\infty}1\cdot \alpha^{|k|}u(n-k)\]
-    \[y(n) = u(n) + \alpha u(n-1) + \alpha^2 u(n-2) + \dots\]
-    \[y(0) = 1\]
-    \[y(1) = 1+\alpha\]
-    \[y(2) = 1+\alpha+\alpha^2\]
-    \[y(n) = \sum_{p=0}^n \alpha^p = \frac{\alpha^{n+1}-1}{\alpha -1}\]
+    \[y[n] = \sum_{k=-\infty}^{+\infty}x[k]h_k[n]\]
+    \textcolor{red}{Change the bounds and plug in for $x[k]$ and $h_k[n]$}
+    \[y[n] = \sum_{k=0}^{+\infty}1\cdot \alpha^{|k|}u[n-k]\]
+    \[y[n] = u[n] + \alpha u[n-1] + \alpha^2 u[n-2] + \dots\]
+    \[y[0] = 1\]
+    \[y[1] = 1+\alpha\]
+    \[y[2] = 1+\alpha+\alpha^2\]
+    \[y[n] = \sum_{p=0}^n \alpha^p = \frac{\alpha^{n+1}-1}{\alpha -1}\]
     
 \end{frame}
