@@ -22,32 +22,16 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Linear and Time-Invariant Systems}
-    \underline{Linearity}
-    \begin{itemize}
-        \item \textbf{Scaling} an input by some amount scales the output by the same amount
-        \[\alpha x_1[n] \overset{H}{\longrightarrow} \alpha y_1[n]\]
-        \item \textbf{Superposition} of two inputs generates a superposition of two outputs
-        \[x_1[n] + x_2[n] \overset{H}{\longrightarrow} y_1[n] + y_2[n]\]
-    \end{itemize}
-    \underline{Time-Invariance}
-    \begin{itemize}
-        \item A time invariant system means that a shift in time in the input results in the same shift in time in the output
-        \[
-        x_1[n-N] \overset{H}{\longrightarrow} y_1[n-N]\quad \forall N \in \mathbb{Z}
-        \]
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Impulse Response}
+\begin{frame}{LTI Systems and Impulse Response}
 \begin{itemize}
     \item The impulse response is the output of a system for a $\delta[n]$ input
     \[
         x[n] = \delta[n] \overset{H}{\longrightarrow} y[n] = h[n]
     \]
+    \item Linear and time-invariant systems are important because knowing its impulse response allows you to determine the response to any other input.
 \end{itemize}
 
-\vspace{30px}
+\vspace{20px}
 
 \textcolor{red}{Verify that knowing $h[n]$ allows you to determine the output $y[n]$ for any input in an LTI system. \textit{Hint: decompose $x[n]$}}
 

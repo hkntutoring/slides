@@ -5,11 +5,16 @@
     \underline{Linearity}
     \begin{itemize}
         \item \textbf{Scaling} an input by some amount scales the output by the same amount
+        \[\alpha x_1[n] \overset{H}{\longrightarrow} \alpha y_1[n]\]
         \item \textbf{Superposition} of two inputs generates a superposition of two outputs
+        \[x_1[n] + x_2[n] \overset{H}{\longrightarrow} y_1[n] + y_2[n]\]
     \end{itemize}
     \underline{Time-Invariance}
     \begin{itemize}
         \item A time invariant system means that a shift in time in the input results in the same shift in time in the output
+        \[
+        x_1[n-N] \overset{H}{\longrightarrow} y_1[n-N]\quad \forall N \in \mathbb{Z}
+        \]
     \end{itemize}
 \end{frame}
 
