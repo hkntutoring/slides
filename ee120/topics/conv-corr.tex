@@ -13,6 +13,7 @@
             \]
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Useful Things to Know About Convolution}
     \begin{itemize}
         \item It is commutative in both DT and CT; $x*y = y*x$ 
@@ -21,6 +22,7 @@
         \item Convolution between two different size rectangles gives a trapezoid
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Graphical Interpretation of Convolution (CT)}
     \begin{itemize}
         \item In the formula, the function with the $t-\tau$ input is being flipped and shifted over the other one.
@@ -31,6 +33,7 @@
         \item With DT, draw the operands on the k axis, and the output on the n axis. 
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Convolution Practice}
     Determine the length of $x*y$ if: 
     \begin{itemize}
@@ -38,6 +41,7 @@
         \item They are CT, with $x(t)$ of length 4 and $y(t)$ of length 5
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Convolution Practice}
     Determine the length of $x*y$ if: 
     \begin{itemize}
@@ -51,6 +55,7 @@
         \end{itemize}
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Convolution Practice}
     Convolve $x*y$ if: 
     \begin{itemize}
@@ -59,6 +64,7 @@
     \end{itemize}
     \textcolor{red}{Try doing these with as little math as possible.}
 \end{frame}
+
 \begin{frame}{Convolution Practice}
     Convolve $x*y$ if:
     \begin{itemize}
@@ -91,6 +97,7 @@
         \end{itemize}
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Cross-Correlation}
     \begin{itemize}
         \item Cross-correlation is a similar operation to convolution, that also involved a shift and sum of two signals. 
@@ -107,11 +114,12 @@
             \]
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Cross-Correlation Practice}
     Prove that cross-correlation is not commutative. More specifically, prove that $R_{x,y}[n] = R_{y,x}[-n]$, where $$R_{x,y}[n] = \sum_{k=-\infty}^{\infty} x[k]\cdot y[n+k].$$
 \end{frame}
+
 \begin{frame}{Cross-Correlation Practice}
     Prove that cross-correlation is not commutative. More specifically, prove that $R_{x,y}[n] = R_{y,x}[-n]$, where $$R_{x,y}[n] = \sum_{k=-\infty}^{\infty} x[k]\cdot y[n+k].$$
     \textcolor{gray}{R_{x,y}[n] = \sum_{k=-\infty}^{\infty} x[k]\cdot y[n+k] = \sum_{w=-\infty}^{\infty} x[w-n]\cdot y[w] = \sum_{w=-\infty}^{\infty} y[w] \cdot x[w-n] = R_{y,x}[-n]}
 \end{frame}
-\end{document}
