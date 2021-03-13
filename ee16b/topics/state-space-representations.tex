@@ -90,21 +90,21 @@ Discrete time solution:
 \]
 \end{frame}
 
-\begin{frame}
-\frametitle{State Space Modeling Example:}
+% \begin{frame}
+% \frametitle{State Space Modeling Example:}
 
-Given the following circuit: 
+% Given the following circuit: 
 
-\begin{tikzpicture}[scale=2]
-    \draw (2, 0.75) to [R, *-, l_={\(R_2\)}] (1, 0.75) to [R, *-, l_={\(R_1\)}] (0, 0.75) to [voltage source, v_>={\(V_{in}\)}] (0, 0);
-    \draw (1, 0.75) node[label={\(V_1\)}] {} to [C, l={\(C_1\)}] (1, 0) node[ground] {};
-    \draw (2, 0.75) node[label={\(V_2\)}] {} to [C, l={\(C_2\)}] (2, 0) node[ground] {};
-    %\draw (0, 0) to (1.5, 0) to [C, l=2<\micro\farad>] (1.5, 1) to (0, 1) to [L, l=2<\henry>] (0, 0);
-    %\draw (0, 0) to (0.75, 0) to (0.75, 0.0) node[ground] {} to (0.75, 0) to  (1.5, 0) to [C, l=2<\micro\farad>, v_<=\(v\)] (1.5, 1) to (0, 1) to[I=\(i\)] [L, l=2<\henry>] (0, 0);
-            \node [ground] (0, 0) {};
-\end{tikzpicture}
+% \begin{tikzpicture}[scale=2]
+%     \draw (2, 0.75) to [R, *-, l_={\(R_2\)}] (1, 0.75) to [R, *-, l_={\(R_1\)}] (0, 0.75) to [voltage source, v_>={\(V_{in}\)}] (0, 0);
+%     \draw (1, 0.75) node[label={\(V_1\)}] {} to [C, l={\(C_1\)}] (1, 0) node[ground] {};
+%     \draw (2, 0.75) node[label={\(V_2\)}] {} to [C, l={\(C_2\)}] (2, 0) node[ground] {};
+%     \draw (0, 0) to (1.5, 0) to [C, l=2<\micro\farad>] (1.5, 1) to (0, 1) to [L, l=2<\henry>] (0, 0);
+%     \draw (0, 0) to (0.75, 0) to (0.75, 0.0) node[ground] {} to (0.75, 0) to  (1.5, 0) to [C, l=2<\micro\farad>, v_<=\(v\)] (1.5, 1) to (0, 1) to[I=\(i\)] [L, l=2<\henry>] (0, 0);
+%             \node [ground] (0, 0) {};
+% \end{tikzpicture}
 
-in which $R_{1} = \SI{2}{\ohm}, R_{2} = \frac{8}{3} \si{\ohm}, C_{1} = \SI{1}{\coulomb}, C_{2} = \frac{3}{2} \si{\coulomb} $ \\
-solve equations for $V_{1}$ and $V_{2}$
-\end{frame}
+% in which $R_{1} = \SI{2}{\ohm}, R_{2} = \frac{8}{3} \si{\ohm}, C_{1} = \SI{1}{\coulomb}, C_{2} = \frac{3}{2} \si{\coulomb} $ \\
+% solve equations for $V_{1}$ and $V_{2}$
+% \end{frame}
 
