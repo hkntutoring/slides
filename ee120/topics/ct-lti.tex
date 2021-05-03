@@ -1,0 +1,49 @@
+\section{System Properties}
+
+
+\begin{frame}{System Property Definitions}
+    \underline{Linearity}
+    \begin{itemize}
+        \item \textbf{Scaling} an input by some amount scales the output by the same amount
+        \[\alpha x_1[n] \overset{H}{\longrightarrow} \alpha y_1[n]\]
+        \item \textbf{Superposition} of two inputs generates a superposition of two outputs
+        \[x_1[n] + x_2[n] \overset{H}{\longrightarrow} y_1[n] + y_2[n]\]
+    \end{itemize}
+    \underline{Time-Invariance}
+    \begin{itemize}
+        \item A time invariant system means that a shift in time in the input results in the same shift in time in the output
+        \[
+        x_1[n-N] \overset{H}{\longrightarrow} y_1[n-N]\quad \forall N \in \mathbb{Z}
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{System Property Definitions}
+    \underline{Memoryless}
+    \begin{itemize}
+      \item A memoryless system is one where the present output only depends on the present input
+      \[ y(t) = 5 x(t) \checkmark \]
+      \[ y[n] = x[n] + x[n - 2] + x[n + 1] \times
+      \]
+    \end{itemize}
+    \underline{Causality}
+    \begin{itemize}
+    \item A system is causal if the present output depends on only the current and past inputs.
+    \[ y(t) = x(t) - 2x(t - 0.5) \checkmark \]
+    \[ y[n] = x[n] - x[n + 2] \times \]
+    \item An LTI system is causal iff
+    \[ h(t) = 0, \forall t < 0, h[n] = 0, \forall n < 0 \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{System Property Definitions}
+    \underline{BIBO Stability}
+    \begin{itemize}
+      \item A system is BIBO stable if every bounded input produces a bounded output
+      \item A bounded input is one such that
+      \[ max_t|x(t)| < \infty, max_n|x[n]| < \infty \]
+    \item An \textbf{LTI} system is BIBO stable iff its impulse response is absolutely integrable/summable
+    \[ \int_{-\infty}^{\infty} |h(t)|dt < \infty \]
+    \[ \sum_{n=-\infty}^{\infty} |h[n]| < \infty \]
+    \end{itemize}
+\end{frame}

@@ -100,6 +100,7 @@
                 (0, 0) to[short] (4, 0);
             \end{circuitikz}
         } \\
+    	$Q = C_{eq}(V_1 + V_2)$ \\
         $1/C_{eq} = (V_1 + V_2)/Q$ & \\
         $V_1/Q + V_2/Q$ & \\
         $1/C_{eq} = 1/C_1 + 1/C_2$ & \\
@@ -134,7 +135,7 @@
             (0, 3) to[short] (0.5, 3)
             (0.5, 3.75) to[short] (0.5, 2.25)
             (0.5, 3.75) to[C=$C_1$] (2.5, 3.75)
-            (0.5, 2.25) to[C=$C_1$] (2.5, 2.25)
+            (0.5, 2.25) to[C=$C_2$] (2.5, 2.25)
             (2.5, 3.75) to[short] (2.5, 2.25)
             (2.5, 3) to[short] (3, 3)
             (3, 3) to[C=$C_3$] (5, 3)
@@ -156,7 +157,7 @@
                 (0, 3) to[short] (0.5, 3)
                 (0.5, 3.75) to[short] (0.5, 2.25)
                 (0.5, 3.75) to[C=$C_1$] (2.5, 3.75)
-                (0.5, 2.25) to[C=$C_1$] (2.5, 2.25)
+                (0.5, 2.25) to[C=$C_2$] (2.5, 2.25)
                 (2.5, 3.75) to[short] (2.5, 2.25)
                 (2.5, 3) to[short] (3, 3)
                 (3, 3) to[C=$C_3$] (5, 3)
@@ -166,7 +167,7 @@
         $C_{par} = C_1 + C_2$ & \\[5pt]
         Then we use our series equation: \\
         $1/C_{eq} = 1/C_{par} + 1/C_3 = \frac{C_{par} + C_3}{C_{par} C_3}$ & \\[5pt]
-        $C_{eq} = \frac{C_{par}C_3}{C_{par} + C_3} = \frac{C_1 C_3 + C_2 + C_3}{C_1 + C_2 + C_3}$ & \\
+        $C_{eq} = \frac{C_{par}C_3}{C_{par} + C_3} = \frac{C_1 C_3 + C_2 C_3}{C_1 + C_2 + C_3}$ & \\
     \end{tabular}
 \end{frame}
 
@@ -182,7 +183,7 @@
         \item $Q_{final} = C(V_{final} - V_{init})$
         \item $I = C dV/dt = C \Delta V / \Delta t$
         \item $C = I \Delta t / \Delta V$
-        \item $Q_{final} = C \Delta V = I \Delta t = I(T_{final} = t_{init})$
+        \item $Q_{final} = C \Delta V = I \Delta t = I(t_{final} - t_{init})$
     \end{itemize}
     \textit{Note: we'll be working with discrete time in 16A.}
 \end{frame}

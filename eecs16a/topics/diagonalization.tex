@@ -3,16 +3,23 @@
 \begin{frame}{Diagonalization}
     \textbf{Goal}:\\[-1ex]
     \begin{itemize}
-        \item Find a basis such that a given matrix transformation can be expressed through \textbf{scaling by eigenvalues}. This is also called \textbf{eigendecomposition}.
+        \item Find a basis such that a given matrix transformation can be expressed through \textbf{scaling by eigenvalues}. This is also called \textbf{eigendecomposition}. We represent our given matrix $A$ as:
         \begin{align*}
             A = P \Lambda P^{-1}
         \end{align*}
         \item Motivation: makes computing powers of $A$ easier.
+        \begin{itemize} 
+            \item Self-check: How does it make computing powers of $A$ easier? What is $A^2$?
+        \end{itemize}
     \end{itemize}
-    \textbf{How}:\\[-1ex]
+
+\end{frame}
+
+\begin{frame}{Diagonalization}
+    \textbf{Okay, how do we find $P$ and $\Lambda$?}\\[-1ex]
     \begin{itemize}
-        \item $\Lambda$ is a \textit{diagonal matrix of eigenvalues}.
-        \item $P$ is a matrix whose \textit{columns are the corresponding eigenvectors}.
+        \item $\Lambda$ is a \textit{diagonal matrix of the eigenvalues of $A$}.
+        \item $P$ is a matrix whose columns are the \textit{corresponding eigenvectors}.
     \end{itemize}
 \end{frame}
 

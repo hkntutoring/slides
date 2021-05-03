@@ -1,0 +1,125 @@
+\section{Convolution and Cross-Correlation}
+
+\begin{frame}{Convolution}
+    \begin{itemize}
+        \item Convolution is a mathematical operation that takes in two signals, and outputs a third signal as the result of flipping one function and "shifting" it over the other. 
+
+        \item Convolution is important because it allows us to determine the output of an LTI system given its provided input and its impulse response. 
+            \[
+                f[n]*g[n] = \sum_{k=-\infty}^{\infty} f[k]\cdot g[n-k]
+            \]
+            \[
+                f(t)*g(t) = \int_{-\infty}^{\infty} f(\tau) \cdot g(t- \tau) d\tau
+            \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Useful Things to Know About Convolution}
+    \begin{itemize}
+        \item It is commutative in both DT and CT; $x*y = y*x$ 
+        \item $x[n] * \alpha\,\delta[n-N] = \alpha\, x[n-N]$ (and likewise for CT)
+        \item Convolution between two same-size rectangles gives a triangle
+        \item Convolution between two different size rectangles gives a trapezoid
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Graphical Interpretation of Convolution (CT)}
+    \begin{itemize}
+        \item In the formula, the function with the $t-\tau$ input is being flipped and shifted over the other one.
+            \[
+                f(t)*g(t) = \int_{-\infty}^{\infty} f(\tau) \cdot g(t- \tau) d\tau
+            \]
+        \item In CT, when drawing the signals being convolved, make sure to remember to graph them on the \textbf{tau} ($\tau$) axis, not on the time axis -- we are integrating with respect to $d\tau$ here! The output signal will be drawn on the standard time axis. 
+        \item With DT, draw the operands on the k axis, and the output on the n axis. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Convolution Practice}
+    Determine the length of $x*y$ if: 
+    \begin{itemize}
+        \item They are DT, with $x[n]$ of length 4 and $y[n]$ of length 5
+        \item They are CT, with $x(t)$ of length 4 and $y(t)$ of length 5
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Convolution Practice}
+    Determine the length of $x*y$ if: 
+    \begin{itemize}
+        \item They are DT, with $x[n]$ of length 4 and $y[n]$ of length 5
+        \begin{itemize} 
+            \item \textcolor{gray}{8. For DT signals, convolution of a length N and M signal results in a length N+M-1 signal.}
+        \end{itemize}
+        \item They are CT, with $x(t)$ of length 4 and $y(t)$ of length 5
+        \begin{itemize} 
+            \item \textcolor{gray}{9. For CT signals, convolution of a length N and M signal just results in a length N+M signal.}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Convolution Practice}
+    Convolve $x*y$ if: 
+    \begin{itemize}
+        \item $x[n] = u[n+2]-u[n-2]$ and $y[n]=u[n+1]-u[n-1]$.
+        \item $x(t) = 1$ and $y[t] = 2(u(t+2)-u(t-2))$
+    \end{itemize}
+    \textcolor{red}{Try doing these with as little math as possible.}
+\end{frame}
+
+\begin{frame}{Convolution Practice}
+    Convolve $x*y$ if:
+    \begin{itemize}
+        \item $x[n] = u[n+2]-u[n-2]$ and $y[n]=u[n+1]-u[n-1]$.
+        \begin{itemize}
+            \item \textcolor{gray}{$x[n]*y[n]=x[n]*(\delta[n+1]+\delta[n])=x[n+1]+x[n]$}
+            \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+              \begin{groupplot}[group style={
+                    group size=1 by 1
+                  },
+                  width=2in,
+                  height=1.5in,
+                  axis lines=middle,
+                  xmin=-4.5,
+                  xmax=3.5,
+                  ymin=0,
+                  ymax=2.5,
+                  xlabel=$k$]
+                \nextgroupplot[ylabel={$x*y=x[n+1]+x[n]$}, xtick={-3, -1, 1, 3},ytick={0,1,2}];
+                \addplot+[ycomb, line width=1.5pt] plot coordinates {(-5, 0) (-4, 0) (-3, 1) (-2, 2) (-1, 2) (0, 2) (1, 1) (2, 0) (3, 0) (4, 0) (5, 0)};
+                \end{groupplot}
+            \end{tikzpicture}
+          \end{figure}
+        \end{itemize}
+        \item $x(t) = 1$ and $y[t] = 2(u(t+2)-u(t-2))$
+        \begin{itemize}
+            \item \textcolor{gray}{This is convolving a horizontal line of height 1 with a rectangle of height 2 and width 4. The "overlap" is always going to have area 8 $\Rightarrow x(t)*y(t)=8$}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cross-Correlation}
+    \begin{itemize}
+        \item Cross-correlation is a similar operation to convolution, that also involved a shift and sum of two signals. 
+        \item It's not \textit{exactly} convolution! 
+        \begin{itemize}
+            \item Not commutative
+            \item Signal is not flipped before shifting! Is directly shifted. 
+        \end{itemize}
+            \[
+                R_{f,g}[n] = \sum_{k=-\infty}^{\infty} f[k]\cdot g[n+k]
+            \]
+            \[
+                R_{f,g}(t) = \int_{-\infty}^{\infty} f(\tau) \cdot g(t+ \tau) d\tau
+            \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cross-Correlation Practice}
+    Prove that cross-correlation is not commutative. More specifically, prove that $R_{x,y}[n] = R_{y,x}[-n]$, where $$R_{x,y}[n] = \sum_{k=-\infty}^{\infty} x[k]\cdot y[n+k].$$
+\end{frame}
+
+\begin{frame}{Cross-Correlation Practice}
+    Prove that cross-correlation is not commutative. More specifically, prove that $R_{x,y}[n] = R_{y,x}[-n]$, where $$R_{x,y}[n] = \sum_{k=-\infty}^{\infty} x[k]\cdot y[n+k].$$
+    \textcolor{gray}{R_{x,y}[n] = \sum_{k=-\infty}^{\infty} x[k]\cdot y[n+k] = \sum_{w=-\infty}^{\infty} x[w-n]\cdot y[w] = \sum_{w=-\infty}^{\infty} y[w] \cdot x[w-n] = R_{y,x}[-n]}	
+\end{frame}

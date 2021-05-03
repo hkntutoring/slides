@@ -1,0 +1,77 @@
+\section{LCCDE}
+
+\begin{frame}{Linear Constant-Coefficient Difference Equations}
+
+    \begin{itemize}
+        \item Discrete LTI systems can be described by LCCDEs in the following form
+            \[
+                \sum_{k=0}^N a_{k}y[n-k] = \sum_{L=0}^M b_{L}x[n-L]
+            \]
+        \item Taking the frequency response of both sides and applying linearity and time-shifting properties results in
+            \[
+                Y(\omega)\sum_{k=0}^N a_{k}e^{-j\omega k} = X(\omega)\sum_{L=0}^N b_{L}e^{-j\omega L}
+            \]
+            \[
+                H(\omega) = \frac{Y(\omega)}{X(\omega)} = \frac{\sum_{L=0}^N b_{L}e^{-j\omega L}}{\sum_{k=0}^N a_{k}e^{-j\omega k}}
+            \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Linear Constant-Coefficient Differential Equations}
+    \begin{itemize}
+        \item LCCDEs for CT LTI systems have the following equations
+            \[
+                \sum_{n=0}^N a_n \frac{d^{n}}{dt^n} y(t) = \sum_{m=0}^M b_m \frac{d^{m}}{dt^m} x(t)
+            \]
+            \[
+                H(\omega) = \frac{\sum_{m=0}^M b_m (j\omega)^m} {\sum_{n=0}^N a_n (j\omega)^n}
+            \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Linear Constant-Coefficient Differential Equations}
+    \begin{itemize}
+        \item The homogeneous solution is found for input $x(t) = 0$
+            \[
+                \sum_{n=0}^N a_n \frac{d^{n}}{dt^n} y(t) = 0
+            \]
+        \item The particular solution is found for the given input $x(t)$
+        \item The overall solution is the sum of the homogeneous and particular solutions
+        \[ y(t) = y_p(t) + y_n(t)
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Practice: First-order RC circuit}
+    \begin{itemize}
+        \item The continuous-time LCCDE for an RC circuit with input $x(t) = u(t)$, initially at rest is
+            \[
+                \frac{dy(t)}{dt} + ay(t) = k x(t) = k u(t)
+            \]
+            \textcolor{red}{Find the homogenous, particular, and general solutions to this equation}
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Practice: First-order RC circuit}
+    \begin{itemize}
+        \item Homogenous solution
+            \[
+                \frac{dy_h(t)}{dt} + ay_h(t) = 0
+            \]
+            \[ \frac{dy_h(t)}{dt} = -a y_h(t)
+            \]
+        \item Integrate both sides:
+        \[ \int \frac{dy_h(t)}{y_h(t)} = \int -a dt \]
+            \[ \ln (y_h(t)) = -at + c
+            \]
+            \[y_h(t) = e^{-at + c} = e^c e^{-at} = A e^{-at}
+            \]
+      \item Review Lecture 03 notes for walkthrough of Particular and General solutions
+    \end{itemize}
+
+\end{frame}
