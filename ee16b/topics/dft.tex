@@ -91,3 +91,47 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{DFT (Discrete Fourier Transform) Basics}
+  \begin{itemize}
+    \item Transforms between time- and frequency-domains
+    \item N-dimensional space to N-dimensional space
+    \item Orthonormal basis: $U^*U = UU^* = I$
+    \item DFT is a basis of \vocab{harmonics}: $u_n[k] = \frac{1}{\sqrt{N}} \omega_N^{nk} $ which oscillate around the complex circle
+  \end{itemize}
+  \begin{equation*}
+    U = \frac{1}{\sqrt{N}}
+    \begin{pmatrix}
+      1 & 1 & 1 & \ldots & 1 \\
+      1 & \omega & \omega^2 & \ldots & \omega^{n-1} \\
+      1 & \omega^2 & \omega^4 & \ldots  & \omega^{2(n-1)} \\
+      \vdots & \vdots & \vdots & & \vdots \\
+      1 & \omega^{n-1} & \omega^{2(n-1)} & \ldots & \omega^{(n-1)(n-1)} \\
+    \end{pmatrix}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{DFT (Discrete Fourier Transform) Basics}
+  Use $U$ to transform from the frequency domain to the time domain, and use
+  $F_N = U^{-1} = U^*$ to transform from the time domain to frequency.
+
+  \begin{equation*}
+    F_N = \frac{1}{\sqrt{N}}
+    \begin{pmatrix}
+      1 & 1 & 1 & \ldots & 1 \\
+      1 & \omega^{-1} & \omega^{-2} & \ldots & \omega^{-(n-1)} \\
+      1 & \omega^{-2} & \omega^{-4} & \ldots  & \omega^{-2(n-1)} \\
+      \vdots & \vdots & \vdots & & \vdots \\
+      1 & \omega^{-(n-1)} & \omega^{2(n-1)} & \ldots & \omega^{-(n-1)(n-1)} \\
+    \end{pmatrix}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{DFT (Discrete Fourier Transform)}
+  \begin{tikzpicture}
+    \node [rectangle, draw, fill=blue!20, text badly centered, node distance=3cm] (time-domain) at (0,2) {$\vec{x}$ (Time Domain)};
+    \node [below](freq-domain) at (0,-2) {$\vec{X}$ (Frequency Domain)};
+
+    \path [draw, -latex'] (time-domain)++(0.5,0) -- node [right]{$F_N = U^*$} (freq-domain)++(0.5,0);
+    \path [draw, -latex'] (freq-domain)++(-0.5,0) -- node [left]{$F_N^{-1} = U$} (time-domain)++(-0.5,0);
+  \end{tikzpicture}
+\end{frame}
