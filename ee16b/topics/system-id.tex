@@ -1,7 +1,8 @@
 \section{System ID}
 
 \begin{frame}{System ID Parameters}
-	(Note: This is basically all of note 7B. )
+	(Note: This is basically all of note 7B.)
+	
     We model linear systems with:
 
     \[
@@ -161,8 +162,8 @@
 		P 
 		= 
 		\begin{bmatrix}
-			A^T \\ 
-			B^T
+			A^\top \\ 
+			B^\top
 		\end{bmatrix}
 		=
 		\begin{bmatrix}
@@ -182,9 +183,9 @@
 		D
 		& =
 		\begin{bmatrix}
-			\vec{x^T}[0] & \vec{u^T}[0] \\
+			\vec{x}^\top [0] & \vec{u}^\top [0] \\
 			\vdots & \vdots \\
-			\vec{x^T}[T-1] & \vec{u^T}[T-1] \\
+			\vec{x}^\top[T-1] & \vec{u}^\top [T-1] \\
 		\end{bmatrix}
 		\\ & =
 		\begin{bmatrix}
@@ -201,9 +202,9 @@
 		S
 		=
 		\begin{bmatrix}
-			\vec{x^T}[0] \\
+			\vec{x}^\top [0] \\
 			\vdots \\
-			\vec{x^T}[T-1] \\
+			\vec{x}^\top [T-1] \\
 		\end{bmatrix}
 		=
 		\begin{bmatrix}
@@ -221,6 +222,6 @@
 	\]
 	Using least squares, we solve
 	\[
-	P = \left( D^T D \right) ^ {-1} D^T S
+	P = \left( D^\top D \right) ^ {-1} D^\top S
 	\]
 \end{frame}
