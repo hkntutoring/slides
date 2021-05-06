@@ -126,12 +126,51 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{DFT (Discrete Fourier Transform)}
+\begin{frame}{Using the DFT (Discrete Fourier Transform)}
   \begin{tikzpicture}
-    \node [rectangle, draw, fill=blue!20, text badly centered, node distance=3cm] (time-domain) at (0,2) {$\vec{x}$ (Time Domain)};
-    \node [below](freq-domain) at (0,-2) {$\vec{X}$ (Frequency Domain)};
+    \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=8em, text centered, rounded corners, minimum height=4em,
+    node distance=10em]
+    \tikzstyle{line} = [draw, -latex']
+    \node at (0,2) [block] (time-domain) {$\vec{x}$ (Time Domain)};
+    \node at (0,-2)[block] (freq-domain) {$\vec{X}$ (Frequency Domain)};
 
-    \path [draw, -latex'] (time-domain)++(0.5,0) -- node [right]{$F_N = U^*$} (freq-domain)++(0.5,0);
-    \path [draw, -latex'] (freq-domain)++(-0.5,0) -- node [left]{$F_N^{-1} = U$} (time-domain)++(-0.5,0);
+    \path [line] (time-domain) -| node [left]{$F_N = U^*$} (-2,0) |- (freq-domain);
+    \path [line] (freq-domain) -| node [right]{$F_N^{-1} = U$} (2,0) |- (time-domain);
   \end{tikzpicture}
 \end{frame}
+
+%%%TODO: adapt GSlide 118 is applicible
+
+\begin{frame}{Systems in the (Discrete) Time Domain}
+  \begin{itemize}
+    \item Reminder: a \vocab{system} connects inputs and outputs by solving a non-homogenous differential (difference in discrete time) equation
+    \item Equivalent to \vocab{convolving} an \vocab{impulse response} over the input
+  \end{itemize}
+  \begin{center}
+  \begin{tikzpicture}
+    \node at (0,0) [left] (x) {$\vec{x}[t]$};
+    \node at (2,0) [draw, rectangle] (H) {$H$};
+    \node at (4,0) [right] (y) {$\vec{y}[t]$};
+
+    \draw [-latex'] (x) -- (H);
+    \draw [-latex'] (H) -- (y);
+  \end{tikzpicture}
+  \end{center}
+  \begin{equation*}
+    C_{\vec{h}} \vec{x} = \vec{y}
+  \end{equation*}
+  where the \vocab{Circulant Matrix} for the convolution with $\vec{h}$ is written
+  \begin{equation*}
+    C_{\vec{h}}
+    =
+    \begin{pmatrix}
+      h[0] & h[n-1] & \ldots & h[1] \\
+      h[1] & h[0]   & \ldots & h[2] \\
+      \vdots    & \vdots      & \vdots & \vdots    \\
+      h[n-1] & h[n-2] & \ldots h[0] \\
+    \end{pmatrix}
+  \end{equation*}
+\end{frame}
+
+
