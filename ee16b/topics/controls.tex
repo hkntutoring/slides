@@ -27,7 +27,7 @@
         \vec x(t) - A^t \vec x(0) =
         \underbrace{\begin{bmatrix}
             A^{t - 1} B & A^{t -2} B & \cdots & AB & B
-        \end{bmatrix}}_{\color{blue}\triangleq R_t}
+        \end{bmatrix}}_{\color{blue}\triangleq \mathscr{C}}
         \begin{bmatrix}
             u(0) \\
             u(1) \\
@@ -46,7 +46,7 @@
         \vec x(t) - A^t \vec x(0) =
         \underbrace{\begin{bmatrix}
             A^{t - 1} B & A^{t -2} B & \cdots & AB & B
-        \end{bmatrix}}_{\color{blue}\triangleq R_t}
+        \end{bmatrix}}_{\color{blue}\triangleq \mathscr{C}}
         \begin{bmatrix}
             u(0) \\
             u(1) \\
@@ -57,9 +57,9 @@
     \]
     \providecommand{\Col}{\operatorname{Col}}
     \providecommand{\rank}{\operatorname{rank}}
-    The \(\Col(R_t)\) determines the subspace \(\vec u(t)\) can map to.
+    The \(\Col(\mathscr{C})\) determines the subspace \(\vec u(t)\) can map to.
 
-    In order to control the state to any vector in \(\mathbb R^n\), \(\Col(R_t) = R^n\), or it must be full rank.
+    In order to control the state to any vector in \(\mathbb R^n\), \(\Col(\mathscr{C}) = R^n\), or it must be full rank.
 
     i.e. The system is Controllable if and only if
     \[
