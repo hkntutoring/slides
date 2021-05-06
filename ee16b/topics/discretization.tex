@@ -2,23 +2,26 @@
 	\section{Discretization}
 	
 	\begin{frame}{Discretization: Q1}
-	Note: this section follows hw8 q1 almost exactly. Suppose we have a scalar system
-	\[ \frac{d}{dt} x(t) = \alpha x + \vec{\beta}^T \vec u(t) \]
-	and we apply a constant input $\vec{u}_n$ for times $t \in [nT, (n + 1)T)$ for some $T > 0$. Given $x(nT)$ solve the differential equation
+	Note: this section follows hw8 q1 almost exactly. 
+	
+	Suppose we have a scalar system
+	\[ \frac{d}{dt} x(t) = \alpha x(t) + \vec{\beta}^T \vec u(t) \]
+	and we apply a constant input $\vec{u}_n$ for times $t \in [nT, (n + 1)T)$ for some $T > 0$. Given $x(nT)$ solve the differential equation.
 	\end{frame}
 
     \begin{frame}{Discretization: Q1 Sol}
 	From $t = nT$ to $t = (n + 1)T$, $\vec{\beta}^T \vec{u}$ is a constant scalar. Thus, we can solve this like a normal differential equation. Let $x = x' - \frac{\vec \beta^T \vec u}{\alpha}$. 
 	\begin{align*}
-	\frac{d}{dt} x(t) &= \alpha (x' - \frac{\vec \beta^T \vec u}{\alpha}) + \vec{\beta}^T \vec u(t) \\
+	\frac{d}{dt} x'(t) &= \alpha (x'(t) - \frac{\vec \beta^T \vec u}{\alpha}) + \vec{\beta}^T \vec u \\
 	&= \alpha x' \\
-	x' &= A e^{\alpha (x - nT)} \\
-	x + \frac{\vec \beta^T \vec u}{\alpha} &= A e^{\alpha (x - nT)} \\
-	x &= A e^{\alpha (x - nT)} - \frac{\vec \beta^T \vec u}{\alpha}
+	x'(t) &= A e^{\alpha (t - nT)} \\
+	x(t) + \frac{\vec \beta^T \vec u}{\alpha} &= A e^{\alpha (t - nT)} \\
+	x(t) &= A e^{\alpha (t - nT)} - \frac{\vec \beta^T \vec u}{\alpha}
 	\end{align*}
 	\end{frame}
+	
 	\begin{frame}{Discretization: Q1 Sol Continued}
-	At which point we can use our initial condition to get
+	At this point we can use our initial condition to get
 	\begin{align*}
 	x(nT) &= A - \frac{\vec \beta^T \vec u}{\alpha} \\
 	A &= x(nT) + \frac{\vec \beta^T \vec u}{\alpha} \\
