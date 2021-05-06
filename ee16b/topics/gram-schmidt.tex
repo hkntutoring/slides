@@ -21,9 +21,9 @@
 \begin{frame}
     \frametitle{Gram-Schmidt}
 
-    \begin{enumerate}
-        \item \(\vec{q}_1 = \frac{\vec{s}_1}{\|\vec{s}_1\|}\)
-        \item normalize \(\vec{e}_2 = \vec{s}_2 - \langle \vec{s}_2, \vec{q}_1 \rangle \vec{q}_1\)
-        \item systematically remove the projection of all the other \(\vec{q}\) vectors then normalize
-    \end{enumerate}
+    \begin{align}
+        \vec{q}_1 &= \frac{\vec{s}_1}{\|\vec{s}_1\|} \\
+        \vec{e}_i &= \vec{s}_i - \sum_{k = 1}^{i - 1} \langle s_i, q_k \rangle q_k \\
+        \vec{q}_i &= \frac{\vec{e}_i}{\|\vec{e}_i\|}
+    \end{align}
 \end{frame}

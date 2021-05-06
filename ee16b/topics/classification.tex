@@ -18,6 +18,17 @@
 \begin{frame}
     \frametitle{Quadratic Approximation}
 
-    
-
+    We can linearize a quadratic cost function in the form
+    \begin{align}
+        c(\vec{w}^\ast + \vec{\delta w}) \approx c(\vec{w}^\ast) +
+        \begin{bmatrix}
+            \frac{\partial c}{\partial w_1} & \frac{\partial c}{\partial w_2} & \cdots & \frac{\partial c}{\partial w_n}
+        \end{bmatrix} (\vec{\delta w}) \\
+        + \frac{1}{2} (\vec{\delta w})^T
+        \underbrace{\begin{bmatrix}
+            \frac{\partial^2 c}{\partial w_1 \partial w_1} & \cdots & \frac{\partial^2 c}{\partial w_1 \partial w_n} \\
+            \vdots & \ddots & \vdots \\
+            \frac{\partial^2 c}{\partial w_n \partial w_1} & \cdots & \frac{\partial^2 c}{\partial w_n \partial w_n}
+        \end{bmatrix}}_{\text{Hessian}} (\vec{\delta w})
+    \end{align}
 \end{frame}
