@@ -153,63 +153,63 @@
     	\end{columns}
 	\end{frame}
 	
-	\begin{frame}{Example: 2 coupled diff eqs}
-	    Consider a system of 2 coupled harmonic oscillators, described by
+	% \begin{frame}{Example: 2 coupled diff eqs}
+	%     Consider a system of 2 coupled harmonic oscillators, described by
 
-        $$m_i\ddot{x}_i = -(k + \kappa)x_i + \kappa{}x_j$$
+    %     $$m_i\ddot{x}_i = -(k + \kappa)x_i + \kappa{}x_j$$
         
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{./images/coupled-eq-1.png}
-        \end{center}
-	\end{frame}
+    %     \begin{center}
+    %         \includegraphics[width=0.5\textwidth]{./images/coupled-eq-1.png}
+    %     \end{center}
+	% \end{frame}
 	
-	\begin{frame}{Example: Coupled Oscillator}
-	    Write this system in matrix form
+	% \begin{frame}{Example: Coupled Oscillator}
+	%     Write this system in matrix form
         
-        $$m_i\ddot{x}_i = -(k + \kappa)x_i + \kappa{}x_j$$
-	\end{frame}
+    %     $$m_i\ddot{x}_i = -(k + \kappa)x_i + \kappa{}x_j$$
+	% \end{frame}
 	
-	\begin{frame}{Example: Coupled Oscillator}
-	    Write this system in matrix form
+	% \begin{frame}{Example: Coupled Oscillator}
+	%     Write this system in matrix form
         
-        $$m_i\ddot{x}_i = -(k + \kappa)x_i + \kappa{}x_j$$
+    %     $$m_i\ddot{x}_i = -(k + \kappa)x_i + \kappa{}x_j$$
         
-        \begin{center}
-         \scalebox{2}{$\ddot{\vec{x}} = \mat{-\frac{k+\kappa}{m} \frac{\kappa}{m}; \frac{\kappa}{m} -\frac{k+\kappa}{m}}\vec{x}$}
-        \end{center}
-	\end{frame}
+    %     \begin{center}
+    %      \scalebox{2}{$\ddot{\vec{x}} = \mat{-\frac{k+\kappa}{m} \frac{\kappa}{m}; \frac{\kappa}{m} -\frac{k+\kappa}{m}}\vec{x}$}
+    %     \end{center}
+	% \end{frame}
 	
-	\begin{frame}{Example: Coupled Oscillator}
-	    Now, diagonalize the system
+	% \begin{frame}{Example: Coupled Oscillator}
+	%     Now, diagonalize the system
 
-	    \begin{center}
-         \scalebox{2}{$\mat{-\frac{k+\kappa}{m} \frac{\kappa}{m}; \frac{\kappa}{m} -\frac{k+\kappa}{m}} = PDP^{'}$}
-        \end{center}
+	%     \begin{center}
+    %      \scalebox{2}{$\mat{-\frac{k+\kappa}{m} \frac{\kappa}{m}; \frac{\kappa}{m} -\frac{k+\kappa}{m}} = PDP^{'}$}
+    %     \end{center}
         
-        P = ?
+    %     P = ?
         
-        D = ?
-	\end{frame}
+    %     D = ?
+	% \end{frame}
 	
-	\begin{frame}{Example: Coupled Oscillator}
-	    Now, diagonalize the system
+	% \begin{frame}{Example: Coupled Oscillator}
+	%     Now, diagonalize the system
 
-	    \begin{center}
-         \scalebox{2}{$\mat{-\frac{k+\kappa}{m} \frac{\kappa}{m}; \frac{\kappa}{m} -\frac{k+\kappa}{m}} = PDP^{'}$}
-        \end{center}
+	%     \begin{center}
+    %      \scalebox{2}{$\mat{-\frac{k+\kappa}{m} \frac{\kappa}{m}; \frac{\kappa}{m} -\frac{k+\kappa}{m}} = PDP^{'}$}
+    %     \end{center}
         
-        $$P = \mat{1 1; 1 -1}$$
+    %     $$P = \mat{1 1; 1 -1}$$
         
-        $$D = \mat{k 0; 0 2\kappa+k}$$
-	\end{frame}
+    %     $$D = \mat{k 0; 0 2\kappa+k}$$
+	% \end{frame}
 	
-	\begin{frame}{Example: Coupled Oscillator}
-	    $$P = \mat{1 1; 1 -1}$$
+	% \begin{frame}{Example: Coupled Oscillator}
+	%     $$P = \mat{1 1; 1 -1}$$
         
-        $$D = \mat{k 0; 0 2\kappa+k}$$
+    %     $$D = \mat{k 0; 0 2\kappa+k}$$
         
-        Since our original matrix was linearly taking a SECOND derivative in time, with only real eigenvalues, we expect solutions to be in the form of real sinusoids, optionally phaseshifted.
+    %     Since our original matrix was linearly taking a SECOND derivative in time, with only real eigenvalues, we expect solutions to be in the form of real sinusoids, optionally phaseshifted.
 
-        $$x(t) = A_s\mat{1;1}\cos(\sqrt{\frac{k}{m}}t + \phi_s) + A_f\mat{1;-1}\sin(\sqrt{\frac{k + 2\kappa}{m}}t + \phi_f)$$
-	\end{frame}
+    %     $$x(t) = A_s\mat{1;1}\cos(\sqrt{\frac{k}{m}}t + \phi_s) + A_f\mat{1;-1}\sin(\sqrt{\frac{k + 2\kappa}{m}}t + \phi_f)$$
+	% \end{frame}
 	
