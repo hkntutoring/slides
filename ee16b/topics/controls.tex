@@ -27,7 +27,7 @@
         \vec x[t] - A^t \vec x[0] =
         \underbrace{\begin{bmatrix}
             B & AB & A^2 B & \cdots & A^{t - 1} B
-        \end{bmatrix}}_{\color{blue}\triangleq \mathcal{C}}
+        \end{bmatrix}}_{\color{blue}\triangleq \mathscr{C}}
         \begin{bmatrix}
             u[t - 1] \\
             u[t - 2] \\
@@ -45,7 +45,7 @@
         \vec x[t] - A^t \vec x[0] =
         \underbrace{\begin{bmatrix}
             B & AB & A^2 B & \cdots & A^{t - 1} B
-        \end{bmatrix}}_{\color{blue}\triangleq \mathcal{C}}
+        \end{bmatrix}}_{\color{blue}\triangleq \mathscr{C}}
         \begin{bmatrix}
             u[t - 1] \\
             u[t - 2] \\
@@ -55,13 +55,13 @@
     \]
     \providecommand{\Col}{\operatorname{Col}}
     \providecommand{\rank}{\operatorname{rank}}
-    The \(\Col(\mathcal{C})\) determines the subspace \(\vec u[t]\) can map to.
+    The \(\Col(\mathscr{C})\) determines the subspace \(\vec u(t)\) can map to.
 
-    In order to control the state to any vector in \(\mathbb{R}^n\), \(\Col(\mathcal{C}) = \mathbb{R}^n\), or it must be full rank.
+    In order to control the state to any vector in \(\mathbb R^n\), \(\Col(\mathscr{C}) = R^n\), or it must be full rank.
 
     i.e. The system is Controllable if and only if
     \[
-        \rank{\mathcal{C}} = \rank\begin{bmatrix}
+        \rank{\mathscr{C}} = \rank\begin{bmatrix}
             B & AB & A^2 B & \cdots & A^{n - 1} B
         \end{bmatrix} = n
     \]

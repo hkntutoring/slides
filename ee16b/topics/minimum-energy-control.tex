@@ -34,7 +34,7 @@
 \begin{frame}{Minimum Energy Control}
 	If we want to arrive in $t > n$ timestamps, then there may be multiple solutions. The corresponding controllability matrix becomes
     \[
-        \mathcal{C} = 
+        \mathscr{C} = 
         \begin{bmatrix}
         B & AB & A^2B & \cdots & A^{t-1}B
         \end{bmatrix}
@@ -43,15 +43,15 @@
 \end{frame}
 
 \begin{frame}{Minimum Energy Control Solution}
-	Notice that $\mathcal{C}$ has a nontrivial nullspace. If we have a particular solution $\vec{u}$ satisfying $\mathcal{C} \vec{u} = \vec{x}^*$ and any vector $\vec{a} \in \mathrm{Null}(\mathcal{C})$, then
+	Notice that $\mathscr{C}$ has a nontrivial nullspace. If we have a particular solution $\vec{u}$ satisfying $\mathscr{C} \vec{u} = \vec{x}^*$ and any vector $\vec{a} \in \mathrm{Null}(\mathscr{C})$, then
 	\[
-	\mathcal{C}(\vec{u} + \vec{a}) = \mathcal{C}\vec{u} + \mathcal{C}\vec{a} = \mathcal{C}\vec{u} + \vec{0} = \vec{x}^*
+	\mathscr{C}(\vec{u} + \vec{a}) = \mathscr{C}\vec{u} + \mathscr{C}\vec{a} = \mathscr{C}\vec{u} + \vec{0} = \vec{x}^*
 	\]
-	It turns out that the optimal solution is $\vec{u_0} \perp \mathrm{Null}(\mathcal{C})$.
+	It turns out that the optimal solution is $\vec{u_0} \perp \mathrm{Null}(\mathscr{C})$.
 \end{frame}
 
 \begin{frame}{Minimum Energy Control Proof}
-	Let $\vec{u}_0$ be defined as before, and consider a solution vector $\vec{u} = \vec{u}_0 + \vec{a}$ where $\vec{a}$ is in the nullspace of $\mathcal{C}$. We calculate the norm:
+	Let $\vec{u}_0$ be defined as before, and consider a solution vector $\vec{u} = \vec{u}_0 + \vec{a}$ where $\vec{a}$ is in the nullspace of $\mathscr{C}$. We calculate the norm:
 	\begin{align*}
 	\left| \vec{u} \right| 
 	& = \left< \vec{u}, \vec{u} \right> 
