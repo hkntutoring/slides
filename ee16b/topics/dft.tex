@@ -56,6 +56,7 @@
 \end{frame}
 
 \begin{frame}{Roots of Unity}
+  \begin{center}
   \def\n{5}
   \begin{tikzpicture}[
   dot/.style={draw,fill,circle,inner sep=1pt}
@@ -72,6 +73,7 @@
   \draw[->] (0:.3) arc (0:360/\n:.3);
   \node at (360/\n/2:.5) {$\phi$};
 \end{tikzpicture}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Roots of Unity}
@@ -127,6 +129,7 @@
 \end{frame}
 
 \begin{frame}{Using the DFT (Discrete Fourier Transform)}
+  \begin{center}
   \begin{tikzpicture}
     \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
     text width=8em, text centered, rounded corners, minimum height=4em,
@@ -138,6 +141,7 @@
     \path [line] (time-domain) -| node [left]{$F_N = U^*$} (-2,0) |- (freq-domain);
     \path [line] (freq-domain) -| node [right]{$F_N^{-1} = U$} (2,0) |- (time-domain);
   \end{tikzpicture}
+  \end{center}
 \end{frame}
 
 %%%TODO: adapt GSlide 118 is applicible
@@ -268,7 +272,7 @@
 	\end{enumerate}
 \end{frame}
 
-\begin{frame}{Samling and DFT of Sinusoids}
+\begin{frame}{Sampling and DFT of Sinusoids}
   \begin{itemize}
     \item If we have a sinusoidal signal in the form $A \cos(\frac{2\pi}{N}(kt) + \varphi)$, we can form a time-domain vector $\vec{x}$ by sampling it
       at $N$ locations.
