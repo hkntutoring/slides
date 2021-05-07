@@ -146,104 +146,105 @@
 
 %%%TODO: adapt GSlide 118 is applicible
 
-\begin{frame}{Systems in the (Discrete) Time Domain}
-  \begin{itemize}
-    \item Reminder: a \vocab{system} connects inputs and outputs by solving a non-homogenous differential (difference in discrete time) equation
-    \item Equivalent to \vocab{convolving} an \vocab{impulse response} over the input
-  \end{itemize}
-
-  \begin{center}
-  \begin{tikzpicture}
-    \node at (0,0) [left] (x) {$\vec{x}[t]$};
-    \node at (2,0) [draw, rectangle] (H) {$H$};
-    \node at (4,0) [right] (y) {$\vec{y}[t]$};
-
-    \draw [-latex'] (x) -- (H);
-    \draw [-latex'] (H) -- (y);
-  \end{tikzpicture}
-  \end{center}
-
-  \begin{equation*}
-    C_{\vec{h}} \vec{x} = \vec{y}
-  \end{equation*}
-  where the \vocab{Circulant Matrix} for the convolution with $\vec{h}$ is written
-  \begin{equation*}
-    C_{\vec{h}}
-    =
-    \begin{pmatrix}
-      h[0] & h[n-1] & \ldots & h[1] \\
-      h[1] & h[0]   & \ldots & h[2] \\
-      \vdots    & \vdots      & \vdots & \vdots    \\
-      h[n-1] & h[n-2] & \ldots h[0] \\
-    \end{pmatrix}
-  \end{equation*}
-\end{frame}
-
-\begin{frame}{Systems in the (Discrete) Time Domain}
-  \begin{itemize}
-    \item Solve systems by \vocab{convolving} an \vocab{impulse response} over the input
-    \begin{equation*}
-      C_{\vec{h}} \vec{x} = \vec{y}
-    \end{equation*}
-  \item This is a matrix-vector multiply, $O(N^2)$.
-  \item Is there a better way?
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Systems in the Frequency Domain}
-  \begin{itemize}
-    \item If it's hard it time domain, do it in frequency!
-  \end{itemize}
-
-  \begin{center}
-  \begin{tikzpicture}
-    \node at (0,0) [left] (x) {$\vec{x}[t]$};
-    \node at (2,0) [draw, rectangle] (H) {$H$};
-    \node at (4,0) [right] (y) {$\vec{y}[t]$};
-
-    \draw [-latex'] (x) -- (H);
-    \draw [-latex'] (H) -- (y);
-  \end{tikzpicture}
-  \end{center}
-
-  \begin{align*}
-    U^*\vec{x} = \vec{X} && C_{\vec{h}} = U \Lambda U^* \\
-  \end{align*}
-  \begin{equation*}
-    Y = \Lambda X
-  \end{equation*}
-  \begin{itemize}
-    \item Matrix is diagonal in the DFT basis, find $Y$ by simple scalar multiplication, $O(n)$.
-    \item Still need to move data to/from frequency domain, but the FFT (see EE123) does this in $O(n \log n)$.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Amplitude and Phase Response}
-  \begin{itemize}
-    \item How to systems respond to real signals?
-    \item Complex exponentials are \vocab{eigenfunctions} of a system.
-  \end{itemize}
-  \begin{tikzpicture}
-    \node at (0,0) [left] (inexp) {$\exp(j k \frac{2 \pi }{N}t)$};
-    \node at (1.5,0) [draw, rectangle] (Hexp) {$H$};
-    \node at (3,0) [right] (outexp) {$\lambda_k \exp(j k \frac{2 \pi}{N}t)$};
-
-    \node at (0,-1) [left] (incos) {$\cos(k \frac{2 \pi }{N}t)$};
-    \node at (1.5,-1) [draw, rectangle] (Hcos) {$H$};
-    \node at (3,-1) [right] (outcos) {$\lambda_k \cos(k \frac{2 \pi}{N}t) = \abs{\lambda_k}\cos(k \frac{2\pi}{N}t + \angle \lambda_k)$};
-
-    \draw [-latex'] (inexp) -- (Hexp);
-    \draw [-latex'] (Hexp) -- (outexp);
-
-    \draw [-latex'] (incos) -- (Hcos);
-    \draw [-latex'] (Hcos) -- (outcos);
-  \end{tikzpicture}
-
-  where $\lambda_k$ is the $k$-th eigenvalue of $C_{\vec{h}}$.
-
-  $\abs{\lambda_k}$: \vocab{magnitude response}, $\angle \lambda_k$: \vocab{phase response}
-\end{frame}
-
+%%NOTE: Next 3 slides commented out due to systems/convolution not being taught SP21
+% \begin{frame}{Systems in the (Discrete) Time Domain}
+  % \begin{itemize}
+    % \item Reminder: a \vocab{system} connects inputs and outputs by solving a non-homogenous differential (difference in discrete time) equation
+    % \item Equivalent to \vocab{convolving} an \vocab{impulse response} over the input
+  % \end{itemize}
+%
+  % \begin{center}
+  % \begin{tikzpicture}
+    % \node at (0,0) [left] (x) {$\vec{x}[t]$};
+    % \node at (2,0) [draw, rectangle] (H) {$H$};
+    % \node at (4,0) [right] (y) {$\vec{y}[t]$};
+%
+    % \draw [-latex'] (x) -- (H);
+    % \draw [-latex'] (H) -- (y);
+  % \end{tikzpicture}
+  % \end{center}
+%
+  % \begin{equation*}
+    % C_{\vec{h}} \vec{x} = \vec{y}
+  % \end{equation*}
+  % where the \vocab{Circulant Matrix} for the convolution with $\vec{h}$ is written
+  % \begin{equation*}
+    % C_{\vec{h}}
+    % =
+    % \begin{pmatrix}
+      % h[0] & h[n-1] & \ldots & h[1] \\
+      % h[1] & h[0]   & \ldots & h[2] \\
+      % \vdots    & \vdots      & \vdots & \vdots    \\
+      % h[n-1] & h[n-2] & \ldots h[0] \\
+    % \end{pmatrix}
+  % \end{equation*}
+% \end{frame}
+%
+% \begin{frame}{Systems in the (Discrete) Time Domain}
+  % \begin{itemize}
+    % \item Solve systems by \vocab{convolving} an \vocab{impulse response} over the input
+    % \begin{equation*}
+      % C_{\vec{h}} \vec{x} = \vec{y}
+    % \end{equation*}
+  % \item This is a matrix-vector multiply, $O(N^2)$.
+  % \item Is there a better way?
+  % \end{itemize}
+% \end{frame}
+%
+% \begin{frame}{Systems in the Frequency Domain}
+  % \begin{itemize}
+    % \item If it's hard it time domain, do it in frequency!
+  % \end{itemize}
+%
+  % \begin{center}
+  % \begin{tikzpicture}
+    % \node at (0,0) [left] (x) {$\vec{x}[t]$};
+    % \node at (2,0) [draw, rectangle] (H) {$H$};
+    % \node at (4,0) [right] (y) {$\vec{y}[t]$};
+%
+    % \draw [-latex'] (x) -- (H);
+    % \draw [-latex'] (H) -- (y);
+  % \end{tikzpicture}
+  % \end{center}
+%
+  % \begin{align*}
+    % U^*\vec{x} = \vec{X} && C_{\vec{h}} = U \Lambda U^* \\
+  % \end{align*}
+  % \begin{equation*}
+    % Y = \Lambda X
+  % \end{equation*}
+  % \begin{itemize}
+    % \item Matrix is diagonal in the DFT basis, find $Y$ by simple scalar multiplication, $O(n)$.
+    % \item Still need to move data to/from frequency domain, but the FFT (see EE123) does this in $O(n \log n)$.
+  % \end{itemize}
+% \end{frame}
+%
+% \begin{frame}{Amplitude and Phase Response}
+  % \begin{itemize}
+    % \item How to systems respond to real signals?
+    % \item Complex exponentials are \vocab{eigenfunctions} of a system.
+  % \end{itemize}
+  % \begin{tikzpicture}
+    % \node at (0,0) [left] (inexp) {$\exp(j k \frac{2 \pi }{N}t)$};
+    % \node at (1.5,0) [draw, rectangle] (Hexp) {$H$};
+    % \node at (3,0) [right] (outexp) {$\lambda_k \exp(j k \frac{2 \pi}{N}t)$};
+%
+    % \node at (0,-1) [left] (incos) {$\cos(k \frac{2 \pi }{N}t)$};
+    % \node at (1.5,-1) [draw, rectangle] (Hcos) {$H$};
+    % \node at (3,-1) [right] (outcos) {$\lambda_k \cos(k \frac{2 \pi}{N}t) = \abs{\lambda_k}\cos(k \frac{2\pi}{N}t + \angle \lambda_k)$};
+%
+    % \draw [-latex'] (inexp) -- (Hexp);
+    % \draw [-latex'] (Hexp) -- (outexp);
+%
+    % \draw [-latex'] (incos) -- (Hcos);
+    % \draw [-latex'] (Hcos) -- (outcos);
+  % \end{tikzpicture}
+%
+  % where $\lambda_k$ is the $k$-th eigenvalue of $C_{\vec{h}}$.
+%
+  % $\abs{\lambda_k}$: \vocab{magnitude response}, $\angle \lambda_k$: \vocab{phase response}
+% \end{frame}
+%
 \begin{frame}{Conjugate Symmetry \& Parseval's Theorem}
   \begin{itemize}
     \item The DFT basis vectors are \vocab{conjugate symmetric}:
