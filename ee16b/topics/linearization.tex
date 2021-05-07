@@ -155,59 +155,59 @@ To linearize $\frac{d\vec{x}}{dt} = \vec{f}(\vec{x}(t), \vec{u}(t))$ we use a si
 
 \end{frame}
 
-\begin{frame}{Linearizing Vector ODE Systems Example}
-Given a DC input $u^* = 1$, linearize: 
-\[
-\frac{d\vec{x}(t)}{dt} = \begin{bmatrix}
-x_1^2(t) - x_2(t)u(t)\\
-x_2^2(t)(1 + x_1(t)) + \sin(\pi x_1(t)u(t))
-\end{bmatrix}
-\]
+% \begin{frame}{Linearizing Vector ODE Systems Example}
+% Given a DC input $u^* = 1$, linearize: 
+% \[
+% \frac{d\vec{x}(t)}{dt} = \begin{bmatrix}
+% x_1^2(t) - x_2(t)u(t)\\
+% x_2^2(t)(1 + x_1(t)) + \sin(\pi x_1(t)u(t))
+% \end{bmatrix}
+% \]
 
-\end{frame}
+% \end{frame}
 
-\begin{frame}{Solutions}
-Again, we will do this in steps: 
-\begin{enumerate}[(i)]
-\item We are given $u^* = 1$ \pause
-\item We need to find a DC operating point, this means solving the following system of equations:
-\begin{align}
-x_1^{*2}- x_2^*u^* = 0 \\
-x_2^{*2}(x_1^* + 1) + \sin(\pi x_1^*u^*) = 0
-\end{align} 
-The solution is $x_1^* = -1$ and $x_2^* = 1$. \pause \\
-\item Let $\vec{x}_l(t) = \vec{x}(t) - \vec{x}^*$ and $\vec{u}_l(t) = \vec{u}(t) - \vec{u}^*$ \pause \\
-\item Linearize, 
-\[ \vec{f}(\vec{x}(t), u(t)) \approx 
-\vec{f}(\vec{x}^*, 1) + \begin{bmatrix}
--2 & -1 \\
-1 - \pi & 0 
-\end{bmatrix} 
-\vec{x}_l(t) + \begin{bmatrix}
--1 \\ \pi
-\end{bmatrix}
-u_l(t)
-\]
+% \begin{frame}{Solutions}
+% Again, we will do this in steps: 
+% \begin{enumerate}[(i)]
+% \item We are given $u^* = 1$ \pause
+% \item We need to find a DC operating point, this means solving the following system of equations:
+% \begin{align}
+% x_1^{*2}- x_2^*u^* = 0 \\
+% x_2^{*2}(x_1^* + 1) + \sin(\pi x_1^*u^*) = 0
+% \end{align} 
+% The solution is $x_1^* = -1$ and $x_2^* = 1$. \pause \\
+% \item Let $\vec{x}_l(t) = \vec{x}(t) - \vec{x}^*$ and $\vec{u}_l(t) = \vec{u}(t) - \vec{u}^*$ \pause \\
+% \item Linearize, 
+% \[ \vec{f}(\vec{x}(t), u(t)) \approx 
+% \vec{f}(\vec{x}^*, 1) + \begin{bmatrix}
+% -2 & -1 \\
+% 1 - \pi & 0 
+% \end{bmatrix} 
+% \vec{x}_l(t) + \begin{bmatrix}
+% -1 \\ \pi
+% \end{bmatrix}
+% u_l(t)
+% \]
 
 
 
-\end{enumerate}
-\end{frame}
+% \end{enumerate}
+% \end{frame}
 
-\begin{frame}{Solutions Continued}
-\begin{enumerate}[(v)]
-\item Substitute linear approximation back into the system,
-\[ \frac{d\vec{x}(t)}{dt} \approx 
-\cancel{\vec{f}(\vec{x}^*, 1)} + \begin{bmatrix}
--2 & -1 \\
-1 - \pi & 0 
-\end{bmatrix} 
-\vec{x}_l(t) + \begin{bmatrix}
--1 \\ \pi
-\end{bmatrix}
-u_l(t)
-\]
-\end{enumerate}
-\end{frame}
+% \begin{frame}{Solutions Continued}
+% \begin{enumerate}[(v)]
+% \item Substitute linear approximation back into the system,
+% \[ \frac{d\vec{x}(t)}{dt} \approx 
+% \cancel{\vec{f}(\vec{x}^*, 1)} + \begin{bmatrix}
+% -2 & -1 \\
+% 1 - \pi & 0 
+% \end{bmatrix} 
+% \vec{x}_l(t) + \begin{bmatrix}
+% -1 \\ \pi
+% \end{bmatrix}
+% u_l(t)
+% \]
+% \end{enumerate}
+% \end{frame}
 
 
