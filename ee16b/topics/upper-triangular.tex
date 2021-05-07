@@ -31,8 +31,6 @@ However, all square matrices can be brought into upper triangular form
 
 \begin{frame}{Upper Triangularization Proof}
 
-\begin{columns}[T] % align columns
-\begin{column}{.38\textwidth}
 %\color{red}\rule{\linewidth}{4pt}
 %
 %Left Part
@@ -42,20 +40,14 @@ However, all square matrices can be brought into upper triangular form
             First we choose one arbitrary eigenvalue / eigenvector pair, choose an orthonormal basis for \(\mathbb R^n\) (with Gram-Schmidt), then define \(V\) formed with those vectors.
     \end{itemize}
 
-\end{column}%
-\hfill%
-\begin{column}{.66\textwidth}
-    We can upper triangularize \(k \times k\) matrices if we assume that \((k+1) \times (k+1)\) matrices can be upper triangularized.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Upper Triangularization Proof}
+
+    We can upper triangularize \(k \times k\) matrices if we assume that \((k-1) \times (k-1)\) matrices can be upper triangularized.
 
     To show this, let \(A\) be an arbitrary \(k \times k\) matrix and let \(\lambda, \vec v\) by an eigenvalue/vector pair: \(A \vec v = \lambda \vec v\).
-    Normalize \(\vec v\) so that \(\lVert \vec v \rVert = 1\) and choose \(k\) other vectors \(\vec v_2, \ldots, \vec v_k \in \mathbb R^{k}\) such that \(\{\vec v, \vec v_2, \ldots, \vec v_k\}\) is an orthonormal basis for \(\mathbb R^{k}\). Then the \(k \times k\) matrix \(V = \begin{bmatrix} \vec v & \vec v_2 & \cdots  &\vec v_k \end{bmatrix}\) is orthogonal, \emph{i.e.}
-        \( V^{-1} = V^T
-        \).
-
-
-
-\end{column}%
-\end{columns}
-
+    Normalize \(\vec v\) so that \(\lVert \vec v \rVert = 1\) and choose \(k\) other vectors \(\vec v_2, \ldots, \vec v_k \in \mathbb R^{k}\) such that \(\{\vec v, \vec v_2, \ldots, \vec v_k\}\) is an orthonormal basis for \(\mathbb R^{k}\). Then the \(k \times k\) matrix \(V = \begin{bmatrix} \vec v & \vec v_2 & \cdots  &\vec v_k \end{bmatrix}\) is orthogonal, \emph{i.e.} \( V^{-1} = V^T\).
 
 \end{frame}
