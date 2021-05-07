@@ -55,7 +55,7 @@ A continuous system is stable iff the real parts of all eigenvalues are negative
 
     For scalar case, system is stable if \(\mathrm{Re}\{a\} < 0\) and not stable if \(\mathrm{Re}\{a\} > 0\).
 
-    By careful application of diagonalization, we get the same result for the eigenvalues of \(A\) in the matrix case. 
+    By careful application of diagonalization, we get the same result for the eigenvalues of \(A\) in the matrix case.
 
 \end{frame}
 
@@ -98,15 +98,15 @@ How do the eigenvalues govern system dynamics?
 
 \begin{frame}{State Feedback}
     \begin{itemize}
-        \item 
+        \item
 By designing K, we can give our system specific dynamic properties
             \begin{itemize}
-        \item 
+        \item
 Can analyze and design the way its state changes over time
             \end{itemize}
-        \item 
+        \item
 If our “open-loop” system is unstable, choosing the right values of K can make it stable!
-        \item 
+        \item
 Is this always possible?
     \end{itemize}
 \end{frame}
@@ -118,14 +118,10 @@ Is this always possible?
             7 & 6
             \end{bmatrix} \vec x[t] +  \begin{bmatrix} 2 \\ -1\end{bmatrix} u[t]
     \]
-    \[
-        \vec y[t] = \begin{bmatrix} 1 & 1 \end{bmatrix} \vec x[t]
-   \]
 
-   Controllable? 
+   Controllable?
             \onslide<2->{{\bfseries Yes}}
-   
+
     Stable for \(u[t] = 0\)?
             \onslide<3->{{\bfseries No}}
 \end{frame}
-
