@@ -2,7 +2,7 @@
 	\section{Singular Value Decomposition}
 
     \begin{frame}{SVD Theorem}
-Any matrix $A \in \mathbb{R}^{m \times n}$ can be decomposed into the product of three matrices
+		Any matrix $A \in \mathbb{R}^{m \times n}$ can be decomposed into the product of three matrices
 		\begin{align*}
 			A &= U \Sigma V^T \\
 			U &: m \times m \\
@@ -43,7 +43,7 @@ Any matrix $A \in \mathbb{R}^{m \times n}$ can be decomposed into the product of
     \end{frame}
 
     \begin{frame}{Computing SVD with $A^T A$}
-Given a right singular vector $\vec{v}_i$ which we found from the previous part, we can apply it
+		Given a right singular vector $\vec{v}_i$ which we found from the previous part, we can apply it
 		\begin{align*}
 			A \vec{v}_i &= \left( \sum_{k = 1}^r \sigma_k \vec{u}_k \vec{v}_k^T \right) \vec{v}_i \\
 			&= \sum_{k = 1}^r \sigma_k \vec{u}_k \vec{v}_k^T \vec{i} \\
@@ -62,9 +62,6 @@ Given a right singular vector $\vec{v}_i$ which we found from the previous part,
     	
     	\item \href{https://en.wikipedia.org/wiki/File:Singular_value_decomposition.gif}{SVD visualization (open in browser)}
     \end{itemize}
-		
-
-		
 
     \end{frame}
 
@@ -74,10 +71,9 @@ Given a right singular vector $\vec{v}_i$ which we found from the previous part,
 		Thus, we can see exactly which parts of $\vec{x}$ affect the output.
     \end{frame}
 
-
 	\begin{frame}{Compression of Low-Rank Matrices}
 	\begin{itemize}[<+->]
-	\item Suppose I had a matrix $A \in \mathbb{R}^{m \times n}$ with $m, n >> rank(A)$. How could I more efficiently store $A$ and compute products like $A \vec{x}$?
+	\item Suppose I had a matrix $A \in \mathbb{R}^{m \times n}$ with $m, n \gg \operatorname{rank}(A)$. How could I more efficiently store $A$ and compute products like $A \vec{x}$?
 	\vspace{2em}
 	\item With the SVD, we only have to save $r$ set of two vectors and a scalar, which saves us a lot of space if the rank is small with respect to the matrix. Also, less computation is carried out if we represent the matrix as the outer product form.
 	\end{itemize}
