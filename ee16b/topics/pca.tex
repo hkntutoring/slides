@@ -11,18 +11,18 @@
 			\item De-mean $A$
 			\item Take SVD: $A = U \Sigma V^T$
 			\item Create $V_{d'} \in \mathbb{R}^{n \times d'}$ from vectors of $V$ corresponding to $d'$ greatest singular values
-			\item To project data into the representative subspace: $T(x) := V_{d'}^T x$
+			\item To project data into the representative subspace: $T(\vec{x}) := V_{d'}^T \vec{x}$
 		\end{enumerate}
 	\end{frame}
 
 	\begin{frame}{PCA: Computation}
 	The mapping $T$ can then be expressed as
 	\[ T(\vec{x}) = V_k^T \vec{x} \]
-	If we apply this transformation onto the entire dataset (which has row vectors), we can say
-	\[ T(A) = B = A V_k \]
-	where $B \in \mathbb{R}^{n \times k}$
+	If we apply this transformation onto the entire dataset (which has \emph{row vectors}), we can say
+	\[ T(A) = B = V_k^T A\]
+	where $B \in \mathbb{R}^{n \times k}$.
 	\end{frame}
-	\begin{frame}{PCA: computation}
+	\begin{frame}{PCA: Computation}
 	If we were to show the projected vectors in the original space, we can multiply back with the projection vectors
 	\[ A' = B V_k^T \]
 	\end{frame}
