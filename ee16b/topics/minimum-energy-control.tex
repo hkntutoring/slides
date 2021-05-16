@@ -53,12 +53,12 @@
 \begin{frame}{Minimum Energy Control Proof}
 	Let $\vec{u}_0$ be defined as before, and consider a solution vector $\vec{u} = \vec{u}_0 + \vec{a}$ where $\vec{a}$ is in the nullspace of $\mathscr{C}$. We calculate the norm:
 	\begin{align*}
-	\left| \vec{u} \right| 
+	\left| \vec{u} \right|^2 
 	& = \left< \vec{u}, \vec{u} \right> 
 	\\ &= \left< \vec{u}_0 + \vec{a}, \vec{u}_0 + \vec{a} \right> 
 	\\ &= \left< \vec{u}_0, \vec{u}_0 \right>  + 2\left< \vec{u}_0, \vec{a} \right>  + \left< \vec{a}, \vec{a} \right> 
 	\\ &= \left< \vec{u}_0, \vec{u}_0 \right>  + \left< \vec{a}, \vec{a} \right> 
-	\\ &= \left| \vec{u}_0 \right| + \left| \vec{a} \right| 
+	\\ &= \left| \vec{u}_0 \right|^2 + \left| \vec{a} \right|^2 
 	\end{align*}
 	Thus, to minimize the norm of $\vec{u}$ we must minimize the norm of $\vec{a}$, so the optimal solution is $\vec{u} = \vec{u}_0$.
 \end{frame}
