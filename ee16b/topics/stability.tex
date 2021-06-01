@@ -55,7 +55,7 @@ A continuous system is stable iff the real parts of all eigenvalues are negative
 
     For scalar case, system is stable if \(\mathrm{Re}\{a\} < 0\) and not stable if \(\mathrm{Re}\{a\} > 0\).
 
-    By careful application of diagonalization, we get the same result for the eigenvalues of \(A\) in the matrix case. 
+    By careful application of diagonalization, we get the same result for the eigenvalues of \(A\) in the matrix case.
 
 \end{frame}
 
@@ -98,15 +98,15 @@ How do the eigenvalues govern system dynamics?
 
 \begin{frame}{State Feedback}
     \begin{itemize}
-        \item 
+        \item
 By designing K, we can give our system specific dynamic properties
             \begin{itemize}
-        \item 
+        \item
 Can analyze and design the way its state changes over time
             \end{itemize}
-        \item 
+        \item
 If our “open-loop” system is unstable, choosing the right values of K can make it stable!
-        \item 
+        \item
 Is this always possible?
     \end{itemize}
 \end{frame}
@@ -118,78 +118,10 @@ Is this always possible?
             7 & 6
             \end{bmatrix} \vec x[t] +  \begin{bmatrix} 2 \\ -1\end{bmatrix} u[t]
     \]
-    \[
-        \vec y[t] = \begin{bmatrix} 1 & 1 \end{bmatrix} \vec x[t]
-   \]
 
-   Controllable? 
+   Controllable?
             \onslide<2->{{\bfseries Yes}}
-   
+
     Stable for \(u[t] = 0\)?
             \onslide<3->{{\bfseries No}}
-\end{frame}
-
-\begin{frame}{Upper Triangularization}
-
-    \begin{itemize}
-        \item
-Recall that not all square matrices are diagonalizable
-            \begin{itemize}
-        \item
-           An \(n \times n\) matrix is diagonalizable iff has \(n\) linearly independent eigenvectors
-            \end{itemize}
-        \item
-However, all square matrices can be brought into upper triangular form
-        \item
-I’ll walk through the proof from the notes
-        \item
-(But I’m not sure how useful this will be / how they would ask questions about this on the test)
-        \item
-(So if people want to I can instead start taking questions on SVD, time- and frequency-domain analysis of RLC circuits, and phasors)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Upper Triangularization Proof}
-    \begin{itemize}
-        \item What are we trying to prove?
-            \begin{itemize}
-                \item
-                    Remember that if \(M\) is diagonalizable, this means that there exists a matrix \(P\) such that \(PMP^{-1}\) was diagonal
-                \item In our case, we want to prove that for any square matrix \(A\), there exists a matrix \(T\) such that \(TAT^{-1}\) is upper triangular
-            \end{itemize}
-        \item We will proceed by induction
-        \item First prove a base case (a \(1 \times 1\) matrix must be upper triangular)
-        \item  Prove that if there exists such a matrix \(T_0\) for a \(k \times k\) matrix, then there exists the matrix \(T\) for a size \((k+1) \times (k+1)\) matrix
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Upper Triangularization Proof}
-
-\begin{columns}[T] % align columns
-\begin{column}{.38\textwidth}
-%\color{red}\rule{\linewidth}{4pt}
-%
-%Left Part
-    \begin{itemize}
-        \item Clearly a \(1 \times 1\) matrix is upper triangular
-        \item 
-            First we choose one arbitrary eigenvalue / eigenvector pair, choose an orthonormal basis for \(\mathbb R^n\) (with Gram-Schmidt), then define \(V\) formed with those vectors.
-    \end{itemize}
-
-\end{column}%
-\hfill%
-\begin{column}{.66\textwidth}
-    We can upper triangularize \((k+1) \times (k+1)\) matrices if we assume that \(k \times k\) matrices can be upper triangularized.
-
-    To show this, let \(A\) be an arbitrary \((k+1) \times (k + 1)\) matrix and let \(\lambda, \vec v\) by an eigenvalue/vector pair: \(A \vec v = \lambda \vec v\).
-    Normalize \(\vec v\) so that \(\lVert \vec v \rVert = 1\) and choose \(k\) other vectors \(\vec v_1, \ldots, \vec v_k \in \mathbb R^{k+1}\) such that \(\{\vec v, \vec v_1, \ldots, \vec v_k\}\) is an orthonormal basis for \(\mathbb R^{k+1}\). Then the \((k+1) \times (k+1)\) matrix \(V \coloneqq \begin{bmatrix} \vec v & \vec v_1 & \cdots  &\vec v_k \end{bmatrix}\) is orthogonal, \emph{i.e.} 
-        \( V^{-1} = V^T
-        \).
-
-
-
-\end{column}%
-\end{columns}
-
-
 \end{frame}

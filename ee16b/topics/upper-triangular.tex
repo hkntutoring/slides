@@ -1,0 +1,53 @@
+\section{Upper Triangularization}
+
+
+\begin{frame}{Upper Triangularization}
+
+    \begin{itemize}
+        \item
+Recall that not all square matrices are diagonalizable
+            \begin{itemize}
+        \item
+           An \(n \times n\) matrix is diagonalizable iff has \(n\) linearly independent eigenvectors
+            \end{itemize}
+        \item
+However, all square matrices can be brought into upper triangular form
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Upper Triangularization Proof}
+    \begin{itemize}
+        \item What are we trying to prove?
+            \begin{itemize}
+                \item
+                    Remember that if \(M\) is diagonalizable, this means that there exists a matrix \(P\) such that \(PMP^{-1}\) was diagonal
+                \item In our case, we want to prove that for any square matrix \(A\), there exists a matrix \(U\) such that \(UAU^{-1}\) is upper triangular
+            \end{itemize}
+        \item We will proceed by induction
+        \item First prove a base case (a \(1 \times 1\) matrix must be upper triangular)
+        \item  Prove that if there exists such a matrix \(U_0\) for a \(k \times k\) matrix, then there exists the matrix \(U\) for a size \((k+1) \times (k+1)\) matrix
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Upper Triangularization Proof}
+
+%\color{red}\rule{\linewidth}{4pt}
+%
+%Left Part
+    \begin{itemize}
+        \item Clearly a \(1 \times 1\) matrix is upper triangular
+        \item
+            First we choose one arbitrary eigenvalue / eigenvector pair, choose an orthonormal basis for \(\mathbb R^n\) (with Gram-Schmidt), then define \(V\) formed with those vectors.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Upper Triangularization Proof}
+
+    We can upper triangularize \(k \times k\) matrices if we assume that \((k-1) \times (k-1)\) matrices can be upper triangularized.
+
+    To show this, let \(A\) be an arbitrary \(k \times k\) matrix and let \(\lambda, \vec v\) by an eigenvalue/vector pair: \(A \vec v = \lambda \vec v\).
+    Normalize \(\vec v\) so that \(\lVert \vec v \rVert = 1\) and choose \(k\) other vectors \(\vec v_2, \ldots, \vec v_k \in \mathbb R^{k}\) such that \(\{\vec v, \vec v_2, \ldots, \vec v_k\}\) is an orthonormal basis for \(\mathbb R^{k}\). Then the \(k \times k\) matrix \(V = \begin{bmatrix} \vec v & \vec v_2 & \cdots  &\vec v_k \end{bmatrix}\) is orthogonal, \emph{i.e.} \( V^{-1} = V^T\).
+
+\end{frame}

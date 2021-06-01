@@ -1,24 +1,25 @@
 
 	\section{Discretization}
-	
+
 	\begin{frame}{Discretization: Q1}
-	Note: this section follows hw8 q1 almost exactly. Suppose we have a scalar system
-	\[ \frac{d}{dt} x(t) = \alpha x + \vec{\beta}^T \vec u(t) \]
-	and we apply a constant input $\vec{u}_n$ for times $t \in [nT, (n + 1)T)$ for some $T > 0$. Given $x(nT)$ solve the differential equation
+	Suppose we have a scalar system
+	\[ \frac{d}{dt} x(t) = \alpha x(t) + \vec{\beta}^T \vec u(t) \]
+	and we apply a constant input $\vec{u}_n$ for times $t \in [nT, (n + 1)T)$ for some $T > 0$. Given $x(nT)$ solve the differential equation.
 	\end{frame}
 
     \begin{frame}{Discretization: Q1 Sol}
-	From $t = nT$ to $t = (n + 1)T$, $\vec{\beta}^T \vec{u}$ is a constant scalar. Thus, we can solve this like a normal differential equation. Let $x = x' - \frac{\vec \beta^T \vec u}{\alpha}$. 
+	From $t = nT$ to $t = (n + 1)T$, $\vec{\beta}^T \vec{u}$ is a constant scalar. Thus, we can solve this like a normal differential equation. Let $x = x' - \frac{\vec \beta^T \vec u}{\alpha}$.
 	\begin{align*}
-	\frac{d}{dt} x(t) &= \alpha (x' - \frac{\vec \beta^T \vec u}{\alpha}) + \vec{\beta}^T \vec u(t) \\
+	\frac{d}{dt} x'(t) &= \alpha (x'(t) - \frac{\vec \beta^T \vec u}{\alpha}) + \vec{\beta}^T \vec u \\
 	&= \alpha x' \\
-	x' &= A e^{\alpha (x - nT)} \\
-	x + \frac{\vec \beta^T \vec u}{\alpha} &= A e^{\alpha (x - nT)} \\
-	x &= A e^{\alpha (x - nT)} - \frac{\vec \beta^T \vec u}{\alpha}
+	x'(t) &= A e^{\alpha (t - nT)} \\
+	x(t) + \frac{\vec \beta^T \vec u}{\alpha} &= A e^{\alpha (t - nT)} \\
+	x(t) &= A e^{\alpha (t - nT)} - \frac{\vec \beta^T \vec u}{\alpha}
 	\end{align*}
 	\end{frame}
+
 	\begin{frame}{Discretization: Q1 Sol Continued}
-	At which point we can use our initial condition to get
+	At this point we can use our initial condition to get
 	\begin{align*}
 	x(nT) &= A - \frac{\vec \beta^T \vec u}{\alpha} \\
 	A &= x(nT) + \frac{\vec \beta^T \vec u}{\alpha} \\
@@ -39,7 +40,7 @@
 	\end{frame}\begin{frame}{Discretization: Q3}
 	Instead of a scalar, we instead have a diagonal matrix $A$ such that
 	\[ \frac{d}{dt} \vec{x} = A \vec{x} + B \vec{u} \]
-	Discretize this system in the same was as Q2.
+	Discretize this system in the same way as Q2.
 	\end{frame}
 
     \begin{frame}{Discretiziation: Q3 Sol}
@@ -50,9 +51,7 @@
 
 
 	\begin{frame}{Discretization: Generic Matrix}
-	
-	Math not shown, but we can perform a change of basis from our original space to our diagonal space, and then apply the results of the previous part.
-	
-	\end{frame}
-	
 
+	Math not shown, but we can perform a change of basis from our original space to our diagonal space, and then apply the results of the previous part.
+
+	\end{frame}

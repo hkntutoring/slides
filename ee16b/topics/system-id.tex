@@ -1,0 +1,227 @@
+\section{System ID}
+
+\begin{frame}{System ID Parameters}
+	(Note: This is basically all of note 7B.)
+	
+    We model linear systems with:
+
+    \[
+        \vec{x_d}[t+1] = A\vec{x_d}[t] + B\vec{u_d}[t]
+    \]
+        
+    Where 
+   	\[
+		A = 
+		\begin{bmatrix}
+			a_{11} & \cdots & a_{1n} \\
+			\vdots & \ddots & \vdots \\
+			a_{n1} & \cdots & a_{nn}     
+		\end{bmatrix}
+		B = 
+		\begin{bmatrix}
+			b_{11} & \cdots & b_{1k} \\
+			\vdots & \ddots & \vdots \\
+			b_{n1} & \cdots & b_{nk}     
+		\end{bmatrix}        
+    \]
+\end{frame}
+	
+\begin{frame}{System ID Parameters}
+	Suppose we are not given A and B, and wish to determine them with some number of observations. We can treat the matrices as unknown parameters, and attempt to solve for their value. 
+	
+	Breaking the system down into scalars, we have:
+	\[
+		\begin{bmatrix}
+			x_1[t+1] \\
+			\vdots \\
+			x_n[t+1] 
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			a_{11} & \cdots & a_{1n} \\
+			\vdots & \ddots & \vdots \\
+			a_{n1} & \cdots & a_{nn}     
+		\end{bmatrix}
+		\begin{bmatrix}
+			x_1[t] \\
+			\vdots \\
+			x_n[t] 
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			b_{11} & \cdots & b_{1k} \\
+			\vdots & \ddots & \vdots \\
+			b_{n1} & \cdots & b_{nk}     
+		\end{bmatrix}        
+		\begin{bmatrix}
+			u_1[t] \\
+			\vdots \\
+			u_k[t] 
+		\end{bmatrix}
+    \]
+\end{frame}
+
+\begin{frame}{Converting to Least Squares}
+	Let us examine each row of the previous equation separately. For row $r$, 
+	\[
+		x_r[t+1]
+		=
+		\begin{bmatrix}
+			a_{r1} & \cdots & a_{rn}   
+		\end{bmatrix}
+		\begin{bmatrix}
+			x_1[t] \\
+			\vdots \\
+			x_n[t] 
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			b_{r1} & \cdots & b_{rk} \\  
+		\end{bmatrix}        
+		\begin{bmatrix}
+			u_1[t] \\
+			\vdots \\
+			u_k[t] 
+		\end{bmatrix}
+    \]
+    Since inner products are symmetric, we can flip this around:
+	\[
+		x_r[t+1]
+		=
+		\begin{bmatrix}
+			x_1[t] & \cdots & x_n[t] 	
+		\end{bmatrix}
+		\begin{bmatrix}
+			a_{r1} \\ 
+			\vdots \\
+			a_{rn}   
+		\end{bmatrix}
+		+   
+		\begin{bmatrix}
+			u_1[t] & \cdots & u_k[t]
+		\end{bmatrix}
+		\begin{bmatrix}
+			b_{r1} \\ 
+			\vdots \\
+			b_{rk} 
+		\end{bmatrix}     
+    \]    
+\end{frame}
+	
+\begin{frame}{Converting to Least Squares}
+	Finally, we stack our vectors to get:
+	\[
+		x_r[t+1]
+		=
+		\begin{bmatrix}
+			x_1[t] & \cdots & x_n[t] & u_1[t] & \cdots & u_k[t]
+		\end{bmatrix}
+		\begin{bmatrix}
+			a_{r1} \\ 
+			\vdots \\
+			a_{rn} \\
+			b_{r1} \\ 
+			\vdots \\
+			b_{rk} 
+		\end{bmatrix}
+	\]
+	
+	Observe that the quantities in the row vector can be observed, while the the quantities in the column vectors are unknown parameters we wish to solve for.
+\end{frame}
+	
+\begin{frame}{System ID Least Squares}
+	Unfortunately, the previous equation is not sufficient since we have 1 equation but $n+k$ parameters. Since the equation holds for all times, we can consider all timesteps $0<t\leq T$ to have the following:
+	\[
+		\small
+		\begin{bmatrix}
+			x_r[1] \\
+			\vdots \\
+			x_r[T] \\
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			x_1[0] & \cdots & x_n[0] & u_1[0] & \cdots & u_k[0] \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			x_1[T-1] & \cdots & x_n[T-1] & u_1[T-1] & \cdots & u_k[T-1] \\
+		\end{bmatrix}
+		\begin{bmatrix}
+			a_{r1} \\ 
+			\vdots \\
+			a_{rn} \\
+			b_{r1} \\ 
+			\vdots \\
+			b_{rk} 
+		\end{bmatrix}
+	\]
+	This allows us to solve for our unknowns as long as there are at least $T\geq n+k$ observations using least squares. However, we can make the procedure more efficient if we stack these equations horizontally for each value of $r$.
+\end{frame}
+
+\begin{frame}{System ID Least Squares}
+	Let us define the following matrices:
+	\[
+		P 
+		= 
+		\begin{bmatrix}
+			A^\top \\ 
+			B^\top
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			a_{11} & \cdots & a_{n1} \\
+			\vdots & \ddots & \vdots \\
+			a_{1n} & \cdots & a_{nn} \\
+			b_{11} & \cdots & b_{n1} \\
+			\vdots & \ddots & \vdots \\
+			b_{1k} & \cdots & b_{nk}     
+		\end{bmatrix}  
+	\]
+\end{frame}
+
+\begin{frame}{System ID Least Squares}
+	Let us define the following matrices:
+	\begin{align*}
+		D
+		& =
+		\begin{bmatrix}
+			\vec{x}^\top [0] & \vec{u}^\top [0] \\
+			\vdots & \vdots \\
+			\vec{x}^\top[T-1] & \vec{u}^\top [T-1] \\
+		\end{bmatrix}
+		\\ & =
+		\begin{bmatrix}
+			x_1[0] & \cdots & x_n[0] & u_1[0] & \cdots & u_k[0] \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			x_1[T-1] & \cdots & x_n[T-1] & u_1[T-1] & \cdots & u_k[T-1] \\
+		\end{bmatrix}
+	\end{align*}
+\end{frame}
+
+\begin{frame}{System ID Least Squares}
+	Let us define the following matrices:
+	\[
+		S
+		=
+		\begin{bmatrix}
+			\vec{x}^\top [0] \\
+			\vdots \\
+			\vec{x}^\top [T-1] \\
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			x_1[1] & \cdots & x_n[1] \\
+			\vdots & \ddots & \vdots \\
+			x_1[T] & \cdots & x_n[T] \\
+		\end{bmatrix}
+	\]
+\end{frame}
+
+\begin{frame} {System ID Least Squares}
+	With these matrices, we finally have
+	\[
+	DP \approx S
+	\]
+	Using least squares, we solve
+	\[
+	P = \left( D^\top D \right) ^ {-1} D^\top S
+	\]
+\end{frame}

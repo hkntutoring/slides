@@ -28,27 +28,32 @@ Therefore :
 \end{itemize}
 
 \end{frame}
-\begin{frame}{Linearizing Steps for $\frac{dx(t)}{dt} = f(x(t)) + bu(t)$}
+\begin{frame}{Linearizing Steps for $\dv{x}{t} = f(x(t)) + b(u(t)$)}
 \begin{enumerate}[(i)]
 \item Choose, or you may be given, a DC input point. That is, a point $u^* \equiv u(t)$ that is constant with time.\pause \\
-\item Find a DC operating point, $x^* \equiv x(t)$. That is, solve $\frac{dx^*}{dt} = f(x^*) + bu^*$. Notice that this boils down to finding an $x^*$ such that $f(x^*) + bu^* = 0 $. \pause \\
-\item Define $x_l(t) = x(t) - x^*$ and $u_l(t) = u(t) - u^*$, and re-write the ODE in terms of $ x_l(t)$ and $ u_l(t)$. By plugging in you get: $\frac{dx_l(t)}{dt} = f(x_l(t) + x^*) + b(u_l(t)+ u^*)$ \pause \\
+\item Find a DC operating point, $x^* \equiv x(t)$. That is, solve $\dv{x^*}{t} = f(x^*) + bu^*$. Notice that this boils down to finding an $x^*$ such that $f(x^*) + bu^* = 0 $. \pause \\
+\item Define $x_l(t) = x(t) - x^*$ and $u_l(t) = u(t) - u^*$, and re-write the ODE in terms of $ x_l(t)$ and $ u_l(t)$. By plugging in you get: $\dv{x_l(t)}{t} = f(x_l(t) + x^*) + b(u_l(t)+ u^*)$ \pause \\
 \item It is ok to assume at this point that $u_l(t)$ is small, that means that the $u(t)$ in step 1 does not deviate too much from $u^*$.\pause \\
 \item Linearize the ODE: $f(x_l(t) + x^*) \approx f(x^*) + f'(x^*)x_l(t)$. Here we assume that $x_l(t)$ is also small. This is something that we will need to verify in the next step!
 \end{enumerate}
 \end{frame}
-\begin{frame}{Linearizing Steps for $\frac{dx(t)}{dt} = f(x(t)) + bu(t)$ (Continued)}
+\begin{frame}{Linearizing Steps for $\dv{x}{t} = f(x(t)) + b(u(t))$ (Continued)}
 \begin{enumerate}[(vi)]
-\item Plug (vi) back into  (iii) and we obtain : $\frac{dx_l(t)}{dt} \approx f'(x^*)f(x_l(t)) + \cancel{f(x^*)} + bu_l(t)+ \cancel{bu^*} = f'(x^*)f(x_l(t))+ bu_l(t)$
+  \item Plug (vi) back into  (iii) and we obtain : $\dv{x_l}{t} \approx f'(x^*)x_l(t) + \cancel{f(x^*)} + b'(u^*)u_l(t)+ \cancel{b(u^*)} = f'(x^*)x_l(t) + b'(u^*) u_l(t)$
 \item Verify the linearization! \\
-How do we know if the linearization is valid? \pause Well, if we have $\frac{dx_l(t)}{dt} = \lambda x_l(t) + bu(t)$ we know the solution doesn't blow up if $\lambda < 0$ as we will have a term $e^{\lambda t}$.
+  How do we know if the linearization is valid? \pause Well, if we have $\frac{dx_l(t)}{dt} = \lambda x_l(t) + bu(t)$ we know the solution doesn't blow up if $\lambda < 0$ as we will have a term $e^{\lambda t}$.
 \\ This means that we want $m = f'(x^*) <$  0. 
 \end{enumerate} \pause
 So what do we do if $m>0 $? \pause \\
-We need to go back and change our DC operating point $x^*$
+Two options: \begin{itemize}
+  \item We can go back and change our DC operating point $(x^*,u^*)$
+  \item Or, if the linearized system is \vocab{controllable},
+    we can solve an \vocab{eigenvalue placement} problem for
+    a state stabalizing state feedback rule $u = K x$.
+\end{itemize}
 \end{frame}
 \begin{frame}{Practice Problem}
-Linearize $\frac{dx(t)}{dt} = \cos(x(t)) + bu(t)$ about $u^* = 0$. \pause \\
+  Linearize $\dv{x}{t}(t) = \cos(x(t)) + bu(t)$ about $u^* = 0$. \pause \\
 %Show this hint after a while if people are stuck
 \textit{Hint:} $\cos(x^*) = 0$ has multiple solutions, which means that we can find numerous DC operating points, can you guess which one would result in a stable system ? 
 \end{frame}
@@ -57,11 +62,11 @@ Linearize $\frac{dx(t)}{dt} = \cos(x(t)) + bu(t)$ about $u^* = 0$. \pause \\
 \item We were given the DC input, $u^* = 0$ \pause \\
 \item $\cos(x^*)$ = 0, which means that $x^* = k\frac{\pi}{2}$ for $k \in \{...-2,-1,1,2,...\}$. We will choose $x^* = \frac{\pi}{2}$ \pause \\
 \item Let $x_l(t) = x(t) - \frac{\pi}{2}$ and $u_l(t) = u(t) - 0$.
-By plugging in we get: $\frac{dx_l(t)}{dt} = \cos(x_l(t) + \frac{\pi}{2}) + u_l(t)$ \pause \\
+By plugging in we get: $\dv{x_l(t)}{t} = \cos(x_l(t) + \frac{\pi}{2}) + u_l(t)$ \pause \\
 \item We assume that $u_l(t)$ is small.\pause \\
-\item Linearize the ODE: $\cos(x_l(t) + \frac{\pi}{2}) \approx \cos(\frac{\pi}{2}) -\sin(\frac{\pi}{2})x_l(t)$. \pause
+\item Linearize the ODE: $\cos(x_l(t) + \frac{\pi}{2}) \approx \cos(\frac{\pi}{2}) - \sin(\frac{\pi}{2})x_l(t)$. \pause
 \item Plug (v) back into ODE: 
-$\frac{dx_l(t)}{dt} = -x_l(t) + u_l(t)$ 
+$\dv{x_l(t)}{t} = -x_l(t) + u_l(t)$ 
 \end{enumerate}
 \pause 
 We see that our assumption that  $x_l(t)$ is small is indeed satisfied as we will have a $e^{-t}$ term in the solution which means that $x_l(t)$ will decay.\\ \pause
@@ -69,21 +74,22 @@ What if we had chosen a different DC Operating point, say $-\frac{\pi}{2}$? When
 \end{frame}
 
 \begin{frame}{Linearization of Vector Functions}
-What if we had $\frac{d\vec{x}}{dt} = \vec{f}(\vec{x}, \vec{u})$ ? We will see that the process is very similar to the scalar case we just analyzed!\\ \pause
+What if we had $\dv{\vec{x}}{t} = \vec{f}(\vec{x}, \vec{u})$ ? We will see that the process is very similar to the scalar case we just analyzed!\\ \pause
 First, let's see how to linearize $\vec{f}(\vec{x})$ around a DC operating point $\vec{x}^*$. Where $\vec{f} \in \mathbb R^{n \times 1}$ is a vector of scalar functions. \\\pause
 The idea is to linearize individually each one of the $f_i$ around the DC operating point. \\\pause
-For example: $f_1 \approx f_1(\vec{x}^*) + \frac{\partial f_1}{\partial x_1}(\vec{x}^*)(x_1 - x_1^*) + ... +  \frac{\partial f_n}{\partial x_1}(\vec{x}^*)(x_n - x_n^*)$\\\pause
+For example: $f_1(\vec{x}) \approx f_1(\vec{x}^*) + \pdv{f_1}{x_1}(\vec{x}^*)(x_1 - x_1^*) + \ldots +  \pdv{f_1}{x_n}(\vec{x}^*)(x_n - x_n^*)$\\\pause
 Repeating this for all $n$ functions in $\vec{f}$ we see we get a system of scalar, linearized, multivariate functions which makes you think, wouldn't it be nice to express it in a shorthand matrix notation?
 \end{frame}
 
 \begin{frame}{Jacobian Matrix}
 We can use the Jacobian to express everything nicely and neatly. \\
-The Jacobian is the name given to the matrix of partial derivatives of $\vec{f}$, and it is denoted by $J_{\vec{x}}$ or $\nabla_{\vec{x}}\vec{f}$. \\ \pause
+The Jacobian is the name given to the matrix of partial derivatives of $\vec{f}$, and it is denoted by $J_{\vec{x}}$, $\nabla_{\vec{x}}\vec{f}$,
+or, more rarely, $D\vec{f}(\vec{x})$. \\ \pause
 Continuing from the previous slide we have: \\
 \[
 \begin{bmatrix} f_1(\vec{x}) \\ \vdots \\f_n(\vec{x}) \end{bmatrix} \approx 
 \begin{bmatrix} f_1(\vec{x}^*) \\ \vdots \\f_n(\vec{x}^*) \end{bmatrix} + 
-\begin{bmatrix} \frac{\partial f_1}{\partial x_1}(\vec{x}^*)& \hdots& \frac{\partial f_1}{\partial x_n}(\vec{x}^*) \\ \vdots & \ddots &\vdots \\ \frac{\partial f_n}{\partial x_1}(\vec{x}^*)& \hdots &  \frac{\partial f_n}{\partial x_n}(\vec{x}^*) \end{bmatrix}
+\begin{bmatrix} \pdv{f_1}{x_1}(\vec{x}^*)& \hdots& \pdv{f_1}{x_n}(\vec{x}^*) \\ \vdots & \ddots &\vdots \\ \pdv{f_n}{x_1}(\vec{x}^*)& \hdots &  \pdv{f_n}{x_n}(\vec{x}^*) \end{bmatrix}
 (\vec{x} - \vec{x}^*)
 \]
 \\
@@ -155,59 +161,59 @@ To linearize $\frac{d\vec{x}}{dt} = \vec{f}(\vec{x}(t), \vec{u}(t))$ we use a si
 
 \end{frame}
 
-\begin{frame}{Linearizing Vector ODE Systems Example}
-Given a DC input $u^* = 1$, linearize: 
-\[
-\frac{d\vec{x}(t)}{dt} = \begin{bmatrix}
-x_1^2(t) - x_2(t)u(t)\\
-x_2^2(t)(1 + x_1(t)) + \sin(\pi x_1(t)u(t))
-\end{bmatrix}
-\]
+% \begin{frame}{Linearizing Vector ODE Systems Example}
+% Given a DC input $u^* = 1$, linearize: 
+% \[
+% \frac{d\vec{x}(t)}{dt} = \begin{bmatrix}
+% x_1^2(t) - x_2(t)u(t)\\
+% x_2^2(t)(1 + x_1(t)) + \sin(\pi x_1(t)u(t))
+% \end{bmatrix}
+% \]
 
-\end{frame}
+% \end{frame}
 
-\begin{frame}{Solutions}
-Again, we will do this in steps: 
-\begin{enumerate}[(i)]
-\item We are given $u^* = 1$ \pause
-\item We need to find a DC operating point, this means solving the following system of equations:
-\begin{align}
-x_1^{*2}- x_2^*u^* = 0 \\
-x_2^{*2}(x_1^* + 1) + \sin(\pi x_1^*u^*) = 0
-\end{align} 
-The solution is $x_1^* = -1$ and $x_2^* = 1$. \pause \\
-\item Let $\vec{x}_l(t) = \vec{x}(t) - \vec{x}^*$ and $\vec{u}_l(t) = \vec{u}(t) - \vec{u}^*$ \pause \\
-\item Linearize, 
-\[ \vec{f}(\vec{x}(t), u(t)) \approx 
-\vec{f}(\vec{x}^*, 1) + \begin{bmatrix}
--2 & -1 \\
-1 - \pi & 0 
-\end{bmatrix} 
-\vec{x}_l(t) + \begin{bmatrix}
--1 \\ \pi
-\end{bmatrix}
-u_l(t)
-\]
+% \begin{frame}{Solutions}
+% Again, we will do this in steps: 
+% \begin{enumerate}[(i)]
+% \item We are given $u^* = 1$ \pause
+% \item We need to find a DC operating point, this means solving the following system of equations:
+% \begin{align}
+% x_1^{*2}- x_2^*u^* = 0 \\
+% x_2^{*2}(x_1^* + 1) + \sin(\pi x_1^*u^*) = 0
+% \end{align} 
+% The solution is $x_1^* = -1$ and $x_2^* = 1$. \pause \\
+% \item Let $\vec{x}_l(t) = \vec{x}(t) - \vec{x}^*$ and $\vec{u}_l(t) = \vec{u}(t) - \vec{u}^*$ \pause \\
+% \item Linearize, 
+% \[ \vec{f}(\vec{x}(t), u(t)) \approx 
+% \vec{f}(\vec{x}^*, 1) + \begin{bmatrix}
+% -2 & -1 \\
+% 1 - \pi & 0 
+% \end{bmatrix} 
+% \vec{x}_l(t) + \begin{bmatrix}
+% -1 \\ \pi
+% \end{bmatrix}
+% u_l(t)
+% \]
 
 
 
-\end{enumerate}
-\end{frame}
+% \end{enumerate}
+% \end{frame}
 
-\begin{frame}{Solutions Continued}
-\begin{enumerate}[(v)]
-\item Substitute linear approximation back into the system,
-\[ \frac{d\vec{x}(t)}{dt} \approx 
-\cancel{\vec{f}(\vec{x}^*, 1)} + \begin{bmatrix}
--2 & -1 \\
-1 - \pi & 0 
-\end{bmatrix} 
-\vec{x}_l(t) + \begin{bmatrix}
--1 \\ \pi
-\end{bmatrix}
-u_l(t)
-\]
-\end{enumerate}
-\end{frame}
+% \begin{frame}{Solutions Continued}
+% \begin{enumerate}[(v)]
+% \item Substitute linear approximation back into the system,
+% \[ \frac{d\vec{x}(t)}{dt} \approx 
+% \cancel{\vec{f}(\vec{x}^*, 1)} + \begin{bmatrix}
+% -2 & -1 \\
+% 1 - \pi & 0 
+% \end{bmatrix} 
+% \vec{x}_l(t) + \begin{bmatrix}
+% -1 \\ \pi
+% \end{bmatrix}
+% u_l(t)
+% \]
+% \end{enumerate}
+% \end{frame}
 
 
