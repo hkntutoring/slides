@@ -20,7 +20,7 @@
         \item \textit{Careful!}
         \begin{itemize}
             \item First, \textbf{define the + and - ends of each circuit element} in the circuit (use \textit{passive sign convention})
-            \item As you traverse the loop and pass by circuit elements, \textbf{ADD} the voltage if the loop goes from \textbf{the - to the + end}; \textbf{SUBTRACT} the voltage otherwise!
+            \item As you traverse the loop and pass by circuit elements, \textbf{ADD} the voltage if the loop goes from \textbf{the - to the + end}; \textbf{SUBTRACT} the voltage otherwise! (Or you could do it the other way, it doesn't really matter)
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -164,7 +164,7 @@
     Plugging into the \textbf{KCL equation}, we have:
     \begin{align*}
         \frac{V_3 - V_1}{R_1} + \frac{V_3}{R_2} + \frac{V_3 - V_2}{R_3} = 0 \\[1ex]
-        V_3 (\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}) = \frac{V_1}{R_1} + \frac{V_2}{R_2} \\[1ex]
+        V_3 (\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}) = \frac{V_1}{R_1} + \frac{V_2}{R_3} \\[1ex]
         V_3 = \frac{\frac{V_1}{R_1} + \frac{V_2}{R_2}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}}
     \end{align*}
 \end{frame}
