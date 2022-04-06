@@ -1,0 +1,64 @@
+\section{Minimum Energy Control}
+
+\begin{frame}{Controllability Recap}
+	Recall that any system with state equation
+	\[
+		\vec{x}[n+1] = A\vec{x}[n] + B\vec{u}[n]
+	\]
+   	is controllable if and only if the controllability matrix
+    \[
+        C = 
+        \begin{bmatrix}
+        B & AB & A^2B & \cdots & A^{n-1}B
+        \end{bmatrix}
+    \]
+    is full rank. For simplicity, we shall only consider the case where $u[t]$ is a scalar, so $B$ is a vector and $C$ is a full rank $n \times n$ matrix.
+\end{frame}
+
+\begin{frame}{Controllability Recap}
+	If we wanted to arrive at our desired state $\vec{x}^*$ in $n$ timesteps, then we can simply choose
+	\[
+		\vec{u} 
+		=
+		\begin{bmatrix}
+			u[n-1] \\
+			u[n-2] \\
+			\vdots \\
+			u[0] \\
+		\end{bmatrix}
+		=
+		C^{-1}\vec{x}^*
+	\]
+\end{frame}
+
+\begin{frame}{Minimum Energy Control}
+	If we want to arrive in $t > n$ timestamps, then there may be multiple solutions. The corresponding controllability matrix becomes
+    \[
+        \mathscr{C} = 
+        \begin{bmatrix}
+        B & AB & A^2B & \cdots & A^{t-1}B
+        \end{bmatrix}
+    \]
+	One natural way to define the ``best'' solution is to minimize the norm of $\vec{u}$. This is known as minimum energy control.
+\end{frame}
+
+\begin{frame}{Minimum Energy Control Solution}
+	Notice that $\mathscr{C}$ has a nontrivial nullspace. If we have a particular solution $\vec{u}$ satisfying $\mathscr{C} \vec{u} = \vec{x}^*$ and any vector $\vec{a} \in \mathrm{Null}(\mathscr{C})$, then
+	\[
+	\mathscr{C}(\vec{u} + \vec{a}) = \mathscr{C}\vec{u} + \mathscr{C}\vec{a} = \mathscr{C}\vec{u} + \vec{0} = \vec{x}^*
+	\]
+	It turns out that the optimal solution is $\vec{u_0} \perp \mathrm{Null}(\mathscr{C})$.
+\end{frame}
+
+\begin{frame}{Minimum Energy Control Proof}
+	Let $\vec{u}_0$ be defined as before, and consider a solution vector $\vec{u} = \vec{u}_0 + \vec{a}$ where $\vec{a}$ is in the nullspace of $\mathscr{C}$. We calculate the norm:
+	\begin{align*}
+	\left| \vec{u} \right|^2 
+	& = \left< \vec{u}, \vec{u} \right> 
+	\\ &= \left< \vec{u}_0 + \vec{a}, \vec{u}_0 + \vec{a} \right> 
+	\\ &= \left< \vec{u}_0, \vec{u}_0 \right>  + 2\left< \vec{u}_0, \vec{a} \right>  + \left< \vec{a}, \vec{a} \right> 
+	\\ &= \left< \vec{u}_0, \vec{u}_0 \right>  + \left< \vec{a}, \vec{a} \right> 
+	\\ &= \left| \vec{u}_0 \right|^2 + \left| \vec{a} \right|^2 
+	\end{align*}
+	Thus, to minimize the norm of $\vec{u}$ we must minimize the norm of $\vec{a}$, so the optimal solution is $\vec{u} = \vec{u}_0$.
+\end{frame}

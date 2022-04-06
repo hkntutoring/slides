@@ -1,7 +1,7 @@
 \section{Op-Amp Configurations}
 
 \begin{frame}{Basic Op-Amp Configurations}
-    With \textbf{ideal op-amps}, you should use op-amp configurations as \textbf{building blocks} without regarding the effect of one block’s $R_eq$ on another block: \\[10pt]
+    With \textbf{ideal op-amps}, you should use op-amp configurations as \textbf{building blocks} without regarding the effect of one block’s $R_{eq}$ on another block: \\[10pt]
     \begin{center}
         \begin{tabular}{c c}
             \underline{Voltage Comparator} & \underline{Non-Inverting Amplifier} \\
@@ -136,7 +136,7 @@
                 (opamp.out) to[short, -o] (1.7, 0) node[label={right:$V_{out}$}] {};
             \end{circuitikz}
         } \\[5pt]
-        $I_c = C\frac{dV_{in}}{dt} - \frac{V_{out}}{R}$ & \\[10pt]
+        $I_c = C\frac{dV_{in}}{dt} + \frac{V_{out}}{R}$ & \\[10pt]
         By the second golden rule, & \\[5pt]
         $V_{out} = -RC\frac{dV_{in}}{dt}$ & \\
     \end{tabular}
